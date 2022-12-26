@@ -1,7 +1,7 @@
 ﻿
 using Items;
 
-using Rpg_De_Console.Entities;
+using Entities;
 
 namespace Classes
 {
@@ -23,16 +23,10 @@ namespace Classes
         // habilidades
 
         // golpe duplo
-        protected override void Habilidade1(CriaturaBase alvo)
-        {
-            
-        }
+        
 
         // instância de defesa
-        protected override void Habilidade2(CriaturaBase alvo)
-        {
-           
-        }
+        
 
         
     }

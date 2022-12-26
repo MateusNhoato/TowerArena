@@ -1,6 +1,6 @@
 ﻿
 using Items;
-using Rpg_De_Console.Entities;
+using Entities;
 
 namespace Classes
 {
@@ -14,9 +14,6 @@ namespace Classes
         public int PoderPorNivel { get; protected private set; }
         public int DefesaPorNivel { get; protected private set; }
         public int IniciativaPorNivel { get; protected private set; }
-
-        protected abstract void Habilidade1(CriaturaBase alvo);
-        protected abstract void Habilidade2(CriaturaBase alvo);
 
         public static Classe? Parse(string input)
         {

@@ -1,6 +1,6 @@
 ﻿
 using Items;
-using Rpg_De_Console.Entities;
+using Entities;
 
 namespace Classes
 {
@@ -21,16 +21,9 @@ namespace Classes
 
         // habilidades
 
-        protected override void Habilidade1(CriaturaBase alvo)
-        {
-           
-        }
+       
 
-        protected override void Habilidade2(CriaturaBase alvo)
-        {
-            
-        }
-
+        
        
     }
 }

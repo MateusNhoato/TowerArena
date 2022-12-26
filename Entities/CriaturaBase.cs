@@ -1,6 +1,6 @@
 ﻿using Classes;
 
-namespace Rpg_De_Console.Entities
+namespace Entities
 {
     internal abstract class CriaturaBase
     {
@@ -42,8 +42,6 @@ namespace Rpg_De_Console.Entities
             VidaAtual = vidaAtual;
             ManaAtual = manaAtual;
         }
-
-       
        
 
         public int VidaTotal
@@ -91,9 +89,21 @@ namespace Rpg_De_Console.Entities
             }
         }
 
-        public int PorcentagemVida()
+        public double PorcentagemVida()
         {
-            return (int)Math.Floor(Convert.ToDouble(VidaAtual / VidaTotal)) * 100;
+            return (double)VidaAtual / VidaTotal * 100 ;
+        }
+
+        public int ReceberDano(int dano)
+        {
+            int danoTotal = dano - DefesaTotal;
+            if(danoTotal > 0)
+            {
+                VidaAtual -= danoTotal;
+            }
+            return danoTotal;
+                
+            
         }
 
 

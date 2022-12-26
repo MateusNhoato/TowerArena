@@ -6,81 +6,129 @@ namespace View
 {
     internal class CombateView
         {
-        public static string numerosString =
 
-@"
-                           ██   ██████ 
-                          ███  ██  ████ 
-                           ██  ██ ██ ██ 
-                           ██  ████  ██ 
-                           ██   ██████ +
-                              ██     
-                             ███     
-                              ██      
-                              ██      
-                              ██     +     
-                             ██████    
-                                  ██  
-                              █████   
-                             ██      
-                             ███████ + 
-                             ██████    
-                                  ██  
-                              █████    
-                                  ██  
-                             ██████  + 
-                             ██   ██  
-                             ██   ██  
-                             ███████  
-                                  ██  
-                                  ██ +                 
-                             ███████  
-                             ██       
-                             ███████ 
-                                  ██ 
-                             ███████ +
-                              ██████  
-                             ██       
-                             ███████  
-                             ██    ██ 
-                              ██████ + 
-                             ███████ 
-                                  ██ 
-                                 ██  
-                                ██   
-                                ██   +
-                              █████  
-                             ██   ██ 
-                              █████  
-                             ██   ██ 
-                              █████  +   
-                              █████  
-                             ██   ██ 
-                              ██████ 
-                                  ██ 
-                              █████  ";
-        public static string[] numerosArray = numerosString.Split('+');
+        public static string iniciativa = @"
+     ▄█  ███▄▄▄▄    ▄█   ▄████████  ▄█     ▄████████     ███      ▄█   ▄█    █▄     ▄████████ 
+    ███  ███▀▀▀██▄ ███  ███    ███ ███    ███    ███ ▀█████████▄ ███  ███    ███   ███    ███ 
+    ███▌ ███   ███ ███▌ ███    █▀  ███▌   ███    ███    ▀███▀▀██ ███▌ ███    ███   ███    ███ 
+    ███▌ ███   ███ ███▌ ███        ███▌   ███    ███     ███   ▀ ███▌ ███    ███   ███    ███ 
+    ███▌ ███   ███ ███▌ ███        ███▌ ▀███████████     ███     ███▌ ███    ███ ▀███████████ 
+    ███  ███   ███ ███  ███    █▄  ███    ███    ███     ███     ███  ███    ███   ███    ███ 
+    ███  ███   ███ ███  ███    ███ ███    ███    ███     ███     ███  ███    ███   ███    ███ 
+    █▀    ▀█   █▀  █▀   ████████▀  █▀     ███    █▀     ▄████▀   █▀    ▀██████▀    ███    █▀  ";
+        public static string[] dado = { 
+                                     @"
+                                     .----------------. 
+                                    | .--------------. |
+                                    | |     __       | |
+                                    | |    /  |      | |
+                                    | |    `| |      | |
+                                    | |     | |      | |
+                                    | |    _| |_     | |
+                                    | |   |_____|    | |
+                                    | |              | |
+                                    | '--------------' |
+                                     '----------------' 
+                                    ",
+                                     @"
+                                     .----------------. 
+                                    | .--------------. |
+                                    | |    _____     | |
+                                    | |   / ___ `.   | |
+                                    | |  |_/___) |   | |
+                                    | |   .'____.'   | |
+                                    | |  / /____     | |
+                                    | |  |_______|   | |
+                                    | |              | |
+                                    | '--------------' |
+                                     '----------------' 
+                                    ",
+                                     @"
+                                     .----------------. 
+                                    | .--------------. |
+                                    | |    ______    | |
+                                    | |   / ____ `.  | |
+                                    | |   `'  __) |  | |
+                                    | |   _  |__ '.  | |
+                                    | |  | \____) |  | |
+                                    | |   \______.'  | |
+                                    | |              | |
+                                    | '--------------' |
+                                     '----------------' 
+                                    ",
+                                     @"
+                                     .----------------. 
+                                    | .--------------. |
+                                    | |   _    _     | |
+                                    | |  | |  | |    | |
+                                    | |  | |__| |_   | |
+                                    | |  |____   _|  | |
+                                    | |      _| |_   | |
+                                    | |     |_____|  | |
+                                    | |              | |
+                                    | '--------------' |
+                                     '----------------' 
+                                    ",
+                                     @"
+                                     .----------------. 
+                                    | .--------------. |
+                                    | |   _______    | |
+                                    | |  |  _____|   | |
+                                    | |  | |____     | |
+                                    | |  '_.____''.  | |
+                                    | |  | \____) |  | |
+                                    | |   \______.'  | |
+                                    | |              | |
+                                    | '--------------' |
+                                     '----------------' 
+                                    ",
+                                     @"
+                                     .----------------. 
+                                    | .--------------. |
+                                    | |    ______    | |
+                                    | |  .' ____ \   | |
+                                    | |  | |____\_|  | |
+                                    | |  | '____`'.  | |
+                                    | |  | (____) |  | |
+                                    | |  '.______.'  | |
+                                    | |              | |
+                                    | '--------------' |
+                                     '----------------' 
+                                    " };
 
-        public static string round = @"
-      ▄████████  ▄██████▄  ███    █▄  ███▄▄▄▄   ████████▄  
-      ███    ███ ███    ███ ███    ███ ███▀▀▀██▄ ███   ▀███ 
-      ███    ███ ███    ███ ███    ███ ███   ███ ███    ███ 
-     ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███   ███ ███    ███ 
-    ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███   ███ ███    ███ 
-    ▀███████████ ███    ███ ███    ███ ███   ███ ███    ███ 
-      ███    ███ ███    ███ ███    ███ ███   ███ ███   ▄███ 
-      ███    ███  ▀██████▀  ████████▀   ▀█   █▀  ████████▀  
-      ███    ███                                          ";
+        public static string jogador = @"
+         ▄█  ▄██████▄     ▄██████▄     ▄████████ ████████▄   ▄██████▄     ▄████████ 
+        ███ ███    ███   ███    ███   ███    ███ ███   ▀███ ███    ███   ███    ███ 
+        ███ ███    ███   ███    █▀    ███    ███ ███    ███ ███    ███   ███    ███ 
+        ███ ███    ███  ▄███          ███    ███ ███    ███ ███    ███  ▄███▄▄▄▄██▀ 
+        ███ ███    ███ ▀▀███ ████▄  ▀███████████ ███    ███ ███    ███ ▀▀███▀▀▀▀▀   
+        ███ ███    ███   ███    ███   ███    ███ ███    ███ ███    ███ ▀███████████ 
+        ███ ███    ███   ███    ███   ███    ███ ███   ▄███ ███    ███   ███    ███ 
+    █▄ ▄███  ▀██████▀    ████████▀    ███    █▀  ████████▀   ▀██████▀    ███    ███ 
+    ▀▀▀▀▀▀                                                               ███    ███ ";
 
-        public static string roundLinha = @"
-       ██                                              ██       
-        ██                   ▄ ██ ▄                   ██        
- ██████████████████████████████████████████████████████████████ 
-        ██                   ▀ ██ ▀                   ██        
-       ██                                              ██       
-                                                               
-                                                               
+        public static string inimigo = @"
+      ▄██████▄     ▄███████▄  ▄██████▄  ███▄▄▄▄      ▄████████ ███▄▄▄▄       ███        ▄████████ 
+     ███    ███   ███    ███ ███    ███ ███▀▀▀██▄   ███    ███ ███▀▀▀██▄ ▀█████████▄   ███    ███ 
+     ███    ███   ███    ███ ███    ███ ███   ███   ███    █▀  ███   ███    ▀███▀▀██   ███    █▀  
+     ███    ███   ███    ███ ███    ███ ███   ███  ▄███▄▄▄     ███   ███     ███   ▀  ▄███▄▄▄     
+     ███    ███ ▀█████████▀  ███    ███ ███   ███ ▀▀███▀▀▀     ███   ███     ███     ▀▀███▀▀▀     
+     ███    ███   ███        ███    ███ ███   ███   ███    █▄  ███   ███     ███       ███    █▄  
+     ███    ███   ███        ███    ███ ███   ███   ███    ███ ███   ███     ███       ███    ███ 
+      ▀██████▀   ▄████▀       ▀██████▀   ▀█   █▀    ██████████  ▀█   █▀     ▄████▀     ██████████ 
+                                                                                                  
 ";
+        public static string comeca = @"
+        ▄███████▄    ▄████████  ▄█    ▄▄▄▄███▄▄▄▄      ▄████████  ▄█     ▄████████  ▄██████▄  
+       ███    ███   ███    ███ ███  ▄██▀▀▀███▀▀▀██▄   ███    ███ ███    ███    ███ ███    ███ 
+       ███    ███   ███    ███ ███▌ ███   ███   ███   ███    █▀  ███▌   ███    ███ ███    ███ 
+       ███    ███  ▄███▄▄▄▄██▀ ███▌ ███   ███   ███  ▄███▄▄▄     ███▌  ▄███▄▄▄▄██▀ ███    ███ 
+     ▀█████████▀  ▀▀███▀▀▀▀▀   ███▌ ███   ███   ███ ▀▀███▀▀▀     ███▌ ▀▀███▀▀▀▀▀   ███    ███ 
+       ███        ▀███████████ ███  ███   ███   ███   ███    █▄  ███  ▀███████████ ███    ███ 
+       ███          ███    ███ ███  ███   ███   ███   ███    ███ ███    ███    ███ ███    ███ 
+      ▄████▀        ███    ███ █▀    ▀█   ███   █▀    ██████████ █▀     ███    ███  ▀██████▀  
+                    ███    ███                                          ███    ███          ";
+
          public static string _100Porcento = @"
     ███                                     ███ 
     ██                                       ██ 
@@ -172,31 +220,66 @@ namespace View
       
         
 
-        public static void ImprimirNumeroDoRound(Jogador jogador)
+        public static void ImprimirNumeroDoRound(int numero)
         {
             Console.Clear();
-            int numero = jogador.Round % 10;
-            Console.WriteLine(round);
+             
+            Console.WriteLine(Texto.round);
             ConsoleColor aux = Console.ForegroundColor;
             if (numero == 5)
                 Console.ForegroundColor = ConsoleColor.Yellow;
-            else if (numero == 0)            
+            else if (numero == 10)
+            {
+                numero = 0;
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
+            }
+                
                             
-            Console.WriteLine(numerosArray[numero]);
+            Console.WriteLine(Texto.numerosArray[numero]);
             Console.ForegroundColor = aux;
-            Console.WriteLine(roundLinha);
+            Console.WriteLine(Texto.roundLinha);
             System.Threading.Thread.Sleep(1500);
         }
 
+        public static void ImprimirIniciativa(int iniJg, int iniIn)
+        {
+            Console.Clear();
+            Console.WriteLine(iniciativa);
+            
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor= ConsoleColor.DarkGreen;
+            Console.WriteLine(dado[iniJg]);
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(dado[iniIn]);
+
+            System.Threading.Thread.Sleep(1500);
+            Console.ForegroundColor = aux;
+
+        }
+        public static void InimigoComeca()
+        {
+            Console.Clear();
+            Console.WriteLine(inimigo);
+            Console.WriteLine(comeca);
+            System.Threading.Thread.Sleep(1500);
+        }
+
+        public static void JogadorComeca()
+        {
+            Console.Clear();
+            Console.WriteLine(jogador);
+            Console.WriteLine(comeca);
+            System.Threading.Thread.Sleep(1500);
+        }
         public static void ImprimirTelaDeCombate(Jogador jogador, Inimigo inimigo)
         {
             Console.Clear();
             string barraDeVidaJogador;
             string barraDeVidaInimigo;
 
-            int vidaJogador = jogador.PorcentagemVida();
-            int vidaInimigo = inimigo.PorcentagemVida();
+            double vidaJogador = jogador.PorcentagemVida();
+            double vidaInimigo = inimigo.PorcentagemVida();
 
             ConsoleColor corVidaJogador;
             ConsoleColor corVidaInimigo;
@@ -266,7 +349,7 @@ namespace View
             else
                 barraDeVidaInimigo = _100Porcento;
 
-
+            Console.WriteLine($"{inimigo.VidaAtual} / {inimigo.VidaTotal}");
             ConsoleColor aux = Console.ForegroundColor;
             Console.WriteLine($"\n     {inimigo}");
 
@@ -274,20 +357,23 @@ namespace View
             Console.WriteLine(barraDeVidaInimigo);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(versus);
-
-            Console.ForegroundColor = aux;
-            Console.WriteLine($"\n     {jogador}");
+            
 
             Console.ForegroundColor = corVidaJogador;
-            Console.WriteLine(barraDeVidaJogador);
+            Console.WriteLine(barraDeVidaJogador);            
             Console.ForegroundColor = aux;
-            Console.Write($"\n      Mana:");
+            Console.WriteLine($"\n     {jogador}");
+            Console.Write($"\n     Vida:");
+            Console.ForegroundColor = corVidaJogador;
+            Console.Write($"[{jogador.VidaAtual} / {jogador.VidaTotal}]");
 
+            Console.ForegroundColor = aux;
+            Console.Write($"   Mana:");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"[{jogador.ManaAtual} / {jogador.ManaTotal}]");
-            Console.ForegroundColor = aux;
-            Console.WriteLine(inimigo.VidaAtual + "/" +inimigo.VidaTotal);
 
+            Console.ForegroundColor = aux;
+            Console.WriteLine(Texto.linha);
         }
     }
 }

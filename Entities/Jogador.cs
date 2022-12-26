@@ -1,63 +1,52 @@
 ﻿using Items;
 using Classes;
-using Rpg_De_Console.Entities;
+using Entities;
 using View;
 
 namespace Entities
 {
     internal class Jogador : CriaturaBase
     {
+        
+        public int Andar { get; private set; }
+
         public List<Item> Items { get; private set; }
-
-        private int _round;
-
-        private int RoundsParaLevelUp
-        {
-            get { return Nivel * Nivel + 2; }
-        }
-        public int Round
-        {
-            get { return _round; }
-        }
+        
+      
         public Jogador(string nome, Classe classe) : base(nome, classe) 
         {
             Nome = nome;
             Nivel = 1;
             Classe = classe;        
-            _round= 1;
             Items = new List<Item> {  };
+            Andar = 1;
 
             VidaAtual = VidaTotal;
             ManaAtual = ManaTotal;
         }
-        public Jogador(string nome, Classe clase,int nivel ,int round, int vidaAtual, int manaAtual, List<Item> items) : this(nome, clase) 
+        public Jogador(string nome, Classe clase,int nivel ,int andar, int vidaAtual, int manaAtual, List<Item> items) : this(nome, clase) 
         { 
             Nivel = nivel;
             Items = items;
-            _round = round;
+            Andar = andar;
             VidaAtual= vidaAtual;
             ManaAtual= manaAtual;
         }
         
 
-        public void AumentarRound()
+        
+
+        public void SubirAndar()
         {
-            _round++;
-            if(LevelUp())
-            {
-                Console.WriteLine(Texto.linha);
-                Console.WriteLine($"\n   Você evoluiu! Nivel: {Nivel}");
-            }               
+            Andar++;
+            LevelUp();
         }
 
-        private bool LevelUp()
+        public void LevelUp()
         {
-            if(_round >= RoundsParaLevelUp)
-            {
-                Nivel++;
-                return true;
-            }
-            return false;
+            Nivel++;
+            VidaAtual = VidaTotal;
+            ManaAtual = ManaTotal;
         }
 
        

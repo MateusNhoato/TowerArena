@@ -16,7 +16,7 @@ namespace Repositories
             string classe = jogador.Classe.Nome;
             int vidaAtual = jogador.VidaAtual;
             int manaAtual = jogador.ManaAtual;
-            int round = jogador.Round;
+            int andar = jogador.Andar;
             int nivel = jogador.Nivel;
             int pocoesDeVida = 0;
             int pocoesDeMana = 0;
@@ -28,9 +28,23 @@ namespace Repositories
                     pocoesDeMana++;
             }
 
+            string[] personagens = File.ReadAllLines(infoPersonagensPath);
+
+            for(int i=0; i<personagens.Length; i++)
+            {
+                string[] personagem = personagens[i].Split(';');
+                
+                if(personagem[0] == nome)
+                {
+                    personagens[i] = $"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana}";
+                    File.WriteAllLines(infoPersonagensPath, personagens);
+                    return;
+                }
+            }
+
             using (StreamWriter sw = new StreamWriter(infoPersonagensPath, true))
             {
-                sw.WriteLine($"{nome};{nivel};{round};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana}+");
+                sw.WriteLine($"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana}");
             }
         }
 
@@ -60,50 +74,51 @@ namespace Repositories
 
         }
 
-        public static Jogador? AcharJogador(int num)
+        public static Jogador? AcharJogador(string nome)
         {
             Jogador jogador;
             try
             {
-
-
                 string[] personagens = File.ReadAllLines(infoPersonagensPath);
 
-                if (num > personagens.Length || num < 1)
-                    return null;
+                foreach (string s in personagens)
+                {                   
+                    string[] personagem = s.Split(';');
 
-                string[] personagem = personagens[num - 1].Split(';');
+                    if (personagem[0] == nome && int.Parse(personagem[4]) > 0)
+                    {
+                        int nivel = int.Parse(personagem[1]);
+                        int andar = int.Parse(personagem[2]);
+                        int vidaAtual = int.Parse(personagem[4]);
+                        int manaAtual = int.Parse(personagem[5]);
 
+                        // lista de items
+                        List<Item> items = new List<Item>();
+                        string[] pocoes = personagem[6].Split(",");
+                        int pocoesVida = int.Parse(pocoes[0]);
+                        int pocoesMana = int.Parse(pocoes[1]);
+                        for (int i = 0; i < pocoesVida; i++)
+                        {
+                            Item item = new PocaoVida();
+                            items.Add(item);
+                        }
 
-                int nivel = int.Parse(personagem[1]);
-                int round = int.Parse(personagem[2]);
-                int vidaAtual = int.Parse(personagem[4]);
-                int manaAtual = int.Parse(personagem[5]);
+                        for (int i = 0; i < pocoesMana; i++)
+                        {
+                            Item item = new PocaoMana();
+                            items.Add(item);
+                        }
 
-                // lista de items
-                List<Item> items = new List<Item>();
-                string[] pocoes = personagem[6].Split(",");
-                int pocoesVida = int.Parse(pocoes[0]);
-                int pocoesMana = int.Parse(pocoes[1].Replace('+', ' '));
-                for (int i = 0; i < pocoesVida; i++)
-                {
-                    Item item = new PocaoVida();
-                    items.Add(item);
+                        Classe classe = Classe.Parse(personagem[3]);
+
+                        if (classe != null)
+                        {
+                            jogador = new Jogador(personagem[0], classe, nivel, andar, vidaAtual, manaAtual, items);
+                            return jogador;
+                        }
+                    }
                 }
 
-                for (int i = 0; i < pocoesMana; i++)
-                {
-                    Item item = new PocaoMana();
-                    items.Add(item);
-                }
-
-                Classe classe = Classe.Parse(personagem[3]);
-
-                if (classe != null)
-                {
-                    jogador = new Jogador(personagem[0], classe, nivel, round, vidaAtual, manaAtual, items);
-                    return jogador;
-                }
                 return null;
 
 
@@ -137,13 +152,20 @@ namespace Repositories
                         string[] infoArray = info.Split(";");
                         string nome = infoArray[0];
                         string nivel = infoArray[1];
+                        string andar = infoArray[2];
 
                         string classe = infoArray[3];
                         string vidaAtual = infoArray[4];
                         string manaAtual = infoArray[5];
-                        Console.WriteLine($"\n     {cont}: {nome} ({classe}) | Nv:{nivel} | Vida:{vidaAtual} | Mana:{manaAtual}");
-
-                        cont++;
+                        if(int.Parse(vidaAtual) > 0)
+                        {
+                            Console.WriteLine($"\n     {cont}: {nome} ({classe}) | Nv:{nivel} | Andar:{andar} | Vida:{vidaAtual} | Mana:{manaAtual}");
+                            cont++;
+                        }
+                        else
+                            Console.WriteLine($"\n     {nome} ({classe}) | Morto | Recorde:{andar}");
+                        
+                        
                         info = sr.ReadLine();
                     }
                 }

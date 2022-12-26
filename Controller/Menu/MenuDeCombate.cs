@@ -9,7 +9,7 @@ namespace Menu
             string[] opcoes = { "1", "2", "3", "4" };
             string resposta = "";
 
-            Console.WriteLine("\n\n");
+            Console.WriteLine("");
             Console.WriteLine("     1- Atacar");
             Console.WriteLine("     2- Habilidade Especial");
             Console.WriteLine("     3- Itens Consumíveis");

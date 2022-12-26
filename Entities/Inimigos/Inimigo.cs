@@ -1,5 +1,5 @@
 ﻿using Classes;
-using Rpg_De_Console.Entities;
+using Entities;
 
 namespace Inimigos
 {

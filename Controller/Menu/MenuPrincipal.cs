@@ -3,9 +3,7 @@ using Repositories;
 using System.Globalization;
 using View;
 using Classes;
-using Rpg_De_Console.Entities;
-using Inimigos;
-using Services;
+
 
 namespace Menu
 {
@@ -85,7 +83,7 @@ namespace Menu
 
             else if (escolhaClasse == "4")
                 classe = new Arqueiro();
-           
+
             else
                 classe = null;
 
@@ -95,8 +93,7 @@ namespace Menu
             {
                 if (nome.Length >= 2)
                 {
-                    TextInfo textInfo = new CultureInfo("pt-br", false).TextInfo;
-                    nome = textInfo.ToTitleCase(nome);
+                    nome = NomePascalCase(nome);
                     if (!DadosDosJogadores.CheckarNomeRepetido(nome))
                     {
                         Jogador jogador = new Jogador(nome, classe);
@@ -117,8 +114,8 @@ namespace Menu
 
             }
 
-            
-            
+
+
             AperteEnterParaContinuar();
         }
 
@@ -134,34 +131,39 @@ namespace Menu
         private static void MenuEscolhaDePersonagem()
         {
             ListarPersonagens();
-            Console.Write("\n    Qual personagem gostaria de escolher? ");
-            var input = Console.ReadLine();
+            Console.Write("\n    Digite o nome do personagem gostaria de escolher: ");
+            string nome = Console.ReadLine();
+            if(!string.IsNullOrEmpty(nome))
+            {
+                nome = NomePascalCase(nome);
+            }
+            
             Console.WriteLine(Texto.linha);
 
-            int num;
-            if(int.TryParse(input, out num))
-            {
-                Jogador jogador = DadosDosJogadores.AcharJogador(num);
-                Inimigo inimigo = new Inimigo(jogador.Nivel);
-
-                Combate.Combater(jogador, inimigo);
-            }
+            Jogador jogador = DadosDosJogadores.AcharJogador(nome);
+            if(jogador != null)
+                MenuDoAndar.MostrarMenuDoAndar(jogador);
             else
-                EntradaInvalida();            
-            AperteEnterParaContinuar();            
+                EntradaInvalida();
+            AperteEnterParaContinuar();
         }
 
-
+        private static string NomePascalCase(string nome)
+        {
+            TextInfo textInfo = new CultureInfo("pt-br", false).TextInfo;
+            nome = textInfo.ToTitleCase(nome);
+            return nome;
+        }
 
         public static void AperteEnterParaContinuar()
         {
-            Console.WriteLine("\n     Aperte enter para continuar");
+            Console.Write("\n    Aperte enter para continuar");
             Console.ReadLine();
         }
 
         public static void EntradaInvalida()
         {
-            Console.WriteLine("\n    Entrada Inválida.");
+            Console.Write("\n    Entrada Inválida.");
             System.Threading.Thread.Sleep(1200);
         }
     }
