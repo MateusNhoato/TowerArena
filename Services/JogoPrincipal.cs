@@ -18,7 +18,8 @@ namespace Services
                     return false;
                 }
                 if ( i == 5)
-                    jogador.LevelUp();           
+                    jogador.LevelUp();
+                jogador.ZerarAtributosExtras();
             }
             return true;
         }

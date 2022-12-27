@@ -18,15 +18,9 @@ namespace Repositories
             int manaAtual = jogador.ManaAtual;
             int andar = jogador.Andar;
             int nivel = jogador.Nivel;
-            int pocoesDeVida = 0;
-            int pocoesDeMana = 0;
-            foreach (Item i in jogador.Items)
-            {
-                if (i.Nome == "Poção de Vida")
-                    pocoesDeVida++;
-                else if (i.Nome == "Pocão de Mana")
-                    pocoesDeMana++;
-            }
+            int pocoesDeVida = jogador.Items.Count(x => x.Nome == "Poção de Vida");
+            int pocoesDeMana = jogador.Items.Count(x => x.Nome == "Poção de Mana");
+
 
             string[] personagens = File.ReadAllLines(infoPersonagensPath);
 
@@ -97,6 +91,7 @@ namespace Repositories
                         string[] pocoes = personagem[6].Split(",");
                         int pocoesVida = int.Parse(pocoes[0]);
                         int pocoesMana = int.Parse(pocoes[1]);
+
                         for (int i = 0; i < pocoesVida; i++)
                         {
                             Item item = new PocaoVida();

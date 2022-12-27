@@ -4,6 +4,7 @@ namespace Items
 {
     abstract class Arma : Item
     {
-        public TipoDeArma TipoDeArma;
+        public  TipoDeArma TipoDeArma { get; protected set; }
+        public int Dano { get; protected set; }
     }
 }

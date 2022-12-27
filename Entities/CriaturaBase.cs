@@ -18,6 +18,11 @@ namespace Entities
         public int VidaAtual { get; protected private set; }
         public int ManaAtual { get; protected private set; }
 
+        public int PoderExtra { get; private set; } = 0;
+        public int DefesaExtra { get; private set; } = 0;
+        public int IniciativaExtra { get; private set; } = 0;
+        public int VidaExtra { get; protected set; } = 0;
+
         public CriaturaBase() { }
         public CriaturaBase(string nome, Classe classe)
         {
@@ -48,7 +53,7 @@ namespace Entities
         {
             get { 
                 if(Classe != null)
-                    return VidaBase + Classe.VidaPorNivel * Nivel;
+                    return VidaBase + Classe.VidaPorNivel * Nivel + VidaExtra;
                 return VidaBase;
             }
         }
@@ -66,7 +71,7 @@ namespace Entities
         {
             get {
                 if (Classe != null)
-                    return PoderBase + Classe.PoderPorNivel * Nivel;
+                    return PoderBase + Classe.PoderPorNivel * Nivel + PoderExtra;
                 return PoderBase;
             }
         }
@@ -75,7 +80,7 @@ namespace Entities
         {
             get {
                 if (Classe != null) 
-                    return DefesaBase + Classe.DefesaPorNivel * Nivel;
+                    return DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
                 return DefesaBase;
             }
         }
@@ -84,7 +89,7 @@ namespace Entities
         {
             get {
                 if (Classe != null)
-                    return IniciativaBase + Classe.IniciativaPorNivel * Nivel;
+                    return IniciativaBase + Classe.IniciativaPorNivel * Nivel + IniciativaExtra;
                 return IniciativaBase;
             }
         }
@@ -101,11 +106,40 @@ namespace Entities
             {
                 VidaAtual -= danoTotal;
             }
-            return danoTotal;
-                
-            
+            return danoTotal;                            
         }
 
+        public bool CheckarMana(int custoDeMana)
+        {
+            if (ManaAtual >= custoDeMana)
+            {
+                ManaAtual -= custoDeMana;
+                return true;
+            }
+            return false;
+        }
+
+        public void AumentarDefesa(int quantia)
+        {
+            DefesaExtra += quantia;
+        }
+
+        public void AumentarPoder(int quantia)
+        {
+            PoderExtra += quantia;
+        }
+        public void AumentarIniciativa(int quantia)
+        {
+            IniciativaExtra += quantia;
+        }
+
+        public void ZerarAtributosExtras()
+        {
+            IniciativaExtra= 0;
+            PoderExtra= 0;
+            DefesaExtra= 0;
+            VidaExtra= 0;
+        }
 
         public override string ToString()
         {

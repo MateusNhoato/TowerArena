@@ -9,6 +9,7 @@ namespace Items
             Nome = "Espada Curta";
             Peso = 5.2;
             TipoDeArma = TipoDeArma.espadaCurta;
+            Dano = 3;
         }
 
         

@@ -2,11 +2,12 @@
 using Inimigos;
 using View;
 using Menu;
+using Enums;
+
 namespace Services
 {
     internal class Combate
     {
-        private int _turno = 0;
 
 
         private static bool Iniciativa(Jogador jogador, Inimigo inimigo)
@@ -72,22 +73,56 @@ namespace Services
                     break;
                 // habilidade especial
                 case "2":
-                    jogador.ReceberDano(10);
+                    string habilidade = CombateView.MostrarHabilidadesDaClasse(jogador, inimigo);
+                    if (!(HabilidadesDoJogador(jogador, inimigo, habilidade)))
+                    {
+                        CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                        AcaoDoJogador(jogador, inimigo);
+                    }
                     break;
 
                 // consumiveis            
                 case "3":
                     break;
-                // fuga
+                // janela de status
                 case "4":
+                    CombateView.JanelaDeStatus(jogador);
+                    CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                    AcaoDoJogador(jogador, inimigo);
+                    break;
+
+                // fulga
+                case "5":
                     break;
             }
         }
 
-        public static void AcaoDoInimigo(Inimigo inimigo, Jogador jogador)
+        public static bool HabilidadesDoJogador(Jogador jogador, Inimigo inimigo, string habilidade)
         {
-            Console.WriteLine("     Inimigo faz algo ~");
-            MenuPrincipal.AperteEnterParaContinuar();
+            string sair = (jogador.Classe.Habilidades.Count + 1).ToString();
+
+            if (habilidade == sair)
+                return false;
+            else
+            {
+                if (jogador.CheckarMana(jogador.Classe.Habilidades[int.Parse(habilidade) - 1].CustoDeMana))
+                {
+                    if (jogador.Classe.Habilidades[int.Parse(habilidade) - 1].Tipo == TipoDeHabilidade.Ataque)
+                        jogador.Classe.Habilidades[int.Parse(habilidade) - 1].Efeito(jogador, inimigo);
+                    else
+                        jogador.Classe.Habilidades[int.Parse(habilidade) - 1].Efeito(jogador, jogador);
+                    return true;
+                }
+                Console.WriteLine("    Sem mana para castar a habilidade.");
+                Thread.Sleep(1000);
+                return false;
+            }                
         }
+    
+    public static void AcaoDoInimigo(Inimigo inimigo, Jogador jogador)
+    {
+        Console.WriteLine("     Inimigo faz algo ~");
+        MenuPrincipal.AperteEnterParaContinuar();
     }
+}
 }

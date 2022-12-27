@@ -18,10 +18,15 @@ namespace Classes
             IniciativaPorNivel = 3;
 
         }
-        // habilidades
-        
-        
 
-        
+        private protected override void AdicionarHabilidades()
+        {
+            throw new NotImplementedException();
+        }
+        // habilidades
+
+
+
+
     }
 }

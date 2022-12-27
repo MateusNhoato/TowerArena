@@ -8,6 +8,7 @@ namespace Items
             Nome = "Varinha";
             Peso = 0.5;
             TipoDeArma = TipoDeArma.varinha;
+            Dano = 5;
         }
     }
 }

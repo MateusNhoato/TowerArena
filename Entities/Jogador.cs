@@ -2,6 +2,7 @@
 using Classes;
 using Entities;
 using View;
+using System.Runtime.CompilerServices;
 
 namespace Entities
 {
@@ -11,7 +12,7 @@ namespace Entities
         public int Andar { get; private set; }
 
         public List<Item> Items { get; private set; }
-        
+       
       
         public Jogador(string nome, Classe classe) : base(nome, classe) 
         {
@@ -32,10 +33,7 @@ namespace Entities
             VidaAtual= vidaAtual;
             ManaAtual= manaAtual;
         }
-        
-
-        
-
+               
         public void SubirAndar()
         {
             Andar++;
@@ -48,8 +46,21 @@ namespace Entities
             VidaAtual = VidaTotal;
             ManaAtual = ManaTotal;
         }
+        
 
-       
 
+        public override int GetHashCode()
+        {
+            return Nome.GetHashCode();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (!(obj is Jogador))
+                return false;
+
+            Jogador outro = obj as Jogador;
+            return Nome.Equals(outro.Nome);
+        }
     }
 }

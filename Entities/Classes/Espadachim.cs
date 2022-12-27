@@ -20,14 +20,19 @@ namespace Classes
             IniciativaPorNivel = 1;
         }
 
+        private protected override void AdicionarHabilidades()
+        {
+            throw new NotImplementedException();
+        }
+
         // habilidades
 
         // golpe duplo
-        
+
 
         // instância de defesa
-        
 
-        
+
+
     }
 }

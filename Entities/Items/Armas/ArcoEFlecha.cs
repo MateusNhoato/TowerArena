@@ -9,6 +9,7 @@ namespace Items
             Nome = "Arco e Flecha";
             Peso = 2.5;
             TipoDeArma = TipoDeArma.arcoEFlecha;
+            Dano = 5;
         }
     }
 }

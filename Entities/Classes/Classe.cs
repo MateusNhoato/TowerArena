@@ -1,6 +1,7 @@
 ﻿
 using Items;
 using Entities;
+using Services;
 
 namespace Classes
 {
@@ -8,6 +9,8 @@ namespace Classes
     {
         public string? Nome { get; protected private set; }
         public Arma? Arma { get; protected private set; }
+
+        public List<Habilidade> Habilidades { get;private set; } = new List<Habilidade>();
 
         public int VidaPorNivel { get; protected private set; }
         public int ManaPorNivel { get; protected private set; }
@@ -33,5 +36,18 @@ namespace Classes
 
             return classe;
         }
+
+        protected private abstract void AdicionarHabilidades();
+
+        public void ListarHabilidadesDaClasse()
+        {
+            int i = 1;
+            for(; i <= Habilidades.Count; i++)
+            {
+                Console.WriteLine($"     {i}- {Habilidades[i-1]}");
+            }
+            Console.WriteLine($"     {i}- Voltar");
+        }
+        
     }
 }

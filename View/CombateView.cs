@@ -1,5 +1,7 @@
 ﻿using Entities;
 using Inimigos;
+using Menu;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 
 namespace View
@@ -217,7 +219,15 @@ namespace View
              ███    ███    ▄█    ███ 
               ▀██████▀   ▄████████▀                          
     ";
-      
+        public static string status = @"
+       ▄████████     ███        ▄████████     ███     ███    █▄     ▄████████ 
+      ███    ███ ▀█████████▄   ███    ███ ▀█████████▄ ███    ███   ███    ███ 
+      ███    █▀     ▀███▀▀██   ███    ███    ▀███▀▀██ ███    ███   ███    █▀  
+      ███            ███   ▀   ███    ███     ███   ▀ ███    ███   ███        
+    ▀███████████     ███     ▀███████████     ███     ███    ███ ▀███████████ 
+             ███     ███       ███    ███     ███     ███    ███          ███ 
+       ▄█    ███     ███       ███    ███     ███     ███    ███    ▄█    ███ 
+     ▄████████▀     ▄████▀     ███    █▀     ▄████▀   ████████▀   ▄████████▀";
         
 
         public static void ImprimirNumeroDoRound(int numero)
@@ -271,6 +281,52 @@ namespace View
             Console.WriteLine(jogador);
             Console.WriteLine(comeca);
             System.Threading.Thread.Sleep(1500);
+        }
+        public static string MostrarHabilidadesDaClasse(Jogador jogador, Inimigo inimigo)
+        {
+            Console.Clear();
+            ImprimirTelaDeCombate(jogador, inimigo);
+            Console.WriteLine("\n     Habilidades:");
+            return MenuDeCombate.MenuDeHabilidades(jogador);
+
+        }
+        public static void JanelaDeStatus(Jogador jogador)
+        {
+            ConsoleColor aux = Console.ForegroundColor;
+
+            Console.Clear();
+            Console.WriteLine(status);
+
+       
+            Console.WriteLine($"\n     {jogador}");
+            Console.Write("\n     Vida:");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"[{jogador.VidaAtual} / {jogador.VidaTotal}({jogador.VidaExtra})]");
+
+            Console.ForegroundColor = aux;
+            Console.Write("   Mana:");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"[{jogador.ManaAtual} / {jogador.ManaTotal}]");
+
+            Console.ForegroundColor = aux;
+            Console.Write("     Poder     :");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine($"[{jogador.PoderTotal}({jogador.PoderExtra})]");
+
+            Console.ForegroundColor = aux;
+            Console.Write("     Defesa    :");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"[{jogador.DefesaTotal}({jogador.DefesaExtra})]");
+
+            Console.ForegroundColor = aux;
+            Console.Write("     Iniciativa:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"[{jogador.IniciativaTotal}({jogador.IniciativaExtra})]");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine("\n\n     Obs: os números entre parênteses são atributos extras.");
+            Console.WriteLine(Texto.linha);
+            MenuPrincipal.AperteEnterParaContinuar();
         }
         public static void ImprimirTelaDeCombate(Jogador jogador, Inimigo inimigo)
         {
