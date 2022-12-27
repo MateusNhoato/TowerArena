@@ -8,9 +8,9 @@ namespace Items
         public Adaga()
         {
             Nome = "Adaga";
-            Peso = 2.5;
+            Peso = 6;
             TipoDeArma = TipoDeArma.adaga;
-            Dano = 3;
+            Dano = 30;
         }
 
       

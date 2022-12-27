@@ -3,12 +3,13 @@ using Inimigos;
 using View;
 using Menu;
 using Enums;
+using Delegates;
 
 namespace Services
 {
     internal class Combate
     {
-
+        private static bool _combate = true;
 
         private static bool Iniciativa(Jogador jogador, Inimigo inimigo)
         {
@@ -27,6 +28,8 @@ namespace Services
         }
         public static bool Combater(Jogador jogador, Inimigo inimigo)
         {
+            _combate = true;
+
             bool resultadoIniciativa = Iniciativa(jogador, inimigo);
 
             if (resultadoIniciativa)
@@ -34,33 +37,56 @@ namespace Services
             else
                 CombateView.InimigoComeca();
 
+
             while (true)
             {
                 CombateView.ImprimirTelaDeCombate(jogador, inimigo);
-
-                if (jogador.VidaAtual <= 0 || inimigo.VidaAtual <= 0)
+                if (FimDoRound(jogador, inimigo))
                     break;
-
 
                 if (!resultadoIniciativa)
                 {
-                    AcaoDoInimigo(inimigo, jogador);
+                    AcaoDoInimigo(inimigo, jogador);                   
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                    if (FimDoRound(jogador, inimigo))
+                        break;
                     AcaoDoJogador(jogador, inimigo);
                 }
                 else
                 {
-                    AcaoDoJogador(jogador, inimigo);
+                    AcaoDoJogador(jogador, inimigo);                   
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                    if (FimDoRound(jogador, inimigo))
+                        break;
                     AcaoDoInimigo(inimigo, jogador);
                 }
             }
-            if (jogador.VidaAtual <= 0)
+            
+            if (JogoPrincipal.Fuga == true)
+            {
+                CombateView.JogadorFugiu();
                 return false;
+            }
+            else if (jogador.VidaAtual <= 0)
+            {
+                CombateView.VitoriaDoOponente();
+                return false;
+            }
             else
+            {
+                CombateView.VitoriaDoJogador();
                 return true;
+            }
+
+                
         }
 
+        public static bool FimDoRound(Jogador jogador, Inimigo inimigo)
+        {
+            if (jogador.VidaAtual <= 0 || inimigo.VidaAtual <= 0 || _combate == false)
+                return true;
+            return false;
+        }
         public static void AcaoDoJogador(Jogador jogador, Inimigo inimigo)
         {
             string acao = MenuDeCombate.MostrarMenuDeCombate();
@@ -69,7 +95,7 @@ namespace Services
             {
                 // atacar
                 case "1":
-                    inimigo.ReceberDano(50);
+                    new Habilidade("Ataque", 0, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.HabilidadeAtaque1x, TipoDeHabilidade.Ataque ).Efeito(jogador, inimigo);
                     break;
                 // habilidade especial
                 case "2":
@@ -83,6 +109,7 @@ namespace Services
 
                 // consumiveis            
                 case "3":
+                    jogador.ReceberDano(100);
                     break;
                 // janela de status
                 case "4":
@@ -91,8 +118,13 @@ namespace Services
                     AcaoDoJogador(jogador, inimigo);
                     break;
 
-                // fulga
+                // fuga
                 case "5":
+                    if (Iniciativa(jogador, inimigo))
+                    {
+                        _combate = false;
+                        JogoPrincipal.Fuga = true;
+                    }
                     break;
             }
         }
@@ -105,17 +137,32 @@ namespace Services
                 return false;
             else
             {
-                if (jogador.CheckarMana(jogador.Classe.Habilidades[int.Parse(habilidade) - 1].CustoDeMana))
+                Habilidade hab = jogador.Classe.Habilidades[int.Parse(habilidade) - 1];
+
+                if(hab.QuantidadeDeUsos > 0)
                 {
-                    if (jogador.Classe.Habilidades[int.Parse(habilidade) - 1].Tipo == TipoDeHabilidade.Ataque)
-                        jogador.Classe.Habilidades[int.Parse(habilidade) - 1].Efeito(jogador, inimigo);
-                    else
-                        jogador.Classe.Habilidades[int.Parse(habilidade) - 1].Efeito(jogador, jogador);
-                    return true;
+                    if (jogador.CheckarMana(hab.CustoDeMana))
+                    {
+                        if (hab.Tipo == TipoDeHabilidade.Ataque || hab.Tipo == TipoDeHabilidade.Debuff)
+                            hab.Efeito(jogador, inimigo);
+                        else
+                            hab.Efeito(jogador, jogador);
+
+                        hab.DiminuirUso();
+                        return true;
+                    }
+                    Console.WriteLine("     Sem mana para castar a habilidade.");
+                    Thread.Sleep(1000);
+                    return false;
                 }
-                Console.WriteLine("    Sem mana para castar a habilidade.");
-                Thread.Sleep(1000);
-                return false;
+                else
+                {
+                    Console.WriteLine("     Não há usos disponíveis para a habilidade.");
+                    Thread.Sleep(1000);
+                    return false;
+                }
+
+                
             }                
         }
     

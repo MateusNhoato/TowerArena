@@ -18,6 +18,8 @@ namespace Classes
         public int DefesaPorNivel { get; protected private set; }
         public int IniciativaPorNivel { get; protected private set; }
 
+        protected private abstract void AdicionarHabilidades();
+
         public static Classe? Parse(string input)
         {
             if(string.IsNullOrEmpty(input))
@@ -37,7 +39,7 @@ namespace Classes
             return classe;
         }
 
-        protected private abstract void AdicionarHabilidades();
+       
 
         public void ListarHabilidadesDaClasse()
         {
@@ -48,6 +50,8 @@ namespace Classes
             }
             Console.WriteLine($"     {i}- Voltar");
         }
+        
+
         
     }
 }

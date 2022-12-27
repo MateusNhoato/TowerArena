@@ -11,11 +11,11 @@ namespace Classes
             Nome = "Conjurador";
             Arma = new Varinha();
           
-            VidaPorNivel = 1;
-            ManaPorNivel = 4;
-            PoderPorNivel = 3;
-            DefesaPorNivel = 1;
-            IniciativaPorNivel = 1;
+            VidaPorNivel = 3;
+            ManaPorNivel = 8;
+            PoderPorNivel = 8;
+            DefesaPorNivel = 3;
+            IniciativaPorNivel = 3;
         }
 
         private protected override void AdicionarHabilidades()

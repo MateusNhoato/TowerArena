@@ -13,11 +13,11 @@ namespace Classes
             Nome = "Arqueiro";
             Arma = new ArcoEFlecha();
 
-            VidaPorNivel = 2;
-            ManaPorNivel = 2;
-            PoderPorNivel = 3;
-            DefesaPorNivel = 1;
-            IniciativaPorNivel = 1;
+            VidaPorNivel = 5;
+            ManaPorNivel = 5;
+            PoderPorNivel = 6;
+            DefesaPorNivel = 4;
+            IniciativaPorNivel = 5;
 
             AdicionarHabilidades();
         }
@@ -31,6 +31,8 @@ namespace Classes
             descricao = "O arqueiro se prepara durante uma rodada e aumenta seu poder.";
             habilidade = new Habilidade("Mente Afiada", 3, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
+
+            
         }
 
        

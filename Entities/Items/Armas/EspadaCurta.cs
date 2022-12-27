@@ -7,9 +7,9 @@ namespace Items
         public EspadaCurta() 
         {
             Nome = "Espada Curta";
-            Peso = 5.2;
+            Peso = 8;
             TipoDeArma = TipoDeArma.espadaCurta;
-            Dano = 3;
+            Dano = 40;
         }
 
         

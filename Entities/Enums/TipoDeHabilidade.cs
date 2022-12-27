@@ -3,6 +3,7 @@
     enum TipoDeHabilidade
     {
         Ataque,
-        Buff
+        Buff,
+        Debuff
     }
 }

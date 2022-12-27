@@ -7,9 +7,9 @@ namespace Items
         public ArcoEFlecha()
         {
             Nome = "Arco e Flecha";
-            Peso = 2.5;
+            Peso = 7;
             TipoDeArma = TipoDeArma.arcoEFlecha;
-            Dano = 5;
+            Dano = 35;
         }
     }
 }

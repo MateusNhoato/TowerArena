@@ -158,7 +158,7 @@ namespace Repositories
                             cont++;
                         }
                         else
-                            Console.WriteLine($"\n     {nome} ({classe}) | Morto | Recorde:{andar}");
+                            Console.WriteLine($"\n     {nome} ({classe}) | Morto | Recorde: {andar} Andar(es)");
                         
                         
                         info = sr.ReadLine();

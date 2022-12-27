@@ -6,9 +6,9 @@ namespace Items
         public Varinha()
         {
             Nome = "Varinha";
-            Peso = 0.5;
+            Peso = 5;
             TipoDeArma = TipoDeArma.varinha;
-            Dano = 5;
+            Dano = 25;
         }
     }
 }

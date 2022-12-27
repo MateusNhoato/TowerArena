@@ -12,7 +12,7 @@ namespace Inimigos
             // pegando os numeros aleatórios
             Random random= new Random();
             int numNome = random.Next(1, 21985);
-            int numNivel = random.Next(-1, 3);
+            int numNivel = random.Next(-1, 1);
             int pocoesVida = random.Next(0, 2);
             int pocoesMana = random.Next(0, 2);
 

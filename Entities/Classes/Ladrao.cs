@@ -11,11 +11,11 @@ namespace Classes
             Nome = "Ladrão";
             Arma = new Adaga();
          
-            VidaPorNivel = 2;
-            ManaPorNivel = 1;
-            PoderPorNivel = 3;
-            DefesaPorNivel = 1;
-            IniciativaPorNivel = 3;
+            VidaPorNivel = 4;
+            ManaPorNivel = 4;
+            PoderPorNivel = 5;
+            DefesaPorNivel = 4;
+            IniciativaPorNivel = 8;
 
         }
 

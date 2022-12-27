@@ -228,8 +228,28 @@ namespace View
              ███     ███       ███    ███     ███     ███    ███          ███ 
        ▄█    ███     ███       ███    ███     ███     ███    ███    ▄█    ███ 
      ▄████████▀     ▄████▀     ███    █▀     ▄████▀   ████████▀   ▄████████▀";
-        
 
+        public static string venceu = @"
+         ▄█    █▄     ▄████████ ███▄▄▄▄    ▄████████    ▄████████ ███    █▄  
+        ███    ███   ███    ███ ███▀▀▀██▄ ███    ███   ███    ███ ███    ███ 
+        ███    ███   ███    █▀  ███   ███ ███    █▀    ███    █▀  ███    ███ 
+        ███    ███  ▄███▄▄▄     ███   ███ ███         ▄███▄▄▄     ███    ███ 
+        ███    ███ ▀▀███▀▀▀     ███   ███ ███        ▀▀███▀▀▀     ███    ███ 
+        ███    ███   ███    █▄  ███   ███ ███    █▄    ███    █▄  ███    ███ 
+        ███    ███   ███    ███ ███   ███ ███    ███   ███    ███ ███    ███ 
+         ▀██████▀    ██████████  ▀█   █▀  ████████▀    ██████████ ████████▀  
+                                                                              
+";      public static string fugiu = @"
+               ▄████████ ███    █▄     ▄██████▄   ▄█  ███    █▄  
+              ███    ███ ███    ███   ███    ███ ███  ███    ███ 
+              ███    █▀  ███    ███   ███    █▀  ███▌ ███    ███ 
+             ▄███▄▄▄     ███    ███  ▄███        ███▌ ███    ███ 
+            ▀▀███▀▀▀     ███    ███ ▀▀███ ████▄  ███▌ ███    ███ 
+              ███        ███    ███   ███    ███ ███  ███    ███ 
+              ███        ███    ███   ███    ███ ███  ███    ███ 
+              ███        ████████▀    ████████▀  █▀   ████████▀  
+                                                              
+";
         public static void ImprimirNumeroDoRound(int numero)
         {
             Console.Clear();
@@ -357,7 +377,7 @@ namespace View
             
 
             // barra de vida do jogador
-            if (vidaJogador == 0)
+            if (vidaJogador <= 0)
                 barraDeVidaJogador = _0Porcento;
             else if (vidaJogador <= 10)
                 barraDeVidaJogador = _10Porcento;
@@ -382,7 +402,7 @@ namespace View
 
 
             // barra de vida do inimigo
-            if (vidaInimigo == 0)
+            if (vidaInimigo <= 0)
                 barraDeVidaInimigo = _0Porcento;
             else if (vidaInimigo <= 10)
                 barraDeVidaInimigo = _10Porcento;
@@ -431,5 +451,31 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine(Texto.linha);
         }
+
+        public static void VitoriaDoJogador()
+        {
+            Thread.Sleep(1200);
+            Console.Clear();
+            Console.WriteLine(jogador);
+            Console.WriteLine(venceu);
+            Thread.Sleep(1000);
+        }
+        public static void VitoriaDoOponente()
+        {
+            Thread.Sleep(1200);
+            Console.Clear();
+            Console.WriteLine(inimigo);
+            Console.WriteLine(venceu);
+            Thread.Sleep(1000);
+        }
+
+        public static void JogadorFugiu()
+        {
+            Console.Clear();
+            Console.WriteLine(jogador);
+            Console.WriteLine(fugiu);
+            Thread.Sleep(1000);
+        }
+    
     }
 }

@@ -1,19 +1,20 @@
 ﻿using Classes;
+using Services;
 
 namespace Entities
 {
     internal abstract class CriaturaBase
     {
         public int Nivel { get; protected private set; }
-        public Classe? Classe { get; protected private set;}
+        public Classe? Classe { get; protected private set; }
         public string? Nome { get; protected private set; }
 
 
-        public int VidaBase { get; protected private set; } = 5;
+        public int VidaBase { get; protected private set; } = 10;
         public int ManaBase { get; protected private set; } = 5;
-        public int PoderBase { get; protected private set; } = 5;
-        public int DefesaBase { get; protected private set; } = 5;
-        public int IniciativaBase { get; protected private set; } = 5;
+        public int PoderBase { get; protected private set; } = 3;
+        public int DefesaBase { get; protected private set; } = 3;
+        public int IniciativaBase { get; protected private set; } = 3;
 
         public int VidaAtual { get; protected private set; }
         public int ManaAtual { get; protected private set; }
@@ -41,18 +42,19 @@ namespace Entities
             IniciativaBase = iniciativaBase;
 
         }
-        public CriaturaBase(int nivel, Classe? classe, string? nome, int vidaBase, int manaBase, int poderBase, int defesaBase, int iniciativaBase, int vidaAtual, int manaAtual) : this(nivel, nome,  vidaBase,  manaBase,  poderBase,  defesaBase, iniciativaBase)
+        public CriaturaBase(int nivel, Classe? classe, string? nome, int vidaBase, int manaBase, int poderBase, int defesaBase, int iniciativaBase, int vidaAtual, int manaAtual) : this(nivel, nome, vidaBase, manaBase, poderBase, defesaBase, iniciativaBase)
         {
-            Nome = nome;           
+            Nome = nome;
             VidaAtual = vidaAtual;
             ManaAtual = manaAtual;
         }
-       
+
 
         public int VidaTotal
         {
-            get { 
-                if(Classe != null)
+            get
+            {
+                if (Classe != null)
                     return VidaBase + Classe.VidaPorNivel * Nivel + VidaExtra;
                 return VidaBase;
             }
@@ -60,7 +62,8 @@ namespace Entities
 
         public int ManaTotal
         {
-            get {
+            get
+            {
                 if (Classe != null)
                     return ManaBase + Classe.ManaPorNivel * Nivel;
                 return ManaBase;
@@ -69,7 +72,8 @@ namespace Entities
 
         public int PoderTotal
         {
-            get {
+            get
+            {
                 if (Classe != null)
                     return PoderBase + Classe.PoderPorNivel * Nivel + PoderExtra;
                 return PoderBase;
@@ -78,8 +82,9 @@ namespace Entities
 
         public int DefesaTotal
         {
-            get {
-                if (Classe != null) 
+            get
+            {
+                if (Classe != null)
                     return DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
                 return DefesaBase;
             }
@@ -87,7 +92,8 @@ namespace Entities
 
         public int IniciativaTotal
         {
-            get {
+            get
+            {
                 if (Classe != null)
                     return IniciativaBase + Classe.IniciativaPorNivel * Nivel + IniciativaExtra;
                 return IniciativaBase;
@@ -96,17 +102,19 @@ namespace Entities
 
         public double PorcentagemVida()
         {
-            return (double)VidaAtual / VidaTotal * 100 ;
+            return (double)VidaAtual / VidaTotal * 100;
         }
+
+        
 
         public int ReceberDano(int dano)
         {
-            int danoTotal = dano - DefesaTotal;
-            if(danoTotal > 0)
+            int danoTotal = dano / DefesaTotal;
+            if (danoTotal > 0)
             {
                 VidaAtual -= danoTotal;
             }
-            return danoTotal;                            
+            return danoTotal;
         }
 
         public bool CheckarMana(int custoDeMana)
@@ -119,26 +127,32 @@ namespace Entities
             return false;
         }
 
-        public void AumentarDefesa(int quantia)
+        public void AlterarDefesa(int quantia)
         {
             DefesaExtra += quantia;
         }
 
-        public void AumentarPoder(int quantia)
+        public void AlterarPoder(int quantia)
         {
             PoderExtra += quantia;
         }
-        public void AumentarIniciativa(int quantia)
+
+        public void AlterarIniciativa(int quantia)
         {
             IniciativaExtra += quantia;
         }
 
+        public void AlterarVida(int quantia)
+        {
+            VidaExtra += quantia;
+        }
+
         public void ZerarAtributosExtras()
         {
-            IniciativaExtra= 0;
-            PoderExtra= 0;
-            DefesaExtra= 0;
-            VidaExtra= 0;
+            IniciativaExtra = 0;
+            PoderExtra = 0;
+            DefesaExtra = 0;
+            VidaExtra = 0;
         }
 
         public override string ToString()

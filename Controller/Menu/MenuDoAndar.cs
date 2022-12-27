@@ -30,8 +30,11 @@ namespace Menu
                         if (JogoPrincipal.Jogar(jogador))
                             jogador.SubirAndar();
                         else
-                            resposta = "3";
-                        DadosDosJogadores.SalvarInfoJogador(jogador);
+                        {
+                            DadosDosJogadores.SalvarInfoJogador(jogador);
+                            if (!JogoPrincipal.Fuga)
+                                resposta = "3";
+                        }                          
                         break;
 
                     case "2":
