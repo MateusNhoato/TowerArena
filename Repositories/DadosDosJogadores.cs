@@ -18,8 +18,8 @@ namespace Repositories
             int manaAtual = jogador.ManaAtual;
             int andar = jogador.Andar;
             int nivel = jogador.Nivel;
-            int pocoesDeVida = jogador.Items.Count(x => x.Nome == "Poção de Vida");
-            int pocoesDeMana = jogador.Items.Count(x => x.Nome == "Poção de Mana");
+            int pocoesDeVida = jogador.Mochila.Items.Count(x => x is PocaoVida);
+            int pocoesDeMana = jogador.Mochila.Items.Count(x => x is PocaoMana);
 
 
             string[] personagens = File.ReadAllLines(infoPersonagensPath);

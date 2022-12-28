@@ -31,9 +31,8 @@ namespace Menu
             int numeroDeHabilidades = jogador.Classe.Habilidades.Count;
             IEnumerable<int> enumerable = Enumerable.Range(1, numeroDeHabilidades+2);
             string[] opcoes = enumerable.Select(x=> x.ToString()).ToArray();
-            string resposta = "";
+            string resposta;
 
-            jogador.Classe.ListarHabilidadesDaClasse();
 
             do
             {              
@@ -41,6 +40,20 @@ namespace Menu
                 resposta = Console.ReadLine();
             } while (!opcoes.Contains(resposta));
             return resposta;
+        }
+
+        public static string MenuDeConsumiveis(Jogador jogador)
+        {
+            string[] opcoes = { "1", "2", "3"};
+            string resposta;
+
+            do
+            {
+                Console.Write("     Digite a opção desejada: ");
+                resposta = Console.ReadLine();
+            } while (!opcoes.Contains(resposta));
+            return resposta;
+
         }
     }
 }

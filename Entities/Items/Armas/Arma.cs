@@ -1,10 +1,13 @@
-﻿using Enums;
-
-namespace Items
+﻿namespace Items
 {
     abstract class Arma : Item
     {
-        public  TipoDeArma TipoDeArma { get; protected set; }
+        
         public int Dano { get; protected set; }
+
+        public override string ToString()
+        {
+            return $"     {Nome} | Dano: {Dano} | Peso: {Peso}";
+        }
     }
 }

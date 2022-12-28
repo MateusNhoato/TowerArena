@@ -1,6 +1,4 @@
-﻿using Enums;
-
-namespace Items
+﻿namespace Items
 {
     internal class Adaga : Arma
     {
@@ -8,8 +6,7 @@ namespace Items
         public Adaga()
         {
             Nome = "Adaga";
-            Peso = 6;
-            TipoDeArma = TipoDeArma.adaga;
+            Peso = 6;           
             Dano = 30;
         }
 

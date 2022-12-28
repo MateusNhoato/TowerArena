@@ -38,6 +38,7 @@ namespace Menu
                         break;
 
                     case "2":
+                        MenuConsumiveis(jogador);
                         break;
 
                     case "3":
@@ -49,6 +50,22 @@ namespace Menu
                 }
             } while(resposta != "3");
               
+        }
+
+       private static void MenuConsumiveis(Jogador jogador)
+        {
+            string input;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(Texto.consumiveis);
+                Console.WriteLine($"\n     {jogador} | Vida [{jogador.VidaAtual} / {jogador.VidaTotal}] | Mana [{jogador.ManaAtual} / {jogador.ManaTotal}]\n");
+                jogador.Mochila.ListarConsumiveisNaMochila();
+                Console.Write("     Digite a opção desejada: ");
+                input = Console.ReadLine();
+                Combate.ItensConsumiveisDoJogador(jogador, input);
+            } while (input != "3");
+       
         }
     }
 }

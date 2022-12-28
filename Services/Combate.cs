@@ -4,6 +4,9 @@ using View;
 using Menu;
 using Enums;
 using Delegates;
+using Items;
+using System.Linq;
+using TowerArena.Entities;
 
 namespace Services
 {
@@ -41,13 +44,15 @@ namespace Services
             while (true)
             {
                 CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                Thread.Sleep(1000);
                 if (FimDoRound(jogador, inimigo))
                     break;
 
                 if (!resultadoIniciativa)
                 {
-                    AcaoDoInimigo(inimigo, jogador);                   
+                    AcaoDoInimigo(inimigo, jogador);                 
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                    Thread.Sleep(1000);
                     if (FimDoRound(jogador, inimigo))
                         break;
                     AcaoDoJogador(jogador, inimigo);
@@ -56,6 +61,7 @@ namespace Services
                 {
                     AcaoDoJogador(jogador, inimigo);                   
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                    Thread.Sleep(1000);
                     if (FimDoRound(jogador, inimigo))
                         break;
                     AcaoDoInimigo(inimigo, jogador);
@@ -109,7 +115,12 @@ namespace Services
 
                 // consumiveis            
                 case "3":
-                    jogador.ReceberDano(100);
+                    string consumivel = CombateView.MostrarItensConsumiveis(jogador, inimigo);
+                    if (!(ItensConsumiveisDoJogador(jogador, consumivel)))
+                    {
+                        CombateView.ImprimirTelaDeCombate(jogador, inimigo);
+                        AcaoDoJogador(jogador, inimigo);
+                    }
                     break;
                 // janela de status
                 case "4":
@@ -166,6 +177,38 @@ namespace Services
             }                
         }
     
+        // opções de usar poção de vida e mana ou voltar
+    public static bool ItensConsumiveisDoJogador(Jogador jogador, string consumivel)
+        {
+            if(consumivel == "3")
+                return false;
+
+            Console.WriteLine(Texto.linha);
+            if(consumivel == "1")
+            {
+                if (jogador.Mochila.Items.Exists(x => x is PocaoVida))
+                {
+                    Item pocao = jogador.Mochila.Items.Find(x => x is PocaoVida);
+                    jogador.BeberPocao(pocao);
+                    jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                    return true;
+                }
+                Console.WriteLine("\n     Sem poção de vida disponível.");
+                Thread.Sleep(1000);
+                return false;
+            }
+
+            if (jogador.Mochila.Items.Exists(x => x is PocaoMana))
+            {
+                Item pocao = jogador.Mochila.Items.Find(x => x is PocaoMana);
+                jogador.BeberPocao(pocao);
+                jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                return true;
+            }
+            Console.WriteLine("\n     Sem poção de mana disponível.");
+            Thread.Sleep(1000);
+            return false;
+        }
     public static void AcaoDoInimigo(Inimigo inimigo, Jogador jogador)
     {
         Console.WriteLine("     Inimigo faz algo ~");

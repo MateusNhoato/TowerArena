@@ -1,5 +1,0 @@
-Muimi;1;1;Arqueiro;-87;7;0,0
-Muimilol;1;1;Arqueiro;7;7;0,0
-Bilu;1;1;Espadachim;-4;4;0,0
-Xxx;1;1;Espadachim;18;8;0,0
-Lad;1;1;Ladrão;0;9;0,0

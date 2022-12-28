@@ -307,8 +307,16 @@ namespace View
             Console.Clear();
             ImprimirTelaDeCombate(jogador, inimigo);
             Console.WriteLine("\n     Habilidades:");
+            jogador.Classe.ListarHabilidadesDaClasse();
             return MenuDeCombate.MenuDeHabilidades(jogador);
 
+        }
+        public static string MostrarItensConsumiveis(Jogador jogador, Inimigo inimigo)
+        {
+            Console.Clear();
+            ImprimirTelaDeCombate(jogador, inimigo);
+            jogador.Mochila.ListarConsumiveisNaMochila();
+            return MenuDeCombate.MenuDeConsumiveis(jogador);
         }
         public static void JanelaDeStatus(Jogador jogador)
         {
@@ -454,19 +462,25 @@ namespace View
 
         public static void VitoriaDoJogador()
         {
-            Thread.Sleep(1200);
+            ConsoleColor aux = Console.ForegroundColor;
+
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(jogador);
             Console.WriteLine(venceu);
             Thread.Sleep(1000);
+            Console.ForegroundColor = aux;
         }
         public static void VitoriaDoOponente()
         {
-            Thread.Sleep(1200);
+            ConsoleColor aux = Console.ForegroundColor;
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(inimigo);
             Console.WriteLine(venceu);
             Thread.Sleep(1000);
+
+            Console.ForegroundColor = aux;
         }
 
         public static void JogadorFugiu()

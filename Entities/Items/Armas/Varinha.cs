@@ -1,13 +1,11 @@
-﻿using Enums;
-namespace Items
+﻿namespace Items
 {
     internal class Varinha : Arma
     {
         public Varinha()
         {
             Nome = "Varinha";
-            Peso = 5;
-            TipoDeArma = TipoDeArma.varinha;
+            Peso = 5;           
             Dano = 25;
         }
     }
