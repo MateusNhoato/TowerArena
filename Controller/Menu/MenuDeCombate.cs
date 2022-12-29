@@ -7,7 +7,7 @@ namespace Menu
         public static string  MostrarMenuDeCombate()
         {
             
-            string[] opcoes = { "1", "2", "3", "4", "5" };
+            string[] opcoes = { "1", "2", "3", "4" };
             string resposta = "";
 
             Console.WriteLine("");
@@ -15,7 +15,6 @@ namespace Menu
             Console.WriteLine("     2- Habilidade Especial");
             Console.WriteLine("     3- Itens Consumíveis");
             Console.WriteLine("     4- Janela de Status");
-            Console.WriteLine("     5- Fugir");
             
             do
             {

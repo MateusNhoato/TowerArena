@@ -12,17 +12,17 @@ namespace Services
 {
     internal class Combate
     {
-        private static bool _combate = true;
+        public static bool _combate { get; set; } = true;
 
-        private static bool Iniciativa(Jogador jogador, Inimigo inimigo)
+        public static bool Iniciativa(CriaturaBase jogador, CriaturaBase inimigo)
         {
             Random random = new Random();
             int iniAdicionalJg = random.Next(0, 5);
             int iniAdicionalIn = random.Next(0, 5);
             CombateView.ImprimirIniciativa(iniAdicionalJg, iniAdicionalIn);
 
-            int iniciativaJogador = jogador.IniciativaTotal + iniAdicionalJg;
-            int iniciativaInimigo = inimigo.IniciativaTotal + iniAdicionalIn;
+            int iniciativaJogador = jogador.IniciativaTotal + iniAdicionalJg +1;
+            int iniciativaInimigo = inimigo.IniciativaTotal + iniAdicionalIn +1;
 
             if (iniciativaJogador >= iniciativaInimigo)
                 return true;
@@ -44,7 +44,7 @@ namespace Services
             while (true)
             {
                 CombateView.ImprimirTelaDeCombate(jogador, inimigo);
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 if (FimDoRound(jogador, inimigo))
                     break;
 
@@ -52,7 +52,7 @@ namespace Services
                 {
                     AcaoDoInimigo(inimigo, jogador);                 
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
                         break;
                     AcaoDoJogador(jogador, inimigo);
@@ -61,26 +61,24 @@ namespace Services
                 {
                     AcaoDoJogador(jogador, inimigo);                   
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
                         break;
                     AcaoDoInimigo(inimigo, jogador);
                 }
             }
-            
-            if (JogoPrincipal.Fuga == true)
-            {
-                CombateView.JogadorFugiu();
-                return false;
-            }
-            else if (jogador.VidaAtual <= 0)
+                        
+            if (jogador.VidaAtual <= 0)
             {
                 CombateView.VitoriaDoOponente();
                 return false;
             }
             else
             {
-                CombateView.VitoriaDoJogador();
+                if (!_combate)
+                    CombateView.JogadorFugiu();
+                else
+                    CombateView.VitoriaDoJogador();
                 return true;
             }
 
@@ -101,7 +99,7 @@ namespace Services
             {
                 // atacar
                 case "1":
-                    new Habilidade("Ataque", 0, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.HabilidadeAtaque1x, TipoDeHabilidade.Ataque ).Efeito(jogador, inimigo);
+                    new Habilidade("Ataque", 0, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque ).Efeito(jogador, inimigo);
                     break;
                 // habilidade especial
                 case "2":
@@ -129,14 +127,7 @@ namespace Services
                     AcaoDoJogador(jogador, inimigo);
                     break;
 
-                // fuga
-                case "5":
-                    if (Iniciativa(jogador, inimigo))
-                    {
-                        _combate = false;
-                        JogoPrincipal.Fuga = true;
-                    }
-                    break;
+                
             }
         }
 

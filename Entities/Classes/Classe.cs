@@ -7,7 +7,9 @@ namespace Classes
 {
     internal abstract class Classe
     {
+        
         public string? Nome { get; protected private set; }
+        public string Descricao { get; protected private set; }
         public Arma? Arma { get; protected private set; }
 
         public List<Habilidade> Habilidades { get;private set; } = new List<Habilidade>();
@@ -50,8 +52,12 @@ namespace Classes
             }
             Console.WriteLine($"     {i}- Voltar");
         }
-        
 
-        
+
+        public override string ToString()
+        {
+            return $"{Nome} | Arma: {Arma.Nome} | {Descricao}";
+        }
+
     }
 }

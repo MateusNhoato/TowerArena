@@ -48,6 +48,11 @@ namespace Entities
             Nivel++;
             VidaAtual = VidaTotal;
             ManaAtual = ManaTotal;
+
+            for(int i=0; i < Classe.Habilidades.Count; i++) 
+            {
+                Classe.Habilidades[i].ResetarUsos();
+            }
         }
         
         public void BeberPocao(Item pocao)
@@ -68,7 +73,7 @@ namespace Entities
         }
 
        
-
+        
         public override int GetHashCode()
         {
             return Nome.GetHashCode();

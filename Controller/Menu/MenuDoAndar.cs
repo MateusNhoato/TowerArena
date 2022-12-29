@@ -31,9 +31,8 @@ namespace Menu
                             jogador.SubirAndar();
                         else
                         {
-                            DadosDosJogadores.SalvarInfoJogador(jogador);
-                            if (!JogoPrincipal.Fuga)
-                                resposta = "3";
+                            DadosDosJogadores.SalvarInfoJogador(jogador);                           
+                            resposta = "3";
                         }                          
                         break;
 

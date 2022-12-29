@@ -23,10 +23,7 @@ namespace Services
             Efeito = efeito;
             Tipo = tipo;
 
-            if (tipo == TipoDeHabilidade.Buff || tipo == TipoDeHabilidade.Debuff)
-                QuantidadeDeUsos = 1;
-            else
-                QuantidadeDeUsos = 5;           
+                  
         }
         
         public void DiminuirUso()
@@ -36,10 +33,10 @@ namespace Services
 
         public void ResetarUsos()
         {
-            if (Tipo == TipoDeHabilidade.Buff)
+            if (Tipo == TipoDeHabilidade.Buff || Tipo == TipoDeHabilidade.Debuff)
                 QuantidadeDeUsos = 1;
             else
-                QuantidadeDeUsos = 5;
+                QuantidadeDeUsos = 3;
         }
 
 

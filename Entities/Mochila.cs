@@ -12,9 +12,6 @@ namespace TowerArena.Entities
         public Mochila(List<Item> items) 
         {
             Items = items;
-            Items.Add(new PocaoVida());
-            Items.Add(new PocaoVida());
-            Items.Add(new PocaoMana());
         }
 
         public void ListarConsumiveisNaMochila()
@@ -32,13 +29,13 @@ namespace TowerArena.Entities
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("     Items:");
+            sb.AppendLine("     Itens:");
 
             Item arma = Items.Find(x => x is Arma);
             sb.AppendLine($"     {arma}");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
-            sb.AppendLine();
+            sb.AppendLine($"     Peso total: [{PesoAtual}/{CapacidadeMaxima}]\n");
             return sb.ToString();
         }
     }

@@ -6,32 +6,27 @@ namespace Services
 {
     internal class JogoPrincipal
     {
-        private static bool _fuga = false; 
-
-        public static bool Fuga
-        {
-            get { return _fuga; }
-            set { _fuga = value; }
-        }
-
+        public static int Round { get; private set; } = 1;
         public static bool Jogar(Jogador jogador)
         {
-            for(int i= 1; i <= 10; i++) 
+            foreach (Habilidade hab in jogador.Classe.Habilidades)
+                hab.ResetarUsos();
+
+            for (; Round <= 10; Round++) 
             {
-                Fuga = false;
-                CombateView.ImprimirNumeroDoRound(i);
+                
+                CombateView.ImprimirNumeroDoRound(Round);
                 if (!Combate.Combater(jogador, new Inimigo(jogador.Nivel))) 
                 {
                     // se o jogador perder um combate
                     return false;
                 }
-                if ( i == 5)
+                if ( Round == 5)
                     jogador.LevelUp();
                 jogador.ZerarAtributosExtras();
 
-                foreach(Habilidade hab in jogador.Classe.Habilidades)
-                    hab.ResetarUsos();
             }
+            Round = 1;
             return true;
         }
     }

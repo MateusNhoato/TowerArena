@@ -10,7 +10,8 @@ namespace Menu
     static class MenuPrincipal
     {
 
-
+        private static List<Classe> _classesBasicas { get; } = new List<Classe>() 
+             { new Arqueiro(), new Espadachim(), new Ladrao(), new Conjurador()};
         public static void MostrarMenuPrincipal()
         {
             string resposta;
@@ -62,35 +63,26 @@ namespace Menu
             string nome = Console.ReadLine();
             Console.WriteLine(Texto.linha + "\n");
 
-            Console.WriteLine("     1 - Espadachim");
-            Console.WriteLine("     2 - Ladrão");
-            Console.WriteLine("     3 - Conjurador");
-            Console.WriteLine("     4 - Arqueiro");
-            Console.Write("\n     Escolha a opção desejada: ");
-            string escolhaClasse = Console.ReadLine();
-
-            Console.WriteLine(Texto.linha);
-
-            Classe classe;
-            if (escolhaClasse == "1")
-                classe = new Espadachim();
-
-            else if (escolhaClasse == "2")
-                classe = new Ladrao();
-
-            else if (escolhaClasse == "3")
-                classe = new Conjurador();
-
-            else if (escolhaClasse == "4")
-                classe = new Arqueiro();
-
-            else
-                classe = null;
-
-            if (classe == null)
-                EntradaInvalida();
-            else
+            for(int i=0; i<_classesBasicas.Count; i++)
             {
+                Console.WriteLine($"     {i+1}- {_classesBasicas[i]}");
+            }
+            Console.Write("\n     Escolha a opção desejada: ");
+
+            int escolhaClasse;
+
+            if (int.TryParse(Console.ReadLine(), out escolhaClasse))
+            {
+                Classe classe;
+                try
+                {
+                    classe = _classesBasicas[escolhaClasse - 1];
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    EntradaInvalida();
+                    return;
+                }
                 if (nome.Length >= 2)
                 {
                     nome = NomePascalCase(nome);
@@ -102,20 +94,14 @@ namespace Menu
                         Console.WriteLine($"\n     {jogador.Nome} ({jogador.Classe.Nome}) criado com sucesso!");
                     }
                     else
-                    {
                         Console.WriteLine("     Nome já utilizado.");
-                    }
 
                 }
                 else
-                {
                     Console.WriteLine("\n     Um nome precisa ter pelo menos 2 caracteres.");
-                }
-
             }
-
-
-
+            else
+                EntradaInvalida();
             AperteEnterParaContinuar();
         }
 
@@ -157,7 +143,7 @@ namespace Menu
 
         public static void AperteEnterParaContinuar()
         {
-            Console.Write("\n    Aperte enter para continuar");
+            Console.Write("\n     Aperte enter para continuar");
             Console.ReadLine();
         }
 

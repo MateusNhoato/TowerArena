@@ -11,10 +11,11 @@ namespace Classes
         public Arqueiro()
         {
             Nome = "Arqueiro";
+            Descricao = "Uma classe ofensiva que utiliza golpes especiais com frequência.";
             Arma = new ArcoEFlecha();
 
-            VidaPorNivel = 5;
-            ManaPorNivel = 5;
+            VidaPorNivel = 4;
+            ManaPorNivel = 6;
             PoderPorNivel = 6;
             DefesaPorNivel = 4;
             IniciativaPorNivel = 5;
@@ -24,15 +25,20 @@ namespace Classes
 
         private protected override void AdicionarHabilidades()
         {
-            string descricao = "Após canalizar sua concentração, o arqueiro dispara uma poderosa flecha no ponto vital do alvo.";
-            Habilidade habilidade = new Habilidade("Tiro Certeiro", 2, descricao, EfeitosDeHabilidades.HabilidadeAtaque2x, TipoDeHabilidade.Ataque);
+            string descricao = "Uma flecha que acerta o ponto vital do alvo.";
+            Habilidade habilidade = new Habilidade("Tiro Certeiro", 2, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "O arqueiro se prepara durante uma rodada e aumenta seu poder.";
-            habilidade = new Habilidade("Mente Afiada", 3, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
+            descricao = "O Arqueiro se prepara durante uma rodada, aumentando seu poder pelo resto do combate.";
+            habilidade = new Habilidade("Mente Afiada", 2, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
-            
+            descricao = "Uma devastadora sucessão de flechas.";
+            habilidade = new Habilidade("Saraivada de Flechas", 4, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            Habilidades.Add(habilidade);
+
+
+
         }
 
        
