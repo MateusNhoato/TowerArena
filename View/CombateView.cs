@@ -302,7 +302,7 @@ namespace View
             Console.WriteLine(comeca);
             System.Threading.Thread.Sleep(1500);
         }
-        public static string MostrarHabilidadesDaClasse(Jogador jogador, Inimigo inimigo)
+        public static string MostrarHabilidadesDaClasse(CriaturaBase jogador, CriaturaBase inimigo)
         {
             Console.Clear();
             ImprimirTelaDeCombate(jogador, inimigo);
@@ -311,14 +311,14 @@ namespace View
             return MenuDeCombate.MenuDeHabilidades(jogador);
 
         }
-        public static string MostrarItensConsumiveis(Jogador jogador, Inimigo inimigo)
+        public static string MostrarItensConsumiveis(CriaturaBase jogador, CriaturaBase inimigo)
         {
             Console.Clear();
             ImprimirTelaDeCombate(jogador, inimigo);
             jogador.Mochila.ListarConsumiveisNaMochila();
-            return MenuDeCombate.MenuDeConsumiveis(jogador);
+            return MenuDeCombate.MenuDeConsumiveis();
         }
-        public static void JanelaDeStatus(Jogador jogador)
+        public static void JanelaDeStatus(CriaturaBase jogador)
         {
             ConsoleColor aux = Console.ForegroundColor;
 
@@ -356,7 +356,7 @@ namespace View
             Console.WriteLine(Texto.linha);
             MenuPrincipal.AperteEnterParaContinuar();
         }
-        public static void ImprimirTelaDeCombate(Jogador jogador, Inimigo inimigo)
+        public static void ImprimirTelaDeCombate(CriaturaBase jogador, CriaturaBase inimigo)
         {
             Console.Clear();
             string barraDeVidaJogador;

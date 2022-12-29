@@ -3,6 +3,7 @@ using Entities;
 using Inimigos;
 using Services;
 using View;
+using Items;
 
 namespace Delegates
 {
@@ -93,9 +94,22 @@ namespace Delegates
             receptor.AlterarPoder(debuff);
         }
 
+        public static void DebuffPoderEDefesa(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            DebuffDefesa(conjurador, receptor);
+            DebuffPoder(conjurador, receptor);
+
+        }
+
         public static void Ataque1xComDebuffDefesa(CriaturaBase conjurador, CriaturaBase receptor)
         {
             Ataque1x(conjurador, receptor);
+            BuffDefesa(conjurador, receptor);
+        }
+
+        public static void Ataque2xComDebuffDefesa(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            Ataque2x(conjurador, receptor);
             BuffDefesa(conjurador, receptor);
         }
 
@@ -103,11 +117,47 @@ namespace Delegates
         public static void Fuga(CriaturaBase conjurador, CriaturaBase receptor)
         {
             if (JogoPrincipal.Round == 10)
+            {
+                conjurador.AlterarMana(7);
+                Combate.AcaoDoJogador(conjurador, receptor);
                 return;
+            }
 
             if (Combate.Iniciativa(conjurador, receptor))           
                 Combate._combate = false;
                
+        }
+
+        public static void Assalto(CriaturaBase conjurador, CriaturaBase receptor) 
+        {
+            Random random = new Random();
+            int n = random.Next(2, 4);
+
+
+
+            for(int i=1; i<n; n--)
+            {
+                if (i >= receptor.Mochila.Items.Count)
+                    break;
+                Item item = receptor.Mochila.Items[i];
+
+                conjurador.Mochila.Items.Add(item);
+                receptor.Mochila.RemoverConsumivelDaMochila(item);
+
+            }
+        }
+        public static void TrocacaoFranca(CriaturaBase conjurador,CriaturaBase receptor)
+        {
+            int dano = conjurador.VidaTotal / 2;
+            conjurador.ReceberDanoVerdadeiro(dano);
+            if(conjurador.VidaAtual >=0)
+            {
+                int dif = (conjurador.VidaAtual * -1) + 1;
+                conjurador.AlterarVida(dif);
+            }
+
+
+            receptor.ReceberDanoVerdadeiro(dano);
         }
     }
 }

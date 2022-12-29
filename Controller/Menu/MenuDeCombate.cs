@@ -25,7 +25,7 @@ namespace Menu
 
         }
 
-        public static string MenuDeHabilidades(Jogador jogador)
+        public static string MenuDeHabilidades(CriaturaBase jogador)
         {
             int numeroDeHabilidades = jogador.Classe.Habilidades.Count;
             IEnumerable<int> enumerable = Enumerable.Range(1, numeroDeHabilidades+2);
@@ -41,7 +41,7 @@ namespace Menu
             return resposta;
         }
 
-        public static string MenuDeConsumiveis(Jogador jogador)
+        public static string MenuDeConsumiveis()
         {
             string[] opcoes = { "1", "2", "3"};
             string resposta;

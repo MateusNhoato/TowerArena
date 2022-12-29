@@ -11,8 +11,6 @@ namespace Entities
     {
         
         public int Andar { get; private set; }
-
-        public Mochila Mochila { get; private set; }
        
       
         public Jogador(string nome, Classe classe) : base(nome, classe) 
@@ -27,7 +25,7 @@ namespace Entities
             VidaAtual = VidaTotal;
             ManaAtual = ManaTotal;
         }
-        public Jogador(string nome, Classe clase,int nivel ,int andar, int vidaAtual, int manaAtual, List<Item> items) : this(nome, clase) 
+        public Jogador(string nome, Classe classe,int nivel ,int andar, int vidaAtual, int manaAtual, List<Item> items) : this(nome, classe) 
         { 
             Nivel = nivel;
             Mochila = new Mochila(items);
@@ -46,6 +44,8 @@ namespace Entities
         public void LevelUp()
         {
             Nivel++;
+            if (Nivel == 10)
+                EscolhaDeSubClasse();
             VidaAtual = VidaTotal;
             ManaAtual = ManaTotal;
 
@@ -53,24 +53,19 @@ namespace Entities
             {
                 Classe.Habilidades[i].ResetarUsos();
             }
+            
+            
         }
-        
-        public void BeberPocao(Item pocao)
+        private void MudarClasse(Classe classe)
         {
-            if(pocao is PocaoVida)
-            {
-                VidaAtual += VidaTotal / 3;
-                if(VidaAtual > VidaTotal)
-                    VidaAtual = VidaTotal;
-            }
-            else
-            {
-                ManaAtual += ManaTotal / 3;
-                if(ManaAtual > ManaTotal)
-                    ManaAtual = ManaTotal;
-            }             
-            Mochila.Items.Remove(pocao);
+            Classe =  classe;
+
         }
+        private void EscolhaDeSubClasse()
+        {                           
+            MudarClasse(Classe.MostrarSubclasses());
+        }
+       
 
        
         

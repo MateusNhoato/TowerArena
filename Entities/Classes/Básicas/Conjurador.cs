@@ -1,6 +1,4 @@
-﻿
-using Items;
-using Entities;
+﻿using Items;
 
 namespace Classes
 {
@@ -9,6 +7,7 @@ namespace Classes
         public Conjurador()
         {
             Nome = "Conjurador";
+            Descricao = "Uma classe que utiliza de magias para lutar. Subclasses: Mago e Feiticeiro.";
             Arma = new Varinha();
           
             VidaPorNivel = 3;
@@ -18,9 +17,14 @@ namespace Classes
             IniciativaPorNivel = 3;
         }
 
-        private protected override void AdicionarHabilidades()
+        public override void AdicionarHabilidades()
         {
             throw new NotImplementedException();
+        }
+
+        public override Classe MostrarSubclasses()
+        {
+            return OpcoesSubClasses(new Feiticeiro(), new Mago());
         }
 
 

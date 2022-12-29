@@ -91,7 +91,7 @@ namespace Services
                 return true;
             return false;
         }
-        public static void AcaoDoJogador(Jogador jogador, Inimigo inimigo)
+        public static void AcaoDoJogador(CriaturaBase jogador, CriaturaBase inimigo)
         {
             string acao = MenuDeCombate.MostrarMenuDeCombate();
 
@@ -131,7 +131,7 @@ namespace Services
             }
         }
 
-        public static bool HabilidadesDoJogador(Jogador jogador, Inimigo inimigo, string habilidade)
+        public static bool HabilidadesDoJogador(CriaturaBase jogador, CriaturaBase inimigo, string habilidade)
         {
             string sair = (jogador.Classe.Habilidades.Count + 1).ToString();
 
@@ -169,10 +169,11 @@ namespace Services
         }
     
         // opções de usar poção de vida e mana ou voltar
-    public static bool ItensConsumiveisDoJogador(Jogador jogador, string consumivel)
+    public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel)
         {
             if(consumivel == "3")
                 return false;
+
 
             Console.WriteLine(Texto.linha);
             if(consumivel == "1")
@@ -200,7 +201,7 @@ namespace Services
             Thread.Sleep(1000);
             return false;
         }
-    public static void AcaoDoInimigo(Inimigo inimigo, Jogador jogador)
+    public static void AcaoDoInimigo(CriaturaBase inimigo, CriaturaBase jogador)
     {
         Console.WriteLine("     Inimigo faz algo ~");
         MenuPrincipal.AperteEnterParaContinuar();

@@ -1,5 +1,7 @@
 ﻿using Classes;
+using Items;
 using Services;
+using TowerArena.Entities;
 
 namespace Entities
 {
@@ -7,6 +9,7 @@ namespace Entities
     {
         public int Nivel { get; protected private set; }
         public Classe? Classe { get; protected private set; }
+        public Mochila? Mochila { get; protected private set; }
         public string? Nome { get; protected private set; }
 
 
@@ -104,7 +107,6 @@ namespace Entities
         {
             return (double)VidaAtual / VidaTotal * 100;
         }
-
         
 
         public int ReceberDano(int dano)
@@ -116,6 +118,14 @@ namespace Entities
             }
             return danoTotal;
         }
+
+        public int ReceberDanoVerdadeiro(int dano)
+        {               
+               VidaAtual -= dano;          
+            return dano;
+        }
+
+
 
         public bool CheckarMana(int custoDeMana)
         {
@@ -145,14 +155,38 @@ namespace Entities
         public void AlterarVida(int quantia)
         {
             VidaExtra += quantia;
+            VidaAtual = VidaExtra;
+            
         }
-
+        public void AlterarMana(int quantia)
+        {
+            ManaAtual += quantia;
+            if (ManaAtual > ManaTotal)
+                ManaAtual = ManaTotal;
+        }
         public void ZerarAtributosExtras()
         {
             IniciativaExtra = 0;
             PoderExtra = 0;
             DefesaExtra = 0;
             VidaExtra = 0;
+        }
+
+        public void BeberPocao(Item pocao)
+        {
+            if (pocao is PocaoVida)
+            {
+                VidaAtual += VidaTotal / 3;
+                if (VidaAtual > VidaTotal)
+                    VidaAtual = VidaTotal;
+            }
+            else
+            {
+                ManaAtual += ManaTotal / 3;
+                if (ManaAtual > ManaTotal)
+                    ManaAtual = ManaTotal;
+            }
+            Mochila.Items.Remove(pocao);
         }
 
         public override string ToString()
