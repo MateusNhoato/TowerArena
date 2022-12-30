@@ -5,7 +5,6 @@
         public PocaoVida() 
         {
             Nome = "Poção de Vida";
-            Peso = 0.6;
         }
 
     }

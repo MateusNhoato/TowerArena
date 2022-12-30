@@ -1,14 +1,21 @@
 ﻿using Items;
 using System.Text;
 
-namespace TowerArena.Entities
+namespace Entities
 {
     internal class Mochila
     {
         public List<Item> Items { get; private set; }
-        public double CapacidadeMaxima { get; } = 20;
-
-        public double PesoAtual { get { return Items.Sum(x => x.Peso); } }
+       
+        public Mochila()
+        {
+            Items = new List<Item>();
+            for (int i=0; i <5; i++)
+            {
+                Items.Add(new PocaoVida());
+                Items.Add(new PocaoMana());
+            }
+        }
         public Mochila(List<Item> items) 
         {
             Items = items;
@@ -35,7 +42,6 @@ namespace TowerArena.Entities
             sb.AppendLine($"     {arma}");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
-            sb.AppendLine($"     Peso total: [{PesoAtual}/{CapacidadeMaxima}]\n");
             return sb.ToString();
         }
     }

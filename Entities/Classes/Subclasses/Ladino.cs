@@ -13,9 +13,11 @@ namespace Classes
         {
             Nome = "Ladino";
             Descricao = "Furtivamente caótico.";
-            
 
-            AdicionarHabilidades();
+            VidaPorNivel *= 5;
+            DefesaPorNivel *= 2;
+
+            
         }
 
         public override void AdicionarHabilidades()

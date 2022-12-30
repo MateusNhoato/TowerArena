@@ -5,8 +5,7 @@
 
         public Adaga()
         {
-            Nome = "Adaga";
-            Peso = 6;           
+            Nome = "Adaga";          
             Dano = 30;
         }
 

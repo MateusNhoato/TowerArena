@@ -12,13 +12,27 @@ namespace Classes
             Nome = "Atirador";
             Descricao = "A elite dos Arqueiros no que se trata de maestria com o arco e flecha.";
             Arma = new ArcoEFlechaLongo();
+
+            VidaPorNivel *= 5;
+            DefesaPorNivel *= 2;
         }
 
         public override void AdicionarHabilidades()
         {
-            base.AdicionarHabilidades();
-            string descricao = "Uma flecha que acerta o ponto vital do alvo.";
-            Habilidade habilidade = new Habilidade("Flecha Perfurante", 4, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            string descricao = descricao = "Uma devastadora sucessão de flechas.";
+            Habilidade habilidade = new Habilidade("Saraivada de Flechas", 4, 10, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            Habilidades.Add(habilidade);
+
+            descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. O dano do Atirador aumenta.";
+            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder20Porcento, TipoDeHabilidade.Buff);
+            Habilidades.Add(habilidade);
+
+            descricao = "Uma flecha que acerta o ponto vital do alvo.";
+            habilidade = new Habilidade("Flecha Perfurante", 6, 6, descricao, EfeitosDeHabilidades.Ataque4x, TipoDeHabilidade.Ataque);
+            Habilidades.Add(habilidade);
+
+            descricao = "As penas pretas desta flecha são a última coisa que quem tomar esta flechada verá";
+            habilidade = new Habilidade("Flecha da Morte",12, 4, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
         }

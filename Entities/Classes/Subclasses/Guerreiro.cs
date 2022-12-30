@@ -8,6 +8,13 @@ namespace Classes
 {
     internal class Guerreiro : Espadachim
     {
+        public Guerreiro() 
+        {
+            Nome = "Guerreiro";
+            Descricao = "";
 
+            VidaPorNivel *= 5;
+            DefesaPorNivel *= 2;
+        }
     }
 }

@@ -4,8 +4,7 @@
     {
         public EspadaCurta() 
         {
-            Nome = "Espada Curta";
-            Peso = 8;           
+            Nome = "Espada Curta";           
             Dano = 40;
         }
 

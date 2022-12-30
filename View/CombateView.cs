@@ -358,6 +358,12 @@ namespace View
         }
         public static void ImprimirTelaDeCombate(CriaturaBase jogador, CriaturaBase inimigo)
         {
+            if(jogador is Inimigo)
+            {
+                ImprimirTelaDeCombate(inimigo, jogador);
+                return;
+            }
+
             Console.Clear();
             string barraDeVidaJogador;
             string barraDeVidaInimigo;
@@ -433,7 +439,6 @@ namespace View
             else
                 barraDeVidaInimigo = _100Porcento;
 
-            Console.WriteLine($"{inimigo.VidaAtual} / {inimigo.VidaTotal}");
             ConsoleColor aux = Console.ForegroundColor;
             Console.WriteLine($"\n     {inimigo}");
 

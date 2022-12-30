@@ -3,6 +3,8 @@ using Inimigos;
 using View;
 
 using Classes;
+using Services;
+
 namespace TowerArena
 {
     class Program
@@ -10,8 +12,10 @@ namespace TowerArena
         public static void Main(string[] args) 
         {
             Console.Title = "Tower Arena";
-            Console.ForegroundColor= ConsoleColor.Black;
-            Console.BackgroundColor= ConsoleColor.White;
+            JogoPrincipal.ListarClasses();
+            JogoPrincipal.ListarChefesDeAndar();
+            //Console.ForegroundColor= ConsoleColor.Black;
+            //Console.BackgroundColor= ConsoleColor.White;
            MenuPrincipal.MostrarMenuPrincipal();
                   
         }

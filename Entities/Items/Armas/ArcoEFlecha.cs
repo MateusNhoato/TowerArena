@@ -4,8 +4,7 @@
     {
         public ArcoEFlecha()
         {
-            Nome = "Arco e Flecha";
-            Peso = 7;                
+            Nome = "Arco e Flecha";                
             Dano = 35;
         }
     }

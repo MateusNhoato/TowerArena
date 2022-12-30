@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return $"     {Nome} | Dano: {Dano} | Peso: {Peso}";
+            return $"     {Nome} | Dano: {Dano}";
         }
     }
 }

@@ -5,8 +5,8 @@ using Menu;
 using Enums;
 using Delegates;
 using Items;
-using System.Linq;
-using TowerArena.Entities;
+
+
 
 namespace Services
 {
@@ -99,7 +99,10 @@ namespace Services
             {
                 // atacar
                 case "1":
-                    new Habilidade("Ataque", 0, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque ).Efeito(jogador, inimigo);
+                    if(jogador.Nivel < 10)
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque ).Efeito(jogador, inimigo);
+                    else
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque).Efeito(jogador, inimigo);
                     break;
                 // habilidade especial
                 case "2":
@@ -178,14 +181,29 @@ namespace Services
             Console.WriteLine(Texto.linha);
             if(consumivel == "1")
             {
+                if(jogador.VidaAtual >= jogador.VidaTotal)
+                {
+                    Console.WriteLine("\n     Sua vida está cheia, não ha porque usar uma poção.");
+                    Thread.Sleep(1000);
+                    return false;
+                }
+
                 if (jogador.Mochila.Items.Exists(x => x is PocaoVida))
                 {
                     Item pocao = jogador.Mochila.Items.Find(x => x is PocaoVida);
                     jogador.BeberPocao(pocao);
                     jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                    Thread.Sleep(1000);
                     return true;
                 }
                 Console.WriteLine("\n     Sem poção de vida disponível.");
+                Thread.Sleep(1000);
+                return false;
+            }
+
+            if (jogador.ManaAtual >= jogador.ManaTotal)
+            {
+                Console.WriteLine("\n     Sua mana está cheia, não ha porque usar uma poção.");
                 Thread.Sleep(1000);
                 return false;
             }
@@ -195,6 +213,7 @@ namespace Services
                 Item pocao = jogador.Mochila.Items.Find(x => x is PocaoMana);
                 jogador.BeberPocao(pocao);
                 jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                Thread.Sleep(1000);
                 return true;
             }
             Console.WriteLine("\n     Sem poção de mana disponível.");

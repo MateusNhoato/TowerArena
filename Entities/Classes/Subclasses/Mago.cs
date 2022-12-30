@@ -15,7 +15,8 @@ namespace Classes
             Descricao = "Conjurador que utiliza magias elementais para lutar.";
             Arma = new Cajado();
 
-            AdicionarHabilidades();
+            VidaPorNivel *= 5;
+            DefesaPorNivel *= 2;
         }
 
         public override void AdicionarHabilidades()

@@ -12,7 +12,7 @@ namespace Classes
         public Ladrao()
         {
             Nome = "Ladrão";
-            Descricao = "Uma classe que utiliza de truques e tramoias para sobreviver. Subclasses: Mercenário e Ladino.";
+            Descricao = "Uma classe que utiliza de truques e tramoias para sobreviver | Subclasses: Mercenário e Ladino.";
             Arma = new Adaga();
 
             VidaPorNivel = 4;
@@ -28,19 +28,19 @@ namespace Classes
         {
 
             string descricao = "Apunhalada que acerta o ponto vital do alvo.";
-            Habilidade habilidade = new Habilidade("Golpe Visceral", 2, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Golpe Visceral", 2,5, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Uma bomba que debilita o poder e a defesa do oponente.";
-            habilidade = new Habilidade("Bomba de Fumaça", 3, descricao, EfeitosDeHabilidades.DebuffPoderEDefesa, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Bomba de Fumaça", 3, 4,descricao, EfeitosDeHabilidades.DebuffPoderEDefesa, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladrão assalta de 2 a 3 poções de seu oponente, se disponíveis.";
-            habilidade = new Habilidade("Assalto", 3, descricao, EfeitosDeHabilidades.Assalto, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Assalto", 4, 2, descricao, EfeitosDeHabilidades.Assalto, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladrão força uma jogada nova jogada de Iniciativa contra o inimigo. \n          Se ele ganhar, ele foge e vai para o próximo round (não é possível utilizar essa habilidade no round 10).";
-            habilidade = new Habilidade("Plano de Mestre", 4, descricao, EfeitosDeHabilidades.Fuga, TipoDeHabilidade.Debuff);
+            habilidade = new Habilidade("Plano de Mestre", 9, 1, descricao, EfeitosDeHabilidades.Fuga, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
         }
 

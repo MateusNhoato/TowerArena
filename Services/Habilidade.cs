@@ -14,8 +14,9 @@ namespace Services
         public Efeito Efeito { get; private set; }
         public TipoDeHabilidade Tipo { get; private set; }
         public int QuantidadeDeUsos { get; private set; }
+        private int _usosMaximo;
         
-        public Habilidade(string nome, int custoDeMana, string descricao,Efeito efeito, TipoDeHabilidade tipo)
+        public Habilidade(string nome, int custoDeMana,int quantidadeDeUsos, string descricao,Efeito efeito, TipoDeHabilidade tipo)
         {
             Nome = nome;
             CustoDeMana = custoDeMana;
@@ -23,6 +24,8 @@ namespace Services
             Efeito = efeito;
             Tipo = tipo;
 
+            _usosMaximo = quantidadeDeUsos;
+            QuantidadeDeUsos = quantidadeDeUsos;
                   
         }
         
@@ -33,10 +36,7 @@ namespace Services
 
         public void ResetarUsos()
         {
-            if (Tipo == TipoDeHabilidade.Buff || Tipo == TipoDeHabilidade.Debuff)
-                QuantidadeDeUsos = 1;
-            else
-                QuantidadeDeUsos = 3;
+            QuantidadeDeUsos = _usosMaximo;
         }
 
 

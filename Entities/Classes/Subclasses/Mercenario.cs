@@ -15,7 +15,8 @@ namespace Classes
             Descricao = "Combatente sanguinário que usa qualquer método para vencer.";
             Arma = new Sabre();
 
-            AdicionarHabilidades();
+            VidaPorNivel *= 5;
+            DefesaPorNivel *= 2;
         }
 
         public override void AdicionarHabilidades()

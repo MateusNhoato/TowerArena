@@ -37,6 +37,22 @@ namespace Classes
                 classe = new Conjurador();
             else if (input == "Arqueiro")
                 classe = new Arqueiro();
+            else if (input == "Cavaleiro")
+                classe = new Cavaleiro();
+            else if (input == "Atirador")
+                classe = new Atirador();
+            else if (input == "Feiticeiro")
+                classe = new Feiticeiro();
+            else if (input == "Guerreiro")
+                classe = new Guerreiro();
+            else if (input == "Ladino")
+                classe = new Ladino();
+            else if (input == "Mago")
+                classe = new Mago();
+            else if (input == "Mercenário")
+                classe = new Mercenario();
+            else if (input == "Ranger")                
+                classe = new Ranger();
             else
                 classe = null;
 
@@ -65,7 +81,7 @@ namespace Classes
                 classe =  classe2;
             return classe;
         }
-        public void ListarHabilidadesDaClasse()
+        public virtual void ListarHabilidadesDaClasse()
         {
             int i = 1;
             for(; i <= Habilidades.Count; i++)

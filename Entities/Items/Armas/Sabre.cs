@@ -5,7 +5,6 @@
         public Sabre() 
         {
             Nome = "Sabre";
-            Peso = 8;
             Dano = 40;
         }
     }
