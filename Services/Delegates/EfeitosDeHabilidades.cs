@@ -251,7 +251,7 @@ namespace Delegates
             AtaqueDesarmado(conjurador, receptor);
         }
 
-        public static void Ataque3xRanger(CriaturaBase conjurador, CriaturaBase receptor)
+        public static void Pega(CriaturaBase conjurador, CriaturaBase receptor)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -260,13 +260,71 @@ namespace Delegates
             }
           
         }
-        public static void VidaExtraLoboRanger(CriaturaBase conjurador, CriaturaBase receptor)
+        public static void MelhorAmigoDoRanger(CriaturaBase conjurador, CriaturaBase receptor)
         {
             conjurador.AlterarVida(conjurador.VidaTotal);
             Console.WriteLine($"     Juntos somos mais fortes! {conjurador.Nome} e seu Lobo possuem {conjurador.VidaTotal} de vida.");
 
         }
-            
+        // Ladino
+
+        public static void PilhagemConturbado(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            Random random = new Random();
+            int n = random.Next(2, 4);
+            int contPocaoVida = 0;
+            int contPocaoMana = 0;
+
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            for (int i = 1; i <= n; n--)
+            {
+                if (i >= receptor.Mochila.Items.Count)
+                    break;
+                Item item = receptor.Mochila.Items[i];
+
+                conjurador.BeberPocao(item);
+                receptor.Mochila.RemoverConsumivelDaMochila(item);
+                if (item is PocaoVida)
+                    contPocaoVida++;
+                else
+                    contPocaoMana++;
+            }
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {conjurador.Nome} bebeu:\n     [{contPocaoVida}] Poções de Vida\n     [{contPocaoMana}] Poções de Mana\n     de {receptor.Nome}.");
+            MenuPrincipal.AperteEnterParaContinuar();
+        }
+
+        public static void Rasteira(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            int iniciativa = receptor.IniciativaTotal / 5;
+            int defesa = receptor.DefesaTotal/ 5;
+            int poder = receptor.PoderTotal / 5;
+
+            receptor.AlterarIniciativa(iniciativa * -1);
+            receptor.AlterarDefesa(defesa * -1);
+            receptor.AlterarPoder(poder * -1);
+
+            conjurador.AlterarIniciativa(iniciativa);
+            conjurador.AlterarDefesa(defesa);
+            conjurador.AlterarPoder(poder);
+
+        }
+        public static void GolpeEstatistico(CriaturaBase conjurador, CriaturaBase receptor) 
+        {
+            int dano = conjurador.IniciativaTotal + conjurador.DefesaTotal + conjurador.PoderTotal + conjurador.Classe.Arma.Dano;
+            receptor.ReceberDanoVerdadeiro(dano);
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+            Thread.Sleep(1000);
+        }
+        public static void EstreiaDoAstro(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            int dano = receptor.ReceberDano((conjurador.IniciativaTotal * conjurador.IniciativaTotal + conjurador.PoderTotal) * 2 + conjurador.Classe.Arma.Dano);
+
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+            Thread.Sleep(1000);
+        }
         #endregion
 
     }

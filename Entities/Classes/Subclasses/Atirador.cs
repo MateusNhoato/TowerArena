@@ -13,8 +13,6 @@ namespace Classes
             Descricao = "A elite dos Arqueiros no que se trata de maestria com o arco e flecha.";
             Arma = new ArcoEFlechaLongo();
 
-            VidaPorNivel *= 5;
-            DefesaPorNivel *= 2;
         }
 
         public override void AdicionarHabilidades()

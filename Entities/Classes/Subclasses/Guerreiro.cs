@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,8 @@ namespace Classes
         {
             Nome = "Guerreiro";
             Descricao = "";
-
-            VidaPorNivel *= 5;
-            DefesaPorNivel *= 2;
+            Arma = new EspadaLonga();
+         
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Inimigos
 {
     internal class Inimigo : CriaturaBase
     {
-        public Inimigo(int nivel) 
+        public Inimigo(int nivel, bool boss) 
         {
             // pegando os numeros aleatórios
             Random random= new Random();
@@ -15,12 +15,19 @@ namespace Inimigos
             int numNivel = random.Next(0, 4);
             int pocoes = random.Next(2, 7);
             int classNum;
-            
+                                             
+            if (boss)
+            {
+                Nivel += nivel + 5;
+                Nome = "Chefe do Andar - " + NomeAleatorio(numNome);
+            }
+            else
+            {
+                Nome = NomeAleatorio(numNome);
+                Nivel = nivel + numNivel;
+            }
 
-
-            Nome = NomeAleatorio(numNome);            
-            Nivel = nivel + numNivel;        
-            if(Nivel >= 10)
+            if (Nivel >= 10)
             {
                 classNum = random.Next(0, 8);
                 Classe = JogoPrincipal.Subclasses[classNum];
@@ -48,16 +55,7 @@ namespace Inimigos
             ManaAtual= ManaTotal;
 
         }
-        public Inimigo(string nome, int nivel, Classe classe)
-        {
-            Nome = nome;
-            Nivel = nivel;
-            Classe = classe;
-            Mochila = new Mochila();
-            Mochila.Items.Insert(0, Classe.Arma);
-            VidaAtual = VidaTotal;
-            ManaAtual = ManaTotal;
-        }
+     
         public static string NomeAleatorio(int numero)
         {
             string[] nomes = File.ReadAllLines(@"..\..\..\Repositories\Data\Nomes.txt");

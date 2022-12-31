@@ -1,7 +1,7 @@
 ﻿using Classes;
 using Items;
 using Services;
-
+using System.Collections.Specialized;
 
 namespace Entities
 {
@@ -58,7 +58,12 @@ namespace Entities
             get
             {
                 if (Classe != null)
-                    return VidaBase + Classe.VidaPorNivel * Nivel + VidaExtra;
+                {
+                    if(Nivel < 10)
+                        return VidaBase + Classe.VidaPorNivel * Nivel + VidaExtra;
+                    return VidaBase + Classe.VidaPorNivel * Nivel * 5 + VidaExtra;
+                }
+                    
                 return VidaBase;
             }
         }
@@ -88,7 +93,11 @@ namespace Entities
             get
             {
                 if (Classe != null)
-                    return DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
+                {
+                    if(Nivel < 10)
+                        return DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
+                    return DefesaBase + Classe.DefesaPorNivel * Nivel * 2 + DefesaExtra;
+                }
                 return DefesaBase;
             }
         }
@@ -158,8 +167,7 @@ namespace Entities
         public void AlterarVida(int quantia)
         {
             VidaExtra += quantia;
-            VidaAtual+= VidaExtra;
-            
+            VidaAtual+= VidaExtra;            
         }
         public void AlterarMana(int quantia)
         {

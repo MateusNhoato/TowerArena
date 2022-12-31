@@ -15,8 +15,6 @@ namespace Classes
             Descricao = "Conjurador que utiliza maldições e magias de sangue para lutar.";
             Arma = new Grimorio();
 
-            VidaPorNivel *= 5;
-            DefesaPorNivel *= 2;
         }
 
         public override void AdicionarHabilidades()

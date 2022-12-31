@@ -15,8 +15,7 @@ namespace Classes
             Descricao = "";
             Arma = new EspadaEEscudo();
 
-            VidaPorNivel *= 5;
-            DefesaPorNivel *= 2;
+
         }
 
         public override void AdicionarHabilidades()

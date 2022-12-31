@@ -19,9 +19,9 @@ namespace Services
             Round = 1;
             for (; Round <= 10; Round++) 
             {
-                Inimigo inimigo = new Inimigo(jogador.Nivel);
+                Inimigo inimigo = new Inimigo(jogador.Nivel, false);
                 if (Round == 10)
-                    inimigo = ChefesDeAndar[jogador.Andar - 1];
+                    inimigo = new Inimigo(jogador.Nivel, true);
 
 
                 CombateView.ImprimirNumeroDoRound(Round);
