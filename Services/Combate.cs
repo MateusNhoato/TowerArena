@@ -5,8 +5,7 @@ using Menu;
 using Enums;
 using Delegates;
 using Items;
-
-
+using Classes;
 
 namespace Services
 {
@@ -25,9 +24,19 @@ namespace Services
             int iniciativaInimigo = inimigo.IniciativaTotal + iniAdicionalIn +1;
 
             if (iniciativaJogador >= iniciativaInimigo)
+            {
+                if (jogador.Classe is Atirador)
+                    jogador.AlterarPoder(jogador.PoderTotal / 10);
                 return true;
+            }
+                
             else
+            {
+                if (inimigo.Classe is Atirador)
+                    inimigo.AlterarPoder(inimigo.PoderTotal / 10);
                 return false;
+            }
+                
         }
         public static bool Combater(Jogador jogador, Inimigo inimigo)
         {
@@ -85,7 +94,7 @@ namespace Services
                 
         }
 
-        public static bool FimDoRound(Jogador jogador, Inimigo inimigo)
+        public static bool FimDoRound(CriaturaBase jogador, CriaturaBase inimigo)
         {
             if (jogador.VidaAtual <= 0 || inimigo.VidaAtual <= 0 || _combate == false)
                 return true;

@@ -33,7 +33,7 @@ namespace Classes
             habilidade = new Habilidade("Pilhagem Conturbada", 10, 3, descricao, EfeitosDeHabilidades.PilhagemConturbado, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ladino ataca diretamente a vida de seu oponente usando todos seus status.";
+            descricao = "O Ladino ataca usando todos seus status.";
             habilidade = new Habilidade("Golpe Estatístico", 25, 2, descricao, EfeitosDeHabilidades.GolpeEstatistico, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
         }

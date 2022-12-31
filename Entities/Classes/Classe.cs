@@ -12,7 +12,7 @@ namespace Classes
         public string? Nome { get; protected private set; }
         public string Descricao { get; protected private set; }
         public Arma? Arma { get; protected private set; }
-
+        public bool? PropriedadeEspecial { get; protected private set; }
         public  List<Habilidade> Habilidades { get; } = new List<Habilidade>();
 
         public int VidaPorNivel { get; protected private set; }
@@ -29,8 +29,8 @@ namespace Classes
             if(string.IsNullOrEmpty(input))
                 throw new ArgumentNullException("input");
            Classe classe;
-            if (input == "Espadachim")
-                classe = new Espadachim();
+            if (input == "Guerreiro")
+                classe = new Guerreiro();
             else if (input == "Ladrão")
                 classe = new Ladrao();
             else if (input == "Conjurador")
@@ -43,8 +43,8 @@ namespace Classes
                 classe = new Atirador();
             else if (input == "Feiticeiro")
                 classe = new Feiticeiro();
-            else if (input == "Guerreiro")
-                classe = new Guerreiro();
+            else if (input == "Espadachim")
+                classe = new Espadachim();
             else if (input == "Ladino")
                 classe = new Ladino();
             else if (input == "Mago")
@@ -86,12 +86,19 @@ namespace Classes
             int i = 1;
             for(; i <= Habilidades.Count; i++)
             {
-                Console.WriteLine($"     {i}- {Habilidades[i-1]}");
+                Console.Write($"     {i}- ");
+                Habilidades[i-1].ImprimirHabilidade();               
             }
             Console.WriteLine($"     {i}- Voltar");
         }
 
-        
+        public virtual void AlterarPropriedadeEspecial()
+        {
+            if(PropriedadeEspecial == true)
+                PropriedadeEspecial = false;
+            else
+                PropriedadeEspecial = true;
+        }
 
         public override string ToString()
         {

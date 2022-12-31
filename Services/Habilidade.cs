@@ -5,7 +5,7 @@ using Enums;
 namespace Services
 {
     internal delegate void Efeito(CriaturaBase conjurador, CriaturaBase receptor);
-    
+
     internal class Habilidade
     {
         public string Nome { get; private set; }
@@ -15,8 +15,8 @@ namespace Services
         public TipoDeHabilidade Tipo { get; private set; }
         public int QuantidadeDeUsos { get; private set; }
         private int _usosMaximo;
-        
-        public Habilidade(string nome, int custoDeMana,int quantidadeDeUsos, string descricao,Efeito efeito, TipoDeHabilidade tipo)
+
+        public Habilidade(string nome, int custoDeMana, int quantidadeDeUsos, string descricao, Efeito efeito, TipoDeHabilidade tipo)
         {
             Nome = nome;
             CustoDeMana = custoDeMana;
@@ -26,12 +26,15 @@ namespace Services
 
             _usosMaximo = quantidadeDeUsos;
             QuantidadeDeUsos = quantidadeDeUsos;
-                  
+
         }
-        
+
         public void DiminuirUso()
         {
             QuantidadeDeUsos--;
+
+            if (QuantidadeDeUsos < 0)
+                QuantidadeDeUsos = 0;
         }
 
         public void ResetarUsos()
@@ -39,11 +42,28 @@ namespace Services
             QuantidadeDeUsos = _usosMaximo;
         }
 
-
-        public override string ToString()
+        public void ImprimirHabilidade()
         {
-            return $"{Nome} | Custo De Mana: {CustoDeMana} | Usos Disponíveis: {QuantidadeDeUsos} | {Descricao}";
+            ConsoleColor aux = Console.ForegroundColor;
+
+            Console.Write($"{Nome} | Custo de Mana: ");
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{CustoDeMana} ");
+
+            Console.ForegroundColor = aux;
+            Console.Write($"| Usos Disponíveis: ");
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"{QuantidadeDeUsos} ");
+         
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"          {Descricao}");
+
+            Console.ForegroundColor = aux;
+
         }
+
 
     }
 }

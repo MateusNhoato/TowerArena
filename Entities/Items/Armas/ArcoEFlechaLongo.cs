@@ -6,7 +6,7 @@ namespace Items
         public ArcoEFlechaLongo() 
         {
             Nome = "Arco e Flecha Longo";
-            Dano = 50;
+            Dano = 1250;
             
         }
     }

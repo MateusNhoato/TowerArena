@@ -23,8 +23,20 @@ namespace Entities
 
         public void ListarConsumiveisNaMochila()
         {           
-            Console.WriteLine($"     1- Poções de Vida [{Items.Count(x => x is PocaoVida)}]"); 
-            Console.WriteLine($"     2- Poções de Mana [{Items.Count(x => x is PocaoMana)}]");
+            Console.Write($"     1- Poções de Vida [");
+
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{Items.Count(x => x is PocaoVida)}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine($"]");
+            Console.Write($"     2- Poções de Mana [");
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{Items.Count(x => x is PocaoMana)}");
+            Console.ForegroundColor = aux;
+            Console.WriteLine("]");
             Console.WriteLine("     3- Voltar");
         }
 

@@ -51,7 +51,7 @@ namespace Menu
               
         }
 
-       private static void MenuConsumiveis(Jogador jogador)
+       public static void MenuConsumiveis(Jogador jogador)
         {
             string input;
             do

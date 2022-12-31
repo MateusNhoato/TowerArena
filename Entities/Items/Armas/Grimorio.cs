@@ -5,7 +5,7 @@
         public Grimorio() 
         {
             Nome = "Grimório";
-            Dano = 50;
+            Dano = 1250;
         }
     }
 }

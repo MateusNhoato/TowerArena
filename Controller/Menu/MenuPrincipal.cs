@@ -11,7 +11,7 @@ namespace Menu
     {
 
         private static List<Classe> _classesBasicas { get; } = new List<Classe>() 
-             { new Arqueiro(), new Espadachim(), new Ladrao(), new Conjurador()};
+             { new Arqueiro(), new Guerreiro(), new Ladrao(), new Conjurador()};
         public static void MostrarMenuPrincipal()
         {
             string resposta;

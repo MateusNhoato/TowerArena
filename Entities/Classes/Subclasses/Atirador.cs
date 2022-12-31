@@ -29,10 +29,16 @@ namespace Classes
             habilidade = new Habilidade("Flecha Perfurante", 6, 6, descricao, EfeitosDeHabilidades.Ataque4x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "As penas pretas desta flecha são a última coisa que quem tomar esta flechada verá";
+            descricao = "As penas pretas desta flecha são a última coisa que os oponentes do Atirador verão.";
             habilidade = new Habilidade("Flecha da Morte",12, 4, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
+        }
+
+        public override void ListarHabilidadesDaClasse()
+        {
+            Console.WriteLine("     O Primeiro Tiro é o Mais Letal(Passiva): Se o Atirador ganha na iniciativa, ele ganha 10% de poder pelo resto do combate.");
+            base.ListarHabilidadesDaClasse();
         }
     }
 }

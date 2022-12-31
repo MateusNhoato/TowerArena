@@ -5,7 +5,7 @@
         public Cajado()
         {
             Nome = "Cajado";
-            Dano = 50;
+            Dano = 1250;
         }
     }
 }

@@ -5,7 +5,7 @@
         public Sabre() 
         {
             Nome = "Sabre";
-            Dano = 40;
+            Dano = 800;
         }
     }
 }

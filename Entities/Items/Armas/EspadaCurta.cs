@@ -5,7 +5,7 @@
         public EspadaCurta() 
         {
             Nome = "Espada Curta";           
-            Dano = 40;
+            Dano = 55;
         }
 
         

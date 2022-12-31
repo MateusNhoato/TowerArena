@@ -95,8 +95,12 @@ namespace Entities
                 if (Classe != null)
                 {
                     if(Nivel < 10)
-                        return DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
-                    return DefesaBase + Classe.DefesaPorNivel * Nivel * 2 + DefesaExtra;
+                    {
+                        int aux = DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
+                        return (aux > 0) ? aux : 1; 
+                    }
+                    int total = DefesaBase + Classe.DefesaPorNivel * Nivel * 2 + DefesaExtra;
+                    return (total > 0) ? total : 1;
                 }
                 return DefesaBase;
             }

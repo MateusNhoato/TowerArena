@@ -29,7 +29,7 @@ namespace Delegates
 
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
-            Thread.Sleep( 1000 );
+            Thread.Sleep(1000);
         }
         public static void Ataque2x(CriaturaBase conjurador, CriaturaBase receptor)
         {
@@ -75,7 +75,7 @@ namespace Delegates
 
         public static void Ataque2xComDebuffDefesa(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            DebuffDefesa(conjurador, receptor);
+            DebuffDefesa10(conjurador, receptor);
             Ataque2x(conjurador, receptor);
 
         }
@@ -94,7 +94,7 @@ namespace Delegates
 
         public static void Ataque2xComLifeSteal(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            int dano = receptor.ReceberDano((conjurador.PoderTotal * conjurador.PoderTotal  * 2) + conjurador.Classe.Arma.Dano);
+            int dano = receptor.ReceberDano((conjurador.PoderTotal * conjurador.PoderTotal * 2) + conjurador.Classe.Arma.Dano);
             conjurador.AlterarVida(dano);
 
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
@@ -123,14 +123,14 @@ namespace Delegates
             receptor.AlterarVida(25);
         }
 
-        public static void BuffPoder20Porcento(CriaturaBase conjurador, CriaturaBase receptor) 
+        public static void BuffPoder20Porcento(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            int buff = receptor.PoderTotal /5;
+            int buff = receptor.PoderTotal / 5;
 
             receptor.AlterarPoder(buff);
         }
 
-        public static void BuffDefesa20Porcento(CriaturaBase conjurador, CriaturaBase receptor) 
+        public static void BuffDefesa20Porcento(CriaturaBase conjurador, CriaturaBase receptor)
         {
             int buff = receptor.DefesaTotal / 5;
 
@@ -151,25 +151,30 @@ namespace Delegates
             receptor.AlterarVida(buff);
         }
 
-        public static void DebuffDefesa(CriaturaBase conjurador, CriaturaBase receptor)
+        public static void DebuffDefesa5(CriaturaBase conjurador, CriaturaBase receptor)
         {
             receptor.AlterarDefesa(-5);
         }
 
-        public static void DebuffIniciativa(CriaturaBase conjurador, CriaturaBase receptor)
-        { 
+        public static void DebuffDefesa10(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            receptor.AlterarDefesa(-10);
+        }
+
+        public static void DebuffIniciativa5(CriaturaBase conjurador, CriaturaBase receptor)
+        {
             receptor.AlterarIniciativa(-5);
         }
 
-        public static void DebuffPoder(CriaturaBase conjurador, CriaturaBase receptor)
-        {           
+        public static void DebuffPoder5(CriaturaBase conjurador, CriaturaBase receptor)
+        {
             receptor.AlterarPoder(-5);
         }
 
         public static void DebuffPoderEDefesa(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            DebuffDefesa(conjurador, receptor);
-            DebuffPoder(conjurador, receptor);
+            DebuffDefesa5(conjurador, receptor);
+            DebuffPoder5(conjurador, receptor);
 
         }
         public static void BuffVidaEDefesa(CriaturaBase conjurador, CriaturaBase receptor)
@@ -186,7 +191,7 @@ namespace Delegates
         }
 
 
-#endregion
+        #endregion
         #region Habilidades especiais
         // Ladrão
         public static void Fuga(CriaturaBase conjurador, CriaturaBase receptor)
@@ -198,18 +203,18 @@ namespace Delegates
                 return;
             }
 
-            if (Combate.Iniciativa(conjurador, receptor))           
+            if (Combate.Iniciativa(conjurador, receptor))
                 Combate._combate = false;
-               
+
         }
 
-        public static void Assalto(CriaturaBase conjurador, CriaturaBase receptor) 
+        public static void Assalto(CriaturaBase conjurador, CriaturaBase receptor)
         {
             Random random = new Random();
             int n = random.Next(2, 4);
             int contPocaoVida = 0;
             int contPocaoMana = 0;
-            for(int i=1; i<n; n--)
+            for (int i = 1; i < n; n--)
             {
                 if (i >= receptor.Mochila.Items.Count)
                     break;
@@ -217,7 +222,7 @@ namespace Delegates
 
                 conjurador.Mochila.Items.Add(item);
                 receptor.Mochila.RemoverConsumivelDaMochila(item);
-                if(item is PocaoVida)
+                if (item is PocaoVida)
                     contPocaoVida++;
                 else
                     contPocaoMana++;
@@ -226,12 +231,12 @@ namespace Delegates
             Console.WriteLine($"     {conjurador.Nome} roubou:\n     [{contPocaoVida}] Poções de Vida\n     [{contPocaoMana}] Poções de Mana\n     de {receptor.Nome}.");
             MenuPrincipal.AperteEnterParaContinuar();
         }
-        // Guerreiro
-        public static void TrocacaoFranca(CriaturaBase conjurador,CriaturaBase receptor)
+        // Cavaleiro
+        public static void TrocacaoFranca(CriaturaBase conjurador, CriaturaBase receptor)
         {
             int dano = conjurador.VidaTotal / 2;
             conjurador.ReceberDanoVerdadeiro(dano);
-            
+
             if (conjurador.VidaAtual <= 0)
                 conjurador.SetarVidaPara1();
 
@@ -240,11 +245,32 @@ namespace Delegates
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {conjurador.Nome} recebe {dano} de dano.");
             Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
-            Thread.Sleep(1000);         
+            Thread.Sleep(1000);
         }
+
+        public static void GolpeDeEscudo(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            conjurador.AlterarDefesa(5);
+            int dano = receptor.ReceberDano((conjurador.PoderTotal * conjurador.PoderTotal) + (conjurador.DefesaTotal * conjurador.DefesaTotal) + conjurador.Classe.Arma.Dano);
+
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+            Thread.Sleep(1000);
+        }
+
+        public static void Investida(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+
+            int dano = receptor.ReceberDano((conjurador.PoderTotal * conjurador.PoderTotal * 2) + (conjurador.DefesaTotal * conjurador.DefesaTotal) + conjurador.Classe.Arma.Dano);
+
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+            Thread.Sleep(1000);
+        }
+
         // Ranger
-        
-        
+
+
         public static void Ataque2xRanger(CriaturaBase conjurador, CriaturaBase receptor)
         {
             Ataque2x(conjurador, receptor);
@@ -258,7 +284,7 @@ namespace Delegates
                 Ataque1x(conjurador, receptor);
                 AtaqueDesarmado(conjurador, receptor);
             }
-          
+
         }
         public static void MelhorAmigoDoRanger(CriaturaBase conjurador, CriaturaBase receptor)
         {
@@ -270,6 +296,15 @@ namespace Delegates
 
         public static void PilhagemConturbado(CriaturaBase conjurador, CriaturaBase receptor)
         {
+            if (receptor.Nivel - conjurador.Nivel >= 4)
+            {
+                CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                Console.WriteLine($"     {receptor.Nome}: Bela tentativa, mas não gosto que toquem nos meus pertences.");
+                MenuPrincipal.AperteEnterParaContinuar();
+                return;
+            }
+
+
             Random random = new Random();
             int n = random.Next(2, 4);
             int contPocaoVida = 0;
@@ -297,7 +332,7 @@ namespace Delegates
         public static void Rasteira(CriaturaBase conjurador, CriaturaBase receptor)
         {
             int iniciativa = receptor.IniciativaTotal / 5;
-            int defesa = receptor.DefesaTotal/ 5;
+            int defesa = receptor.DefesaTotal / 5;
             int poder = receptor.PoderTotal / 5;
 
             receptor.AlterarIniciativa(iniciativa * -1);
@@ -309,17 +344,20 @@ namespace Delegates
             conjurador.AlterarPoder(poder);
 
         }
-        public static void GolpeEstatistico(CriaturaBase conjurador, CriaturaBase receptor) 
+        public static void GolpeEstatistico(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            int dano = conjurador.IniciativaTotal + conjurador.DefesaTotal + conjurador.PoderTotal + conjurador.Classe.Arma.Dano;
-            receptor.ReceberDanoVerdadeiro(dano);
+            int dano = receptor.ReceberDano(((conjurador.IniciativaTotal * conjurador.IniciativaTotal) +
+                               (conjurador.DefesaTotal * conjurador.DefesaTotal) +
+                               (conjurador.PoderTotal * conjurador.PoderTotal) +
+                               conjurador.Classe.Arma.Dano) * 2);
+
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
             Thread.Sleep(1000);
         }
         public static void EstreiaDoAstro(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            int dano = receptor.ReceberDano((conjurador.IniciativaTotal * conjurador.IniciativaTotal + conjurador.PoderTotal) * 2 + conjurador.Classe.Arma.Dano);
+            int dano = receptor.ReceberDano((conjurador.IniciativaTotal * conjurador.IniciativaTotal + conjurador.PoderTotal / 2) * 2 + conjurador.Classe.Arma.Dano);
 
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
@@ -327,5 +365,75 @@ namespace Delegates
         }
         #endregion
 
+        // Espadachim
+
+        public static void Retalhar(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                receptor.AlterarDefesa(-5);
+                int dano = receptor.ReceberDano(conjurador.PoderTotal * conjurador.PoderTotal + conjurador.Classe.Arma.Dano);
+
+                CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+                Thread.Sleep(500);
+            }
+
+        }
+
+        public static void SurtoDeIniciativa(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            conjurador.ReceberDanoVerdadeiro(conjurador.VidaTotal / 4);
+            conjurador.Classe.Habilidades[1].DiminuirUso();
+            
+            if (conjurador.PorcentagemVida() <= 0)
+                return;
+
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            if (conjurador is Jogador)
+            {
+                
+                Combate.AcaoDoJogador(conjurador, receptor);
+                Combate.FimDoRound(conjurador, receptor);
+                CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                Combate.AcaoDoJogador(conjurador, receptor);
+            }
+            else
+            {
+                Combate.AcaoDoInimigo(conjurador, receptor);
+                Combate.FimDoRound(conjurador, receptor);
+                CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                Combate.AcaoDoInimigo(conjurador, receptor);
+            }
+        }
+
+        public static void PontoFraco(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            receptor.AlterarDefesa(-5);
+            int danoVerdadeiro = receptor.DefesaExtra / 5;
+
+            if (danoVerdadeiro < 0)
+                danoVerdadeiro *= -1;
+            else
+                danoVerdadeiro = 0;
+
+
+            int dano = receptor.ReceberDanoVerdadeiro(danoVerdadeiro * 30);
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+            Thread.Sleep(500);
+
+        }
+        public static void Vendaval(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                receptor.AlterarDefesa(-5);
+                int dano = receptor.ReceberDano(conjurador.PoderTotal * conjurador.PoderTotal  + conjurador.Classe.Arma.Dano);
+                CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+                Thread.Sleep(500);
+            }
+        }
     }
 }

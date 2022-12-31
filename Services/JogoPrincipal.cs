@@ -2,15 +2,19 @@
 using Inimigos;
 using View;
 using Classes;
+using Menu;
 
 namespace Services
 {
     internal class JogoPrincipal
     {
         public static int Round { get; private set; } = 1;
-        private static List<Inimigo> ChefesDeAndar;
-        public static List<Classe> ClassesBasicas { get; private set; }
-        public static List<Classe> Subclasses { get; private set; }
+        private static string[] ChefesDeAndarQuotes;
+        public static Classe[] ClassesBasicas { get; private set; }
+        public static Classe[] Subclasses { get; private set; }
+
+
+
         public static bool Jogar(Jogador jogador)
         {
             foreach (Habilidade hab in jogador.Classe.Habilidades)
@@ -19,9 +23,9 @@ namespace Services
             Round = 1;
             for (; Round <= 10; Round++) 
             {
-                Inimigo inimigo = new Inimigo(jogador.Nivel, false);
+                Inimigo inimigo = new Inimigo(jogador.Nivel, false, jogador.Andar);
                 if (Round == 10)
-                    inimigo = new Inimigo(jogador.Nivel, true);
+                    inimigo = new Inimigo(jogador.Nivel, true, jogador.Andar);
 
 
                 CombateView.ImprimirNumeroDoRound(Round);
@@ -30,9 +34,16 @@ namespace Services
                     // se o jogador perder um combate
                     return false;
                 }
-                if ( Round == 5)
+                if (Round == 5)
+                {
                     jogador.LevelUp();
+                    MenuDoAndar.MenuConsumiveis(jogador);
+                }
 
+                if(jogador.Classe.PropriedadeEspecial == true)
+                {
+                    jogador.Classe.AlterarPropriedadeEspecial();
+                }
                 jogador.ZerarAtributosExtras();
 
             }
@@ -41,13 +52,13 @@ namespace Services
         }
         public static void ListarClasses()
         {
-            ClassesBasicas = new List<Classe>() {new Arqueiro(), new Conjurador(), new Espadachim(), new Ladrao()};
-            Subclasses = new List<Classe>() {new Atirador(), new Cavaleiro(),  new Feiticeiro(), new Guerreiro(),
+            ClassesBasicas = new Classe[4] {new Arqueiro(), new Conjurador(), new Guerreiro(), new Ladrao()};
+            Subclasses = new Classe[8] {new Atirador(), new Cavaleiro(),  new Feiticeiro(), new Espadachim(),
                                                  new Ladino(),   new Mago(),       new Mercenario(), new Ranger()};
         }
         public static void ListarChefesDeAndar()
         {
-            ChefesDeAndar= new List<Inimigo>();
+           // ChefesDeAndarQuotes = new string[10] { };
 
           //  Inimigo inimigo = new Inimigo();
         }
