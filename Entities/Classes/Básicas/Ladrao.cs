@@ -40,7 +40,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Ladrão força uma jogada nova jogada de Iniciativa contra o inimigo. \n          Se ele ganhar, ele foge e vai para o próximo round (não é possível utilizar essa habilidade no round 10).";
-            habilidade = new Habilidade("Plano de Mestre", 5, 1, descricao, EfeitosDeHabilidades.Fuga, TipoDeHabilidade.Debuff);
+            habilidade = new Habilidade("Fuga", 8, 1, descricao, EfeitosDeHabilidades.Fuga, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
         }
 

@@ -4,10 +4,9 @@
     {
         public EspadaCurta() 
         {
-            Nome = "Espada Curta";           
-            Dano = 50;
+            Nome = "Espada Curta";
         }
+        public override int Dano { get => new Random().Next(5, 51); }
 
-        
     }
 }

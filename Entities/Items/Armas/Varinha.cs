@@ -4,8 +4,8 @@
     {
         public Varinha()
         {
-            Nome = "Varinha";           
-            Dano = 700;
+            Nome = "Varinha";          
         }
+        public override int Dano { get => new Random().Next(7, 71); }
     }
 }

@@ -20,8 +20,8 @@ namespace Services
             int iniAdicionalIn = random.Next(0, 5);
             CombateView.ImprimirIniciativa(iniAdicionalJg, iniAdicionalIn);
 
-            int iniciativaJogador = jogador.IniciativaTotal + iniAdicionalJg +1;
-            int iniciativaInimigo = inimigo.IniciativaTotal + iniAdicionalIn +1;
+            int iniciativaJogador = jogador.IniciativaTotal + iniAdicionalJg + 1;
+            int iniciativaInimigo = inimigo.IniciativaTotal + iniAdicionalIn + 1;
 
             if (iniciativaJogador >= iniciativaInimigo)
             {
@@ -29,18 +29,26 @@ namespace Services
                     jogador.AlterarPoder(jogador.PoderTotal / 10);
                 return true;
             }
-                
+
             else
             {
                 if (inimigo.Classe is Atirador)
                     inimigo.AlterarPoder(inimigo.PoderTotal / 10);
                 return false;
             }
-                
+
         }
         public static bool Combater(Jogador jogador, Inimigo inimigo)
         {
             _combate = true;
+
+            if (jogador.Classe is Mago)
+                if (jogador.PoderTotal > inimigo.PoderTotal)
+                    jogador.AlterarDefesa(jogador.PoderTotal / 10);
+
+            if (inimigo.Classe is Mago)
+                if (inimigo.PoderTotal > jogador.PoderTotal)
+                    inimigo.AlterarDefesa(inimigo.PoderTotal / 10);
 
             bool resultadoIniciativa = Iniciativa(jogador, inimigo);
 
@@ -59,7 +67,7 @@ namespace Services
 
                 if (!resultadoIniciativa)
                 {
-                    AcaoDoInimigo(inimigo, jogador);                 
+                    AcaoDoInimigo(inimigo, jogador);
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
@@ -68,7 +76,7 @@ namespace Services
                 }
                 else
                 {
-                    AcaoDoJogador(jogador, inimigo);                   
+                    AcaoDoJogador(jogador, inimigo);
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
@@ -76,7 +84,7 @@ namespace Services
                     AcaoDoInimigo(inimigo, jogador);
                 }
             }
-                        
+
             if (jogador.VidaAtual <= 0)
             {
                 CombateView.VitoriaDoOponente();
@@ -91,7 +99,7 @@ namespace Services
                 return true;
             }
 
-                
+
         }
 
         public static bool FimDoRound(CriaturaBase jogador, CriaturaBase inimigo)
@@ -108,10 +116,7 @@ namespace Services
             {
                 // atacar
                 case "1":
-                    if(jogador.Nivel < 10)
-                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque ).Efeito(jogador, inimigo);
-                    else
-                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque).Efeito(jogador, inimigo);
+                    new Habilidade("Ataque", 0, 1, $"{jogador.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(jogador, inimigo);
                     break;
                 // habilidade especial
                 case "2":
@@ -139,7 +144,7 @@ namespace Services
                     AcaoDoJogador(jogador, inimigo);
                     break;
 
-                
+
             }
         }
 
@@ -153,7 +158,7 @@ namespace Services
             {
                 Habilidade hab = jogador.Classe.Habilidades[int.Parse(habilidade) - 1];
 
-                if(hab.QuantidadeDeUsos > 0)
+                if (hab.QuantidadeDeUsos > 0)
                 {
                     if (jogador.CheckarMana(hab.CustoDeMana))
                     {
@@ -176,21 +181,21 @@ namespace Services
                     return false;
                 }
 
-                
-            }                
+
+            }
         }
-    
+
         // opções de usar poção de vida e mana ou voltar
-    public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel)
+        public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel)
         {
-            if(consumivel == "3")
+            if (consumivel == "3")
                 return false;
 
 
             Console.WriteLine(Texto.linha);
-            if(consumivel == "1")
+            if (consumivel == "1")
             {
-                if(jogador.VidaAtual >= jogador.VidaTotal)
+                if (jogador.VidaAtual >= jogador.VidaTotal)
                 {
                     Console.WriteLine("\n     Sua vida está cheia, não ha porque usar uma poção.");
                     Thread.Sleep(1000);
@@ -229,10 +234,25 @@ namespace Services
             Thread.Sleep(1000);
             return false;
         }
-    public static void AcaoDoInimigo(CriaturaBase inimigo, CriaturaBase jogador)
-    {
-        Console.WriteLine("     Inimigo faz algo ~");
-        MenuPrincipal.AperteEnterParaContinuar();
+        public static void AcaoDoInimigo(CriaturaBase inimigo, CriaturaBase jogador)
+        {
+            new Habilidade("Ataque", 0, 1, $"{inimigo.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+            Random random = new Random();
+            int n;
+           // if (inimigo.PorcentagemVida() > 30) 
+           // {
+           //     n = random.Next(0, 2);
+           //
+           //     if(n == 1)
+           //         new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+           //    
+           //         // habilidade
+           //
+           //
+           // }
+
+
+            MenuPrincipal.AperteEnterParaContinuar();
+        }
     }
-}
 }

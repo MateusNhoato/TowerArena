@@ -5,7 +5,7 @@
         public Sabre() 
         {
             Nome = "Sabre";
-            Dano = 500;
         }
+        public override int Dano { get => new Random().Next(250, 501); }
     }
 }

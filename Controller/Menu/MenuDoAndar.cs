@@ -22,7 +22,7 @@ namespace Menu
                 Console.WriteLine($"     1- Entrar no Próximo Andar - {(jogador.Andar)}");
                 Console.WriteLine("     2- Usar Consumíveis");
                 Console.WriteLine("     3- Loja");
-                Console.WriteLine("     3- Voltar");
+                Console.WriteLine("     4- Voltar");
                 Console.Write("     Digite a opção desejada: ");
                 resposta = Console.ReadLine();
 
@@ -35,7 +35,7 @@ namespace Menu
                         else
                         {
                             DadosDosJogadores.SalvarInfoJogador(jogador);
-                            resposta = "3";
+                            resposta = "4";
                         }
                         break;
 

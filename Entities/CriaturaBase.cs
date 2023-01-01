@@ -16,7 +16,7 @@ namespace Entities
         public int VidaBase { get; protected private set; } = 50;
         public int ManaBase { get; protected private set; } = 20;
         public int PoderBase { get; protected private set; } = 3;
-        public int DefesaBase { get; protected private set; } = 3;
+        public int DefesaBase { get; protected private set; } = 10;
         public int IniciativaBase { get; protected private set; } = 3;
 
         public int VidaAtual { get; protected private set; }
@@ -194,7 +194,9 @@ namespace Entities
             PoderExtra = 0;
             DefesaExtra = 0;
             VidaAtual -= VidaExtra;
-            VidaExtra = 0;           
+            VidaExtra = 0;
+            if (VidaAtual <= 0)
+                VidaAtual = 1;
         }
 
         public void BeberPocao(Item pocao)

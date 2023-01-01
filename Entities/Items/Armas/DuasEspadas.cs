@@ -5,7 +5,7 @@
         public DuasEspadas() 
         {
             Nome = "Duas Espadas";
-            Dano = 600;
         }
+        public override int Dano { get => new Random().Next(300, 601); }
     }
 }

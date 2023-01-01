@@ -10,14 +10,14 @@ namespace Classes
         public Espadachim() 
         {
             Nome = "Espadachim";
-            Descricao = "";
+            Descricao = "Um combatente ágil que usa duas espadas.";
             Arma = new DuasEspadas();
             PropriedadeEspecial = false;
 
 
-            VidaPorNivel = 4;
+            VidaPorNivel = 5;
             DefesaPorNivel = 4;
-            IniciativaPorNivel=6;
+            IniciativaPorNivel=5;
             PoderPorNivel = 6;
 
         }

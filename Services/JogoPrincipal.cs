@@ -60,7 +60,7 @@ namespace Services
                 Console.WriteLine(Texto.meioDoAndar);
                 Console.WriteLine("     1- Loja");
                 Console.WriteLine("     2- Usar consumíveis");
-                Console.WriteLine("     3- Continuar");
+                Console.WriteLine("     3- Continuar para o Round 6");
                 Console.Write("     Digite a opção desejada: ");
                 resposta = Console.ReadLine();
 

@@ -31,7 +31,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Arqueiro se prepara durante uma rodada, aumentando seu poder pelo resto do combate.";
-            habilidade = new Habilidade("Mente Afiada", 3, 2, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Mente Afiada", 3, 3, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua iniciativa.";

@@ -26,16 +26,22 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Ladino passa a perna em seu oponente, debilitando todos os status dele\n          enquanto pega as quantidades correspondentes dos atributos para si mesmo.";
-            habilidade = new Habilidade("Rasteira", 6, 5, descricao, EfeitosDeHabilidades.Rasteira, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Rasteira", 5, 4, descricao, EfeitosDeHabilidades.Rasteira, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladino assalta de 2 a 3 poções de seu oponente e as bebe.\n          Atenção: o oponente pode ou não ter poções.";
-            habilidade = new Habilidade("Pilhagem Conturbada", 10, 3, descricao, EfeitosDeHabilidades.PilhagemConturbado, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Pilhagem Conturbada", 8, 3, descricao, EfeitosDeHabilidades.PilhagemConturbado, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ladino ataca usando todos seus status.";
-            habilidade = new Habilidade("Golpe Estatístico", 25, 2, descricao, EfeitosDeHabilidades.GolpeEstatistico, TipoDeHabilidade.Debuff);
+            descricao = "Ataque que soma todos os atributos do Ladino e dão o dano equivalente diretamente na vida do inimigo (true damage).";
+            habilidade = new Habilidade("Golpe Estatístico", 12, 1, descricao, EfeitosDeHabilidades.GolpeEstatistico, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
+        }
+
+        public override void ListarHabilidadesDaClasse()
+        {
+            Console.WriteLine("     Finta(Passiva):Os movimentos rápidos do Ladino enganam o oponente e, muitas vezes, até a si mesmo.\n          Estreia do Astro tem 50% de forçar seu alvo a defender-se com sua Iniciativa.");
+            base.ListarHabilidadesDaClasse();
         }
     }
 }

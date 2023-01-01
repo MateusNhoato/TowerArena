@@ -12,9 +12,12 @@ namespace Inimigos
             // pegando os numeros aleatórios
             Random random= new Random();
             int numNome = random.Next(1, 21985);
-            int numNivel = random.Next(0, 3);
+            int numNivel = random.Next(0);
             int pocoes = random.Next(0, 7);
             int classNum;
+
+           
+
                                               
 
             if (nivel >= 10)
@@ -27,6 +30,9 @@ namespace Inimigos
             {
                 classNum = random.Next(0, 4);
                 Classe = JogoPrincipal.ClassesBasicas[classNum];
+                VidaBase = 30;
+                DefesaBase = 7;
+                
             }
            
             if (boss)

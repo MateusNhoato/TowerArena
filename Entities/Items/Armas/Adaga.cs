@@ -5,10 +5,10 @@
 
         public Adaga()
         {
-            Nome = "Adaga";          
-            Dano = 50;
+            Nome = "Adaga";
         }
 
-      
+
+        public override int Dano { get => new Random().Next(5, 51); }
     }
 }

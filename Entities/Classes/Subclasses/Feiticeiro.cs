@@ -22,24 +22,24 @@ namespace Classes
 
         public override void AdicionarHabilidades()
         {
-            // bola de água
-            string descricao = descricao = "";
-            Habilidade habilidade = new Habilidade("Bola de Água", 4, 10, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            // 
+            string descricao = "";
+            Habilidade habilidade = new Habilidade("Bola de Água", 4, 10, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            // rajada de  terra
-            descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. O dano do Atirador aumenta.";
-            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder20Porcento, TipoDeHabilidade.Buff);
+            // 
+            descricao = "";
+            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder10Porcento, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
-            // imagem de fogo
-            descricao = "Uma flecha que acerta o ponto vital do alvo.";
-            habilidade = new Habilidade("Flecha Perfurante", 6, 6, descricao, EfeitosDeHabilidades.Ataque4x, TipoDeHabilidade.Ataque);
+            // 
+            descricao = "";
+            habilidade = new Habilidade("Flecha Perfurante", 6, 6, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             // forma demoníaca
-            descricao = "As penas pretas desta flecha são a última coisa que os oponentes do Atirador verão.";
-            habilidade = new Habilidade("Flecha da Morte", 12, 4, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Ataque);
+            descricao = "";
+            habilidade = new Habilidade("Flecha da Morte", 12, 4, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
         }
 

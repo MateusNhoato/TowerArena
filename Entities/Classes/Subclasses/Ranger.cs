@@ -10,9 +10,7 @@ namespace Classes
         {
             Nome = "Ranger";
             Descricao = "Especialista em sobrevivência, combate oponentes com seu Lobo.";
-
-
-          
+         
         }
 
         public override void AdicionarHabilidades()
@@ -22,15 +20,15 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Ranger recebe a benção de seu companheiro animal, aumentado o poder de ambos até o fim do combate.";
-            habilidade = new Habilidade("Aspecto Lupino", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder20Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Aspecto Lupino", 5, 3, descricao, EfeitosDeHabilidades.BuffPoder10Porcento, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "O Ranger e seu companheiro animal lutam e morrem como um só.\n          Até o fim do combate o Ranger recebe a vida de seu Lobo como vida extra.";
-            habilidade = new Habilidade("Melhor Amigo do Ranger",30, 1, descricao, EfeitosDeHabilidades.MelhorAmigoDoRanger, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Melhor Amigo do Ranger",6, 1, descricao, EfeitosDeHabilidades.MelhorAmigoDoRanger, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ranger atira 3 flechas rapidamente, seu Lobo morde o alvo três vezes";
-            habilidade = new Habilidade("Pega!",15, 3, descricao, EfeitosDeHabilidades.Pega, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Pega!",15, 2, descricao, EfeitosDeHabilidades.Pega, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
         }
 

@@ -5,7 +5,8 @@
         public Cajado()
         {
             Nome = "Cajado";
-            Dano = 700;
+            
         }
+        public override int Dano { get => new Random().Next(250, 501); }
     }
 }

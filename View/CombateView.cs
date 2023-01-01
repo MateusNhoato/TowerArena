@@ -327,31 +327,88 @@ namespace View
 
        
             Console.WriteLine($"\n     {jogador}");
-            Console.Write("\n     Vida:");
+            Console.Write("\n     Vida:[");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"[{jogador.VidaAtual} / {jogador.VidaTotal}({jogador.VidaExtra})]");
+            Console.Write($"{jogador.VidaAtual}");
 
             Console.ForegroundColor = aux;
-            Console.Write("   Mana:");
+            Console.Write("/");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{jogador.VidaTotal}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{jogador.VidaExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.Write(")]");
+
+            
+            Console.Write(" | Mana:[");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"[{jogador.ManaAtual} / {jogador.ManaTotal}]");
+            Console.Write($"{jogador.ManaAtual}");
 
             Console.ForegroundColor = aux;
-            Console.Write("     Poder     :");
+            Console.Write("/");
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{jogador.ManaTotal}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine("]");
+
+            
+            Console.Write("     Poder     :[");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{jogador.PoderTotal}");
+
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{jogador.PoderExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine(")]");
+
+           
+            Console.Write("     Defesa    :[");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"{jogador.DefesaTotal}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"{jogador.DefesaExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine(")]");
+
+
+
+            Console.ForegroundColor = aux;
+            Console.Write("     Iniciativa:[");
+
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine($"[{jogador.PoderTotal}({jogador.PoderExtra})]");
+            Console.Write($"{jogador.IniciativaTotal}");
 
             Console.ForegroundColor = aux;
-            Console.Write("     Defesa    :");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"[{jogador.DefesaTotal}({jogador.DefesaExtra})]");
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write($"{jogador.IniciativaExtra}");
 
             Console.ForegroundColor = aux;
-            Console.Write("     Iniciativa:");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"[{jogador.IniciativaTotal}({jogador.IniciativaExtra})]");
+            Console.WriteLine(")]");
 
-            Console.ForegroundColor = aux;
+
+           
             Console.WriteLine("\n\n     Obs: os números entre parênteses são atributos extras.");
             Console.WriteLine(Texto.linha);
             MenuPrincipal.AperteEnterParaContinuar();

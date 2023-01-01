@@ -6,8 +6,8 @@ namespace Items
         public ArcoEFlechaLongo() 
         {
             Nome = "Arco e Flecha Longo";
-            Dano = 600;
-            
+
         }
+        public override int Dano { get => new Random().Next(300, 601); }
     }
 }

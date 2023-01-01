@@ -34,11 +34,11 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua defesa.";
-            habilidade = new Habilidade("Instância De Defesa", 3, 2, descricao, EfeitosDeHabilidades.BuffDefesa, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Instância De Defesa", 3, 3, descricao, EfeitosDeHabilidades.BuffDefesa, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
-            descricao = "Golpe que atordoa o alvo diminuindo sua defesa.";
-            habilidade = new Habilidade("Golpe Debilitante", 3, 2, descricao, EfeitosDeHabilidades.DebuffDefesa5, TipoDeHabilidade.Debuff);
+            descricao = "Golpe que atordoa o alvo, diminuindo sua defesa.";
+            habilidade = new Habilidade("Golpe Debilitante", 3, 3, descricao, EfeitosDeHabilidades.DebuffDefesa5, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
 
             descricao = "Sequência de golpes rápidos que causam dano devastador.";
