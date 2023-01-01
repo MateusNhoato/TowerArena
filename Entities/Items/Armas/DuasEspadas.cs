@@ -5,7 +5,7 @@
         public DuasEspadas() 
         {
             Nome = "Duas Espadas";
-            Dano = 1250;
+            Dano = 600;
         }
     }
 }

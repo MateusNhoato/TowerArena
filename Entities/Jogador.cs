@@ -21,7 +21,7 @@ namespace Entities
             VidaAtual = VidaTotal;
             ManaAtual = ManaTotal;
         }
-        public Jogador(string nome, Classe classe, int nivel, int andar, int vidaAtual, int manaAtual, List<Item> items) : this(nome, classe)
+        public Jogador(string nome, Classe classe, int nivel, int andar, int vidaAtual, int manaAtual, List<Item> items, int dinheiro) : this(nome, classe)
         {
             Nivel = nivel;
             Mochila = new Mochila(items);
@@ -29,6 +29,7 @@ namespace Entities
             Andar = andar;
             VidaAtual = vidaAtual;
             ManaAtual = manaAtual;
+            Mochila.AlterarDinheiro(dinheiro);
         }
 
         public void SubirAndar()

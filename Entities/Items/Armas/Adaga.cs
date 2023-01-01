@@ -6,7 +6,7 @@
         public Adaga()
         {
             Nome = "Adaga";          
-            Dano = 60;
+            Dano = 50;
         }
 
       

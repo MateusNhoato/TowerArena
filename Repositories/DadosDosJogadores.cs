@@ -20,6 +20,7 @@ namespace Repositories
             int nivel = jogador.Nivel;
             int pocoesDeVida = jogador.Mochila.Items.Count(x => x is PocaoVida);
             int pocoesDeMana = jogador.Mochila.Items.Count(x => x is PocaoMana);
+            int dinheiro = jogador.Mochila.Dinheiro;
 
 
             string[] personagens = File.ReadAllLines(infoPersonagensPath);
@@ -30,7 +31,7 @@ namespace Repositories
                 
                 if(personagem[0] == nome)
                 {
-                    personagens[i] = $"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana}";
+                    personagens[i] = $"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana};{dinheiro}";
                     File.WriteAllLines(infoPersonagensPath, personagens);
                     return;
                 }
@@ -38,7 +39,7 @@ namespace Repositories
 
             using (StreamWriter sw = new StreamWriter(infoPersonagensPath, true))
             {
-                sw.WriteLine($"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana}");
+                sw.WriteLine($"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana};{dinheiro}");
             }
         }
 
@@ -91,6 +92,7 @@ namespace Repositories
                         string[] pocoes = personagem[6].Split(",");
                         int pocoesVida = int.Parse(pocoes[0]);
                         int pocoesMana = int.Parse(pocoes[1]);
+                        int dinheiro = int.Parse(personagem[7]);
 
                         for (int i = 0; i < pocoesVida; i++)
                         {
@@ -108,7 +110,7 @@ namespace Repositories
 
                         if (classe != null)
                         {
-                            jogador = new Jogador(personagem[0], classe, nivel, andar, vidaAtual, manaAtual, items);
+                            jogador = new Jogador(personagem[0], classe, nivel, andar, vidaAtual, manaAtual, items, dinheiro);
                             return jogador;
                         }
                     }
@@ -152,9 +154,11 @@ namespace Repositories
                         string classe = infoArray[3];
                         string vidaAtual = infoArray[4];
                         string manaAtual = infoArray[5];
+                        string gold = infoArray[7];
+
                         if(int.Parse(vidaAtual) > 0)
                         {
-                            Console.WriteLine($"\n     {cont}: {nome} ({classe}) | Nv:{nivel} | Andar:{andar} | Vida:{vidaAtual} | Mana:{manaAtual}");
+                            Console.WriteLine($"\n     {cont}: {nome} ({classe}) | Nv:{nivel} | Andar:{andar} | Vida:{vidaAtual} | Mana:{manaAtual} | Gold:{gold}");
                             cont++;
                         }
                         else

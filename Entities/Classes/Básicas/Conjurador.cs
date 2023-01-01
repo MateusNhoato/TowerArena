@@ -13,10 +13,10 @@ namespace Classes
             Descricao = "Uma classe que utiliza de magia para lutar | Subclasses: Mago e Feiticeiro.";
             Arma = new Varinha();
           
-            VidaPorNivel = 3;
-            ManaPorNivel = 8;
-            PoderPorNivel = 8;
-            DefesaPorNivel = 3;
+            VidaPorNivel = 4;
+            ManaPorNivel = 7;
+            PoderPorNivel = 7;
+            DefesaPorNivel = 4;
             IniciativaPorNivel = 3;
 
             AdicionarHabilidades();
@@ -37,7 +37,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Conjurador concentra uma grande quantidade de energia para realizar esse golpe devastador.";
-            habilidade = new Habilidade("Explosão Primordial", 4, 6, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Explosão Primordial", 5, 3, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
         }
 

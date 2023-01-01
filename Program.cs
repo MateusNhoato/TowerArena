@@ -14,8 +14,8 @@ namespace TowerArena
             Console.Title = "Tower Arena";
             JogoPrincipal.ListarClasses();
             JogoPrincipal.ListarChefesDeAndar();
-            //Console.ForegroundColor= ConsoleColor.Black;
-            //Console.BackgroundColor= ConsoleColor.White;
+            Console.ForegroundColor= ConsoleColor.Black;
+            Console.BackgroundColor= ConsoleColor.White;
            MenuPrincipal.MostrarMenuPrincipal();
                   
         }

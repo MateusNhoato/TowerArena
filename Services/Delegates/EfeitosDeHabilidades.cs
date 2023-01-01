@@ -193,6 +193,16 @@ namespace Delegates
 
         #endregion
         #region Habilidades especiais
+        // arqueiro
+        public static void TiroPreciso(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            int dano = receptor.ReceberDanoNaIniciativa((conjurador.PoderTotal * conjurador.PoderTotal * 2) + conjurador.Classe.Arma.Dano);
+
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
+            Thread.Sleep(1000);
+        }
+
         // Ladrão
         public static void Fuga(CriaturaBase conjurador, CriaturaBase receptor)
         {
@@ -283,6 +293,9 @@ namespace Delegates
             {
                 Ataque1x(conjurador, receptor);
                 AtaqueDesarmado(conjurador, receptor);
+
+                if (receptor.PorcentagemVida() <= 0)
+                    break;
             }
 
         }
@@ -381,34 +394,37 @@ namespace Delegates
 
         }
 
-        public static void SurtoDeIniciativa(CriaturaBase conjurador, CriaturaBase receptor)
+        public static void SurtoDeAcao(CriaturaBase conjurador, CriaturaBase receptor)
         {
             conjurador.ReceberDanoVerdadeiro(conjurador.VidaTotal / 4);
-            conjurador.Classe.Habilidades[1].DiminuirUso();
-            
+            conjurador.Classe.Habilidades.Find(x => x.Nome == "Surto de Iniciativa").DiminuirUso();
+
             if (conjurador.PorcentagemVida() <= 0)
                 return;
 
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             if (conjurador is Jogador)
             {
-                
+
                 Combate.AcaoDoJogador(conjurador, receptor);
-                Combate.FimDoRound(conjurador, receptor);
                 CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                if (receptor.PorcentagemVida() <= 0)
+                    return;
                 Combate.AcaoDoJogador(conjurador, receptor);
             }
             else
             {
                 Combate.AcaoDoInimigo(conjurador, receptor);
-                Combate.FimDoRound(conjurador, receptor);
                 CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+                if (receptor.PorcentagemVida() <= 0)
+                    return;
                 Combate.AcaoDoInimigo(conjurador, receptor);
             }
         }
 
         public static void PontoFraco(CriaturaBase conjurador, CriaturaBase receptor)
         {
+
             receptor.AlterarDefesa(-5);
             int danoVerdadeiro = receptor.DefesaExtra / 5;
 
@@ -429,7 +445,7 @@ namespace Delegates
             for (int i = 0; i < 4; i++)
             {
                 receptor.AlterarDefesa(-5);
-                int dano = receptor.ReceberDano(conjurador.PoderTotal * conjurador.PoderTotal  + conjurador.Classe.Arma.Dano);
+                int dano = receptor.ReceberDano(conjurador.PoderTotal * conjurador.PoderTotal + conjurador.Classe.Arma.Dano);
                 CombateView.ImprimirTelaDeCombate(conjurador, receptor);
                 Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
                 Thread.Sleep(500);

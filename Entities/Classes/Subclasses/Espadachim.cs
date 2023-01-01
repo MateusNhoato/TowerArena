@@ -31,7 +31,7 @@ namespace Classes
 
             descricao = "O Espachim gasta 25% da sua vida máxima para fazer 2 turnos adicionais. " +
                 "\n          Cuidado! O Espachim pode morrer com o dano desta habilidade.";
-            habilidade = new Habilidade("Surto de Iniciativa", 0, 1, descricao, EfeitosDeHabilidades.SurtoDeIniciativa, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Surto de Ação", 0, 1, descricao, EfeitosDeHabilidades.SurtoDeAcao, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Espachim ataca o oponente no seu ponto fraco criado por Entalhar." +

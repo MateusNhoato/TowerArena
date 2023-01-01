@@ -5,7 +5,7 @@
         public ArcoEFlecha()
         {
             Nome = "Arco e Flecha";                
-            Dano = 45;
+            Dano = 60;
         }
     }
 }

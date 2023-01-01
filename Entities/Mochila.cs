@@ -6,7 +6,7 @@ namespace Entities
     internal class Mochila
     {
         public List<Item> Items { get; private set; }
-       
+        public int Dinheiro { get; private set; } 
         public Mochila()
         {
             Items = new List<Item>();
@@ -21,7 +21,7 @@ namespace Entities
             Items = items;
         }
 
-        public void ListarConsumiveisNaMochila()
+        public void ListarConsumiveisNaMochila(bool loja)
         {           
             Console.Write($"     1- Poções de Vida [");
 
@@ -37,6 +37,8 @@ namespace Entities
             Console.Write($"{Items.Count(x => x is PocaoMana)}");
             Console.ForegroundColor = aux;
             Console.WriteLine("]");
+
+            if(!loja)
             Console.WriteLine("     3- Voltar");
         }
 
@@ -45,13 +47,24 @@ namespace Entities
             Items.Remove(pocao);
         }
 
+        public void AlterarDinheiro(int quantia)
+        {
+            Dinheiro += quantia;
+        }
+
+        public bool ChecarDinheiro(int quantia)
+        {
+            return (Dinheiro >= quantia);
+        }
+
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("     Itens:");
-
             Item arma = Items.Find(x => x is Arma);
-            sb.AppendLine($"     {arma}");
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("     Mochila:");
+            sb.AppendLine($"     Gold: {Dinheiro}");         
+            sb.AppendLine($"{arma}");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
             return sb.ToString();

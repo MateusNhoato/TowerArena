@@ -42,7 +42,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Sequência de golpes rápidos que causam dano devastador.";
-            habilidade = new Habilidade("Combo Triplo", 4, 3, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Combo Triplo", 4, 2, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
         }

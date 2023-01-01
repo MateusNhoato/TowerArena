@@ -14,7 +14,7 @@ namespace Entities
 
 
         public int VidaBase { get; protected private set; } = 50;
-        public int ManaBase { get; protected private set; } = 10;
+        public int ManaBase { get; protected private set; } = 20;
         public int PoderBase { get; protected private set; } = 3;
         public int DefesaBase { get; protected private set; } = 3;
         public int IniciativaBase { get; protected private set; } = 3;
@@ -97,6 +97,7 @@ namespace Entities
                     if(Nivel < 10)
                     {
                         int aux = DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
+                        if(aux > 0)
                         return (aux > 0) ? aux : 1; 
                     }
                     int total = DefesaBase + Classe.DefesaPorNivel * Nivel * 2 + DefesaExtra;
@@ -137,7 +138,15 @@ namespace Entities
                VidaAtual -= dano;          
             return dano;
         }
-
+        public int ReceberDanoNaIniciativa(int dano)
+        {
+            int danoTotal = dano / IniciativaTotal;
+            if (danoTotal > 0)
+            {
+                VidaAtual -= danoTotal;
+            }
+            return danoTotal;
+        }
         public void SetarVidaPara1()
         {
             VidaAtual = 1;
@@ -184,7 +193,8 @@ namespace Entities
             IniciativaExtra = 0;
             PoderExtra = 0;
             DefesaExtra = 0;
-            VidaExtra = 0;
+            VidaAtual -= VidaExtra;
+            VidaExtra = 0;           
         }
 
         public void BeberPocao(Item pocao)

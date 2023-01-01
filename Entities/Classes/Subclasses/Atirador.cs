@@ -22,15 +22,15 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. O dano do Atirador aumenta.";
-            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder20Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Na Mira", 5, 2, descricao, EfeitosDeHabilidades.BuffPoder20Porcento, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "Uma flecha que acerta o ponto vital do alvo.";
-            habilidade = new Habilidade("Flecha Perfurante", 6, 6, descricao, EfeitosDeHabilidades.Ataque4x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Flecha Perfurante", 6, 3, descricao, EfeitosDeHabilidades.Ataque4x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "As penas pretas desta flecha são a última coisa que os oponentes do Atirador verão.";
-            habilidade = new Habilidade("Flecha da Morte",12, 4, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Flecha da Morte",12, 2, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
         }

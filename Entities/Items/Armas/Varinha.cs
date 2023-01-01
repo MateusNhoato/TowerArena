@@ -5,7 +5,7 @@
         public Varinha()
         {
             Nome = "Varinha";           
-            Dano = 45;
+            Dano = 700;
         }
     }
 }

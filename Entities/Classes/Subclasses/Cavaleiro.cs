@@ -29,7 +29,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Cavaleiro investe impiedosamente contra seu oponente, causando dano devastador.";
-            habilidade = new Habilidade("Investida", 5, 5, descricao, EfeitosDeHabilidades.Investida, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Investida", 5, 3, descricao, EfeitosDeHabilidades.Investida, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Cavaleiro sacrifica metade de sua vida MÁXIMA e dá o dano equivalente diretamente na vida do inimigo.\n          Cuidado! Se o Cavaleiro estiver com 50% ou menos de vida ele vai fica somente com 1 de vida após o uso desta habilidade.";

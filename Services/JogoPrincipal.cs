@@ -37,7 +37,7 @@ namespace Services
                 if (Round == 5)
                 {
                     jogador.LevelUp();
-                    MenuDoAndar.MenuConsumiveis(jogador);
+                    PausaNoMeioDoAndar(jogador);
                 }
 
                 if(jogador.Classe.PropriedadeEspecial == true)
@@ -49,6 +49,41 @@ namespace Services
             }
        
             return true;
+        }
+
+        private static void PausaNoMeioDoAndar(Jogador jogador)
+        {
+            string resposta;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(Texto.meioDoAndar);
+                Console.WriteLine("     1- Loja");
+                Console.WriteLine("     2- Usar consumíveis");
+                Console.WriteLine("     3- Continuar");
+                Console.Write("     Digite a opção desejada: ");
+                resposta = Console.ReadLine();
+
+                switch(resposta)
+                {
+                    case "1":
+                        MenuDoAndar.MenuLoja(jogador);
+                        break;
+                    case "2":
+                        MenuDoAndar.MenuConsumiveis(jogador);
+                        break;
+                    case "3":
+                        break;
+
+                    default:
+                        MenuPrincipal.EntradaInvalida();
+                        break;
+                }
+
+
+            } while (resposta != "3");
+            MenuDoAndar.MenuConsumiveis(jogador);
+            
         }
         public static void ListarClasses()
         {

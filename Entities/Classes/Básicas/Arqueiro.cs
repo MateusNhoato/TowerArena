@@ -31,11 +31,15 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Arqueiro se prepara durante uma rodada, aumentando seu poder pelo resto do combate.";
-            habilidade = new Habilidade("Mente Afiada", 2, 3, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Mente Afiada", 3, 2, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
+            Habilidades.Add(habilidade);
+
+            descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua iniciativa.";
+            habilidade = new Habilidade("Tiro Preciso", 3, 3, descricao, EfeitosDeHabilidades.TiroPreciso, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Uma devastadora sucessão de flechas.";
-            habilidade = new Habilidade("Saraivada de Flechas", 4, 5, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Saraivada de Flechas", 5, 3, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);     
         }
 

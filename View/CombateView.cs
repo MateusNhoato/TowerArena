@@ -315,7 +315,7 @@ namespace View
         {
             Console.Clear();
             ImprimirTelaDeCombate(jogador, inimigo);
-            jogador.Mochila.ListarConsumiveisNaMochila();
+            jogador.Mochila.ListarConsumiveisNaMochila(false);
             return MenuDeCombate.MenuDeConsumiveis();
         }
         public static void JanelaDeStatus(CriaturaBase jogador)
