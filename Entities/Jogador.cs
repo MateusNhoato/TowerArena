@@ -1,5 +1,5 @@
-﻿using Items;
-using Classes;
+﻿using Classes;
+using Items;
 
 namespace Entities
 {
@@ -41,10 +41,8 @@ namespace Entities
         public void LevelUp()
         {
             Nivel++;
-            if (Nivel == 10)
+            if (Nivel == 11)
                 EscolhaDeSubClasse();
-            // VidaAtual = VidaTotal;
-            // ManaAtual = ManaTotal;
 
             for (int i = 0; i < Classe.Habilidades.Count; i++)
             {
@@ -63,8 +61,13 @@ namespace Entities
 
         public void RegeneracaoPosCombate()
         {
-            VidaAtual += ForcaTotal * Nivel;
-            ManaAtual += IntelectoTotal * Nivel;
+            VidaAtual += ForcaTotal;
+            ManaAtual += IntelectoTotal / 2;
+
+            if (VidaAtual > VidaTotal)
+                VidaAtual = VidaTotal;
+            if (ManaAtual > ManaTotal)
+                ManaAtual = ManaTotal;
         }
 
 

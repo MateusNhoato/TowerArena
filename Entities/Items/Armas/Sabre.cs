@@ -2,7 +2,7 @@
 {
     internal class Sabre : Arma
     {
-        public Sabre() 
+        public Sabre()
         {
             Nome = "Sabre";
         }

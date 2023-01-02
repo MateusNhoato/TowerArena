@@ -2,47 +2,53 @@
 using Enums;
 using Items;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes
 {
     internal class Mercenario : Ladrao
     {
-        public Mercenario() 
+        public Mercenario()
         {
             Nome = "Mercenário";
             Descricao = "Combatente sanguinário que usa qualquer método para vencer.";
             Arma = new Sabre();
 
-        
+            VidaPorNivel = 4;
+            ManaPorNivel = 3;
+            DefesaPorNivel = 3;
+            AgilidadePorNivel = 4;
+            ForcaPorNivel = 5;
+            IntelectoPorNivel = 3;
+            AtributoPrincipal = AtributoPrincipal.Forca;
+
         }
 
         public override void AdicionarHabilidades()
         {
-            string descricao = "Uma flecha que acerta o ponto vital do alvo.";
-            Habilidade habilidade = new Habilidade("Tiro Certeiro", 4, 10, descricao, EfeitosDeHabilidades.Ataque2xRanger, TipoDeHabilidade.Ataque);
+            string descricao = "O Mercenário disfere um golpe contra o oponente e recupera Vida (metade do dano causado).";
+            Habilidade habilidade = new Habilidade("Lâmina Sangrenta", 9, 10, descricao, EfeitosDeHabilidades.Ataque1xComLifeSteal, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ranger recebe a benção de seu companheiro animal, aumentado o poder de ambos até o fim do combate.";
-            habilidade = new Habilidade("Aspecto Lupino", 5, 4, descricao, EfeitosDeHabilidades.BuffForca10Porcento, TipoDeHabilidade.Buff);
+            descricao = "O Mercenário assalta de 2 a 3 poções de seu oponente, se disponíveis." +
+                "\n          O Mercenário pode vender suas poções na loja, aumentando seu Gold.";
+            habilidade = new Habilidade("Assalto Rápido", 0, 2, descricao, EfeitosDeHabilidades.Assalto, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ranger e seu companheiro animal lutam e morrem como um só.\n          Até o fim do combate o Ranger recebe a vida de seu Lobo como vida extra.";
-            habilidade = new Habilidade("Melhor Amigo do Ranger", 30, 1, descricao, EfeitosDeHabilidades.MelhorAmigoDoRanger, TipoDeHabilidade.Ataque);
+
+            descricao = "O Mercenário taca uma bomba de fumaça e ataca o inimigo durante a confusão." +
+                "\n          Esta habilidade diminui a Defesa e o Atributo Principal do alvo.";
+            habilidade = new Habilidade("Golpe Desleal", 15, 3, descricao, EfeitosDeHabilidades.GolpeDesleal, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ranger atira 3 flechas rapidamente, seu Lobo morde o alvo três vezes";
-            habilidade = new Habilidade("Pega!", 15, 3, descricao, EfeitosDeHabilidades.Pega, TipoDeHabilidade.Ataque);
+            descricao = "Sequência de 3 ataques de Lâmina Sagrenta.";
+            habilidade = new Habilidade("Combo Sangrento", 30, 2, descricao, EfeitosDeHabilidades.ComboSangrento, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
         }
 
         public override void ListarHabilidadesDaClasse()
         {
-            Console.WriteLine("     (Passiva): Para cada 100 de Gold em sua mochila, o Mercenário ganha 1 ponto em cada atributo.");
+            Console.WriteLine("     Ganância(Passiva): O Mercenário ganha o dobro de Gold por luta." +
+                "\n          Para cada 100 de Gold em sua mochila, o Mercenário ganha 1 ponto em cada atributo.");
             base.ListarHabilidadesDaClasse();
         }
     }

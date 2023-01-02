@@ -1,15 +1,14 @@
 ﻿
-using Items;
-using Entities;
 using Delegates;
 using Enums;
+using Items;
 using Services;
 
 namespace Classes
 {
     internal class Guerreiro : Classe
     {
-        
+
         public Guerreiro()
         {
             Nome = "Guerreiro";
@@ -30,28 +29,28 @@ namespace Classes
 
         public override void AdicionarHabilidades()
         {
-            
+
             string descricao = "O Guerreiro investe contra seu alvo e ataca duas vezes rapidamente.";
-            Habilidade habilidade = new Habilidade("Golpe Duplo", 2, 5, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Golpe Duplo", 2, 10, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua Defesa.";
-            habilidade = new Habilidade("Instância De Defesa", 3, 3, descricao, EfeitosDeHabilidades.BuffDefesa2, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Instância De Defesa", 2, 4, descricao, EfeitosDeHabilidades.BuffDefesa5, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "Golpe que atordoa o alvo, diminuindo sua Defesa.";
-            habilidade = new Habilidade("Golpe Debilitante", 3, 3, descricao, EfeitosDeHabilidades.DebuffDefesa2, TipoDeHabilidade.Debuff);
+            habilidade = new Habilidade("Golpe Debilitante", 4, 3, descricao, EfeitosDeHabilidades.Ataque2xComDebuffDefesa2, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Sequência de golpes rápidos que causam dano devastador.";
-            habilidade = new Habilidade("Combo Triplo", 4, 2, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Combo Triplo", 6, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
         }
 
         public override Classe MostrarSubclasses()
         {
-           return OpcoesSubClasses(new Espadachim(), new Cavaleiro());
+            return OpcoesSubClasses(new Espadachim(), new Cavaleiro());
         }
 
 

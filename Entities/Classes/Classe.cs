@@ -1,22 +1,21 @@
 ﻿
+using Enums;
 using Items;
-using Entities;
 using Services;
 using View;
-using Enums;
 
 namespace Classes
 {
     internal abstract class Classe
     {
-        
+
         public string? Nome { get; protected private set; }
         public string Descricao { get; protected private set; }
         public Arma? Arma { get; protected private set; }
 
         public AtributoPrincipal AtributoPrincipal;
         public bool? PropriedadeEspecial { get; protected private set; }
-        public  List<Habilidade> Habilidades { get; } = new List<Habilidade>();
+        public List<Habilidade> Habilidades { get; } = new List<Habilidade>();
 
         public int VidaPorNivel { get; protected private set; }
         public int ManaPorNivel { get; protected private set; }
@@ -26,15 +25,15 @@ namespace Classes
         public int AgilidadePorNivel { get; protected private set; }
         public int IntelectoPorNivel { get; protected private set; }
 
-        
+
         public abstract void AdicionarHabilidades();
         public abstract Classe MostrarSubclasses();
 
         public static Classe? Parse(string input)
         {
-            if(string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
                 throw new ArgumentNullException("input");
-           Classe classe;
+            Classe classe;
             if (input == "Guerreiro")
                 classe = new Guerreiro();
             else if (input == "Ladrão")
@@ -57,7 +56,7 @@ namespace Classes
                 classe = new Mago();
             else if (input == "Mercenário")
                 classe = new Mercenario();
-            else if (input == "Ranger")                
+            else if (input == "Ranger")
                 classe = new Ranger();
             else
                 classe = null;
@@ -82,25 +81,25 @@ namespace Classes
             } while (true);
             Classe classe;
             if (resposta == "1")
-                classe =  classe1;
+                classe = classe1;
             else
-                classe =  classe2;
+                classe = classe2;
             return classe;
         }
         public virtual void ListarHabilidadesDaClasse()
         {
             int i = 1;
-            for(; i <= Habilidades.Count; i++)
+            for (; i <= Habilidades.Count; i++)
             {
                 Console.Write($"     {i}- ");
-                Habilidades[i-1].ImprimirHabilidade();               
+                Habilidades[i - 1].ImprimirHabilidade();
             }
             Console.WriteLine($"     {i}- Voltar");
         }
 
         public virtual void AlterarPropriedadeEspecial()
         {
-            if(PropriedadeEspecial == true)
+            if (PropriedadeEspecial == true)
                 PropriedadeEspecial = false;
             else
                 PropriedadeEspecial = true;

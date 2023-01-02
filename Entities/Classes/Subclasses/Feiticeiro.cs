@@ -2,11 +2,6 @@
 using Enums;
 using Items;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes
 {
@@ -22,24 +17,24 @@ namespace Classes
 
         public override void AdicionarHabilidades()
         {
-            // 
-            string descricao = "";
-            Habilidade habilidade = new Habilidade("Bola de Água", 4, 10, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            string descricao = descricao = "";
+            Habilidade habilidade = new Habilidade("Símbolo da Dor", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            // 
+
             descricao = "";
-            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffForca10Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Símbolo de Sangue", 20, 2, descricao, EfeitosDeHabilidades.ImagemDeFogo, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
-            // 
+
             descricao = "";
-            habilidade = new Habilidade("Flecha Perfurante", 6, 6, descricao, EfeitosDeHabilidades.Ataque3x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("", 20, 3, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            // forma demoníaca
-            descricao = "";
-            habilidade = new Habilidade("Flecha da Morte", 12, 4, descricao, EfeitosDeHabilidades.Ataque5x, TipoDeHabilidade.Buff);
+
+            descricao = "O Feiticeiro se transforma em um demônio." +
+                "\n          Além de ganhar 10 em cada atributo, todas as habilidades do feiticeiro se fortalecem.";
+           // habilidade = new Habilidade("Demonificação", 70, 1, descricao, EfeitosDeHabilidades.Demonificacao, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
         }
 

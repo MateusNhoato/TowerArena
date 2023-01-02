@@ -1,11 +1,11 @@
-﻿using Entities;
-using Inimigos;
-using View;
-using Menu;
-using Enums;
+﻿using Classes;
 using Delegates;
+using Entities;
+using Enums;
+using Inimigos;
 using Items;
-using Classes;
+using Menu;
+using View;
 
 namespace Services
 {
@@ -16,8 +16,8 @@ namespace Services
         public static bool Iniciativa(CriaturaBase jogador, CriaturaBase inimigo)
         {
             Random random = new Random();
-            int iniAdicionalJg = random.Next(0, 5);
-            int iniAdicionalIn = random.Next(0, 5);
+            int iniAdicionalJg = random.Next(0, 6);
+            int iniAdicionalIn = random.Next(0, 6);
             CombateView.ImprimirIniciativa(iniAdicionalJg, iniAdicionalIn);
 
             int iniciativaJogador = jogador.AgilidadeTotal + iniAdicionalJg + 1;
@@ -25,30 +25,35 @@ namespace Services
 
             if (iniciativaJogador >= iniciativaInimigo)
             {
+                // buff inicial de Atirador
                 if (jogador.Classe is Atirador)
-                    jogador.AlterarForca(jogador.PoderTotal / 10);
+                    jogador.AlterarAgilidade(jogador.AgilidadeTotal / 10);
                 return true;
             }
 
             else
-            {
-                if (inimigo.Classe is Atirador)
-                    inimigo.AlterarForca(inimigo.PoderTotal / 10);
                 return false;
-            }
+
 
         }
         public static bool Combater(Jogador jogador, Inimigo inimigo)
         {
             _combate = true;
+            // buff inicial do Mercenário
+            if (jogador.Classe is Mercenario)
+            {
+                int buff = jogador.Mochila.Dinheiro / 100;
+                jogador.AlterarForca(buff);
+                jogador.AlterarDefesa(buff);
+                jogador.AlterarAgilidade(buff);
+                jogador.AlterarIntelecto(buff);
+            }
 
+            // buff inicial de Mago
             if (jogador.Classe is Mago)
                 if (jogador.PoderTotal > inimigo.PoderTotal)
-                    jogador.AlterarDefesa(jogador.PoderTotal / 10);
+                    jogador.AlterarDefesa(5);
 
-            if (inimigo.Classe is Mago)
-                if (inimigo.PoderTotal > jogador.PoderTotal)
-                    inimigo.AlterarDefesa(inimigo.PoderTotal / 10);
 
             bool resultadoIniciativa = Iniciativa(jogador, inimigo);
 
@@ -162,11 +167,7 @@ namespace Services
                 {
                     if (jogador.CheckarMana(hab.CustoDeMana))
                     {
-                        if (hab.Tipo == TipoDeHabilidade.Ataque || hab.Tipo == TipoDeHabilidade.Debuff)
-                            hab.Efeito(jogador, inimigo);
-                        else
-                            hab.Efeito(jogador, jogador);
-
+                        hab.Efeito(jogador, inimigo);
                         hab.DiminuirUso();
                         return true;
                     }
@@ -236,20 +237,90 @@ namespace Services
         }
         public static void AcaoDoInimigo(CriaturaBase inimigo, CriaturaBase jogador)
         {
-            new Habilidade("Ataque", 0, 1, $"{inimigo.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
             Random random = new Random();
             int n;
-           // if (inimigo.PorcentagemVida() > 30) 
-           // {
-           //     n = random.Next(0, 2);
-           //
-           //     if(n == 1)
-           //         new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
-           //    
-           //         // habilidade
-           //
-           //
-           // }
+            if (inimigo.PorcentagemVida() > 30)
+            {
+                n = random.Next(1, 101);
+
+                if (n > 25)
+                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+
+                // habilidade
+                else
+                {
+                    List<Habilidade> habilidades = inimigo.Classe.Habilidades;
+                    int skillsDisponiveis = habilidades.Count() - 1;
+                    int skillASerUsada = random.Next(0, skillsDisponiveis);
+
+                    if (habilidades[skillASerUsada].QuantidadeDeUsos > 0)
+                        if (inimigo.CheckarMana(habilidades[skillASerUsada].CustoDeMana))
+                            habilidades[skillASerUsada].Efeito(inimigo, jogador);
+                        else
+                        {
+                            // beber poção de mana
+                            if (inimigo.Mochila.Items.Exists(x => x is PocaoMana))
+                            {
+                                Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Mana");
+                                inimigo.BeberPocao(pocao);
+                                inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
+                            }
+                            else
+                                new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        }
+                    else
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+
+                }
+            }
+            else
+            {
+                n = random.Next(1, 101);
+
+                if (n < 21)
+                {
+                    // beber poção de vida
+                    if (inimigo.Mochila.Items.Exists(x => x is PocaoVida))
+                    {
+                        Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Vida");
+                        inimigo.BeberPocao(pocao);
+                        inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
+                    }
+                    else
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+
+                }
+                else if (n < 51)
+                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+
+                // habilidade
+                else
+                {
+                    List<Habilidade> habilidades = inimigo.Classe.Habilidades;
+                    int skillsDisponiveis = habilidades.Count() - 1;
+                    int skillASerUsada = random.Next(0, skillsDisponiveis);
+
+                    if (habilidades[skillASerUsada].QuantidadeDeUsos > 0)
+                        if (inimigo.CheckarMana(habilidades[skillASerUsada].CustoDeMana))
+                            habilidades[skillASerUsada].Efeito(inimigo, jogador);
+                        else
+                        {
+                            // beber poção de mana
+                            if (inimigo.Mochila.Items.Exists(x => x is PocaoMana))
+                            {
+                                Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Mana");
+                                inimigo.BeberPocao(pocao);
+                                inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
+                            }
+                            else
+                                new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        }
+                    else
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+
+                }
+
+            }
 
 
             MenuPrincipal.AperteEnterParaContinuar();

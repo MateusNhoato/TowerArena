@@ -1,6 +1,6 @@
 ﻿using Classes;
-using Items;
 using Enums;
+using Items;
 
 
 namespace Entities
@@ -55,7 +55,7 @@ namespace Entities
         {
             get
             {
-                return (Classe != null) ? Classe.IntelectoPorNivel * Classe.ManaPorNivel : 0;
+                return (Classe != null) ? IntelectoTotal * Classe.ManaPorNivel : 0;
             }
         }
 
@@ -74,11 +74,11 @@ namespace Entities
                     else if (Classe.AtributoPrincipal == AtributoPrincipal.Intelecto)
                         return IntelectoTotal;
                     else
-                        return (AgilidadeTotal + ForcaTotal) / 2;
+                        return (AgilidadeTotal >= ForcaTotal) ? AgilidadeTotal : ForcaTotal;
                 }
                 return 0;
             }
-            
+
         }
         public int Esquiva
         {
@@ -112,16 +112,16 @@ namespace Entities
         public int DefesaTotal
         {
             get
-            {              
-                return (Classe != null) ? Classe.DefesaPorNivel * Nivel + DefesaExtra: 0;
+            {
+                return (Classe != null) ? Classe.DefesaPorNivel * Nivel + DefesaExtra : 0;
             }
         }
 
         public int AgilidadeTotal
         {
             get
-            {                
-                    return (Classe != null) ? Classe.AgilidadePorNivel * Nivel + AgilidadeExtra : 0;               
+            {
+                return (Classe != null) ? Classe.AgilidadePorNivel * Nivel + AgilidadeExtra : 0;
             }
         }
 

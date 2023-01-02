@@ -1,5 +1,4 @@
 ﻿using Entities;
-using Delegates;
 using Enums;
 
 namespace Services
@@ -56,7 +55,7 @@ namespace Services
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"{QuantidadeDeUsos} ");
-         
+
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine($"          {Descricao}");
 

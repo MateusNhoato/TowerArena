@@ -1,13 +1,11 @@
 ﻿using Entities;
 using Inimigos;
 using Menu;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
 
 namespace View
 {
     internal class CombateView
-        {
+    {
 
         public static string iniciativa = @"
      ▄█  ███▄▄▄▄    ▄█   ▄████████  ▄█     ▄████████     ███      ▄█   ▄█    █▄     ▄████████ 
@@ -18,7 +16,7 @@ namespace View
     ███  ███   ███ ███  ███    █▄  ███    ███    ███     ███     ███  ███    ███   ███    ███ 
     ███  ███   ███ ███  ███    ███ ███    ███    ███     ███     ███  ███    ███   ███    ███ 
     █▀    ▀█   █▀  █▀   ████████▀  █▀     ███    █▀     ▄████▀   █▀    ▀██████▀    ███    █▀  ";
-        public static string[] dado = { 
+        public static string[] dado = {
                                      @"
                                      .----------------. 
                                     | .--------------. |
@@ -131,28 +129,28 @@ namespace View
       ▄████▀        ███    ███ █▀    ▀█   ███   █▀    ██████████ █▀     ███    ███  ▀██████▀  
                     ███    ███                                          ███    ███          ";
 
-         public static string _100Porcento = @"
+        public static string _100Porcento = @"
     ███                                     ███ 
     ██                                       ██ 
     ███████████████████████████████████████████ 
     ██                                       ██ 
     ███                                     ███                                             
     ";
-         public static string _90Porcento = @"
+        public static string _90Porcento = @"
     ███                                     ███ 
     ██                                       ██ 
     ██████████████████████████████████████   ██ 
     ██                                       ██ 
     ███                                     ███                                                                                             
     ";
-         public static string _80Porcento = @"
+        public static string _80Porcento = @"
     ███                                     ███ 
     ██                                       ██ 
     ██████████████████████████████████       ██ 
     ██                                       ██ 
     ███                                     ███                                                                                          
     ";
-         public static string _70Porcento = @"
+        public static string _70Porcento = @"
     ███                                     ███ 
     ██                                       ██ 
     ██████████████████████████████           ██ 
@@ -166,7 +164,7 @@ namespace View
     ██                                       ██ 
     ███                                     ███                                                                                       
     ";
-         public static string _50Porcento = @"
+        public static string _50Porcento = @"
     ███                                     ███ 
     ██                                       ██ 
     ██████████████████████                   ██ 
@@ -239,7 +237,7 @@ namespace View
         ███    ███   ███    ███ ███   ███ ███    ███   ███    ███ ███    ███ 
          ▀██████▀    ██████████  ▀█   █▀  ████████▀    ██████████ ████████▀  
                                                                               
-";      public static string fugiu = @"
+"; public static string fugiu = @"
                ▄████████ ███    █▄     ▄██████▄   ▄█  ███    █▄  
               ███    ███ ███    ███   ███    ███ ███  ███    ███ 
               ███    █▀  ███    ███   ███    █▀  ███▌ ███    ███ 
@@ -253,7 +251,7 @@ namespace View
         public static void ImprimirNumeroDoRound(int numero)
         {
             Console.Clear();
-             
+
             Console.WriteLine(Texto.round);
             ConsoleColor aux = Console.ForegroundColor;
             if (numero == 5)
@@ -263,8 +261,8 @@ namespace View
                 numero = 0;
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
             }
-                
-                            
+
+
             Console.WriteLine(Texto.numerosArray[numero]);
             Console.ForegroundColor = aux;
             Console.WriteLine(Texto.roundLinha);
@@ -275,9 +273,9 @@ namespace View
         {
             Console.Clear();
             Console.WriteLine(iniciativa);
-            
+
             ConsoleColor aux = Console.ForegroundColor;
-            Console.ForegroundColor= ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(dado[iniJg]);
 
             Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -325,7 +323,7 @@ namespace View
             Console.Clear();
             Console.WriteLine(status);
 
-       
+
             Console.WriteLine($"\n     {jogador}");
             Console.Write("\n     Vida:[");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -346,7 +344,7 @@ namespace View
             Console.ForegroundColor = aux;
             Console.Write(")]");
 
-            
+
             Console.Write(" | Mana:[");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"{jogador.ManaAtual}");
@@ -360,7 +358,7 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine("]");
 
-            
+
             Console.Write("     Força     :[");
 
             Console.ForegroundColor = ConsoleColor.Red;
@@ -376,7 +374,7 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
 
-           
+
             Console.Write("     Defesa    :[");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write($"{jogador.DefesaTotal}");
@@ -427,9 +425,25 @@ namespace View
             Console.WriteLine(Texto.linha);
             MenuPrincipal.AperteEnterParaContinuar();
         }
+
+        public static void BossRound(int andar)
+        {
+            andar %= 10;
+
+            ConsoleColor aux = Console.ForegroundColor;
+
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(Texto.boss);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(Texto.numerosArray[andar]);
+            Console.ForegroundColor = aux;
+            Console.WriteLine(Texto.roundLinha);
+            Thread.Sleep(1200);
+        }
         public static void ImprimirTelaDeCombate(CriaturaBase jogador, CriaturaBase inimigo)
         {
-            if(jogador is Inimigo)
+            if (jogador is Inimigo)
             {
                 ImprimirTelaDeCombate(inimigo, jogador);
                 return;
@@ -456,10 +470,10 @@ namespace View
 
             // cor da vida do inimigo
             if (vidaInimigo >= 50)
-                corVidaInimigo= ConsoleColor.DarkRed;
-            else 
+                corVidaInimigo = ConsoleColor.DarkRed;
+            else
                 corVidaInimigo = ConsoleColor.Red;
-            
+
 
             // barra de vida do jogador
             if (vidaJogador <= 0)
@@ -482,7 +496,7 @@ namespace View
                 barraDeVidaJogador = _80Porcento;
             else if (vidaJogador <= 90)
                 barraDeVidaJogador = _90Porcento;
-            else 
+            else
                 barraDeVidaJogador = _100Porcento;
 
 
@@ -512,15 +526,16 @@ namespace View
 
             ConsoleColor aux = Console.ForegroundColor;
             Console.WriteLine($"\n     {inimigo}");
-
             Console.ForegroundColor = corVidaInimigo;
             Console.WriteLine(barraDeVidaInimigo);
-            Console.ForegroundColor = ConsoleColor.Yellow;
+
+
+            Console.ForegroundColor = aux;
             Console.WriteLine(versus);
-            
+
 
             Console.ForegroundColor = corVidaJogador;
-            Console.WriteLine(barraDeVidaJogador);            
+            Console.WriteLine(barraDeVidaJogador);
             Console.ForegroundColor = aux;
             Console.WriteLine($"\n     {jogador}");
             Console.Write($"\n     Vida:");
@@ -566,6 +581,6 @@ namespace View
             Console.WriteLine(fugiu);
             Thread.Sleep(1000);
         }
-    
+
     }
 }

@@ -1,10 +1,9 @@
-﻿using Entities;
-using Services;
-using Inimigos;
-using View;
-using Repositories;
-using Classes;
+﻿using Classes;
+using Entities;
 using Items;
+using Repositories;
+using Services;
+using View;
 
 namespace Menu
 {
@@ -107,7 +106,7 @@ namespace Menu
 
                 Console.ForegroundColor = aux;
                 Console.WriteLine("]\n");
-               
+
                 Console.WriteLine(jogador.Mochila); ;
 
                 Console.WriteLine(Texto.linha);
@@ -176,7 +175,7 @@ namespace Menu
                 Console.Write($"\n     Digite a quantidade de {pocao.Nome} que gostaria: ");
             } while (!(int.TryParse(Console.ReadLine(), out num)));
 
-            if(num < 0)
+            if (num < 0)
             {
                 MenuPrincipal.EntradaInvalida();
                 return;
@@ -188,7 +187,7 @@ namespace Menu
             {
                 jogador.Mochila.AlterarDinheiro(totalDinheiro * -1);
 
-                for(int i=0; i < num; i++)
+                for (int i = 0; i < num; i++)
                 {
                     jogador.Mochila.Items.Add(pocao);
                 }
@@ -198,11 +197,11 @@ namespace Menu
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write($"{totalDinheiro}");
                 Console.ForegroundColor = aux;
-                Console.WriteLine("G");              
+                Console.WriteLine("G");
             }
-            else            
+            else
                 Console.WriteLine("     Gold insuficiente.");
-            
+
             MenuPrincipal.AperteEnterParaContinuar();
             Console.Clear();
 

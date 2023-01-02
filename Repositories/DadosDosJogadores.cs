@@ -1,8 +1,7 @@
 ﻿
-using Entities;
 using Classes;
+using Entities;
 using Items;
-using Menu;
 
 namespace Repositories
 {
@@ -25,11 +24,11 @@ namespace Repositories
 
             string[] personagens = File.ReadAllLines(infoPersonagensPath);
 
-            for(int i=0; i<personagens.Length; i++)
+            for (int i = 0; i < personagens.Length; i++)
             {
                 string[] personagem = personagens[i].Split(';');
-                
-                if(personagem[0] == nome)
+
+                if (personagem[0] == nome)
                 {
                     personagens[i] = $"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana};{dinheiro}";
                     File.WriteAllLines(infoPersonagensPath, personagens);
@@ -77,7 +76,7 @@ namespace Repositories
                 string[] personagens = File.ReadAllLines(infoPersonagensPath);
 
                 foreach (string s in personagens)
-                {                   
+                {
                     string[] personagem = s.Split(';');
 
                     if (personagem[0] == nome && int.Parse(personagem[4]) > 0)
@@ -156,15 +155,15 @@ namespace Repositories
                         string manaAtual = infoArray[5];
                         string gold = infoArray[7];
 
-                        if(int.Parse(vidaAtual) > 0)
+                        if (int.Parse(vidaAtual) > 0)
                         {
                             Console.WriteLine($"\n     {cont}: {nome} ({classe}) | Nv:{nivel} | Andar:{andar} | Vida:{vidaAtual} | Mana:{manaAtual} | Gold:{gold}");
                             cont++;
                         }
                         else
                             Console.WriteLine($"\n     {nome} ({classe}) | Morto | Recorde: {andar} Andar(es)");
-                        
-                        
+
+
                         info = sr.ReadLine();
                     }
                 }

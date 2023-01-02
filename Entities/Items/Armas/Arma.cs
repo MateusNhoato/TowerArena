@@ -2,7 +2,7 @@
 {
     abstract class Arma : Item
     {
-        
+
         public abstract int Dano { get; }
 
         public override string ToString()

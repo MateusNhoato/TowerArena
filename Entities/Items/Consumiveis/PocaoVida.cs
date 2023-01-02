@@ -2,7 +2,7 @@
 {
     internal class PocaoVida : Item
     {
-        public PocaoVida() 
+        public PocaoVida()
         {
             Nome = "Poção de Vida";
         }

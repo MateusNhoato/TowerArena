@@ -3,11 +3,11 @@ namespace Items
 {
     internal class ArcoEFlechaLongo : Arma
     {
-        public ArcoEFlechaLongo() 
+        public ArcoEFlechaLongo()
         {
             Nome = "Arco e Flecha Longo";
 
         }
-        public override int Dano { get => new Random().Next(1, 11) + 2;  }
+        public override int Dano { get => new Random().Next(1, 11) + 2; }
     }
 }

@@ -2,7 +2,7 @@
 {
     internal class EspadaCurta : Arma
     {
-        public EspadaCurta() 
+        public EspadaCurta()
         {
             Nome = "Espada Curta";
         }

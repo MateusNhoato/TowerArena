@@ -1,12 +1,6 @@
 ﻿using Delegates;
 using Enums;
-using Items;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes
 {
@@ -16,25 +10,25 @@ namespace Classes
         {
             Nome = "Ladino";
             Descricao = "Furtivamente caótico.";
-           
+
         }
 
         public override void AdicionarHabilidades()
         {
             string descricao = "O primeiro que ataca é quem ganha - Ladino, usando sua iniciativa para atacar.";
-            Habilidade habilidade = new Habilidade("Estreia do Astro", 4, 10,descricao, EfeitosDeHabilidades.EstreiaDoAstro, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Estreia do Astro", 8, 10, descricao, EfeitosDeHabilidades.EstreiaDoAstro, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladino passa a perna em seu oponente, debilitando todos os status dele\n          enquanto pega as quantidades correspondentes dos atributos para si mesmo.";
-            habilidade = new Habilidade("Rasteira", 5, 4, descricao, EfeitosDeHabilidades.Rasteira, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Rasteira", 15, 4, descricao, EfeitosDeHabilidades.Rasteira, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladino assalta de 2 a 3 poções de seu oponente e as bebe.\n          Atenção: o oponente pode ou não ter poções.";
-            habilidade = new Habilidade("Pilhagem Conturbada", 8, 3, descricao, EfeitosDeHabilidades.PilhagemConturbado, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Pilhagem Conturbada", 15, 2, descricao, EfeitosDeHabilidades.PilhagemConturbado, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Ataque que soma todos os atributos do Ladino e dão o dano equivalente diretamente na vida do inimigo (true damage).";
-            habilidade = new Habilidade("Golpe Estatístico", 12, 1, descricao, EfeitosDeHabilidades.GolpeEstatistico, TipoDeHabilidade.Debuff);
+            habilidade = new Habilidade("Golpe Estatístico", 30, 1, descricao, EfeitosDeHabilidades.GolpeEstatistico, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
         }
 

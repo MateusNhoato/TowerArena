@@ -4,7 +4,7 @@
     {
         public ArcoEFlecha()
         {
-            Nome = "Arco e Flecha";           
+            Nome = "Arco e Flecha";
         }
 
         public override int Dano { get => new Random().Next(1, 7) + 1; }

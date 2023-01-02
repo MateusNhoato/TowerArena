@@ -1,8 +1,8 @@
-﻿using Entities;
+﻿using Classes;
+using Entities;
 using Repositories;
 using System.Globalization;
 using View;
-using Classes;
 
 
 namespace Menu
@@ -10,7 +10,7 @@ namespace Menu
     static class MenuPrincipal
     {
 
-        private static List<Classe> _classesBasicas { get; } = new List<Classe>() 
+        private static List<Classe> _classesBasicas { get; } = new List<Classe>()
              { new Arqueiro(), new Guerreiro(), new Ladrao(), new Conjurador()};
         public static void MostrarMenuPrincipal()
         {
@@ -63,9 +63,9 @@ namespace Menu
             string nome = Console.ReadLine();
             Console.WriteLine(Texto.linha + "\n");
 
-            for(int i=0; i<_classesBasicas.Count; i++)
+            for (int i = 0; i < _classesBasicas.Count; i++)
             {
-                Console.WriteLine($"     {i+1}- {_classesBasicas[i]}");
+                Console.WriteLine($"     {i + 1}- {_classesBasicas[i]}");
             }
             Console.Write("\n     Escolha a opção desejada: ");
 
@@ -119,15 +119,15 @@ namespace Menu
             ListarPersonagens();
             Console.Write("\n    Digite o nome do personagem gostaria de escolher: ");
             string nome = Console.ReadLine();
-            if(!string.IsNullOrEmpty(nome))
+            if (!string.IsNullOrEmpty(nome))
             {
                 nome = NomePascalCase(nome);
             }
-            
+
             Console.WriteLine(Texto.linha);
 
             Jogador jogador = DadosDosJogadores.AcharJogador(nome);
-            if(jogador != null)
+            if (jogador != null)
                 MenuDoAndar.MostrarMenuDoAndar(jogador);
             else
                 EntradaInvalida();

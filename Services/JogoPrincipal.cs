@@ -1,8 +1,8 @@
-﻿using Entities;
+﻿using Classes;
+using Entities;
 using Inimigos;
-using View;
-using Classes;
 using Menu;
+using View;
 
 namespace Services
 {
@@ -21,15 +21,12 @@ namespace Services
                 hab.ResetarUsos();
 
             Round = 1;
-            for (; Round <= 10; Round++) 
+            for (; Round <= 10; Round++)
             {
                 Inimigo inimigo = new Inimigo(jogador.Nivel, false, jogador.Andar);
-                if (Round == 10)
-                    inimigo = new Inimigo(jogador.Nivel, true, jogador.Andar);
 
-                
                 CombateView.ImprimirNumeroDoRound(Round);
-                if (!Combate.Combater(jogador, inimigo))    
+                if (!Combate.Combater(jogador, inimigo))
                 {
                     // se o jogador perder um combate
                     return false;
@@ -37,39 +34,52 @@ namespace Services
                 if (Round == 5)
                 {
                     jogador.LevelUp();
-                    PausaNoMeioDoAndar(jogador);
+                    PausaDoAndar(jogador, Round);
                 }
 
-                if(jogador.Classe.PropriedadeEspecial == true)
+                if (jogador.Classe.PropriedadeEspecial == true)
                 {
                     jogador.Classe.AlterarPropriedadeEspecial();
                 }
                 jogador.ZerarAtributosExtras();
+                jogador.RegeneracaoPosCombate();
 
-                if (Round != 5 && Round != 10)
+                if (Round == 10)
                 {
-                    jogador.RegeneracaoPosCombate();
+                    PausaDoAndar(jogador, Round);
+                    CombateView.BossRound(jogador.Andar);
+                    inimigo = new Inimigo(jogador.Nivel, true, jogador.Andar);
+
+                    if (!Combate.Combater(jogador, inimigo))
+                    {
+                        // se o jogador perder um combate
+                        return false;
+                    }
                 }
 
+
             }
-       
+
             return true;
         }
 
-        private static void PausaNoMeioDoAndar(Jogador jogador)
+        private static void PausaDoAndar(Jogador jogador, int round)
         {
             string resposta;
+            string continuar = "Round 6";
+            if (round == 10)
+                continuar = "Boss";
             do
             {
                 Console.Clear();
                 Console.WriteLine(Texto.meioDoAndar);
                 Console.WriteLine("     1- Loja");
                 Console.WriteLine("     2- Usar consumíveis");
-                Console.WriteLine("     3- Continuar para o Round 6");
+                Console.WriteLine($"     3- Continuar para o {continuar}");
                 Console.Write("     Digite a opção desejada: ");
                 resposta = Console.ReadLine();
 
-                switch(resposta)
+                switch (resposta)
                 {
                     case "1":
                         MenuDoAndar.MenuLoja(jogador);
@@ -77,6 +87,7 @@ namespace Services
                     case "2":
                         MenuDoAndar.MenuConsumiveis(jogador);
                         break;
+
                     case "3":
                         break;
 
@@ -84,23 +95,19 @@ namespace Services
                         MenuPrincipal.EntradaInvalida();
                         break;
                 }
-
-
             } while (resposta != "3");
-            MenuDoAndar.MenuConsumiveis(jogador);
-            
         }
         public static void ListarClasses()
         {
-            ClassesBasicas = new Classe[4] {new Arqueiro(), new Conjurador(), new Guerreiro(), new Ladrao()};
+            ClassesBasicas = new Classe[4] { new Arqueiro(), new Conjurador(), new Guerreiro(), new Ladrao() };
             Subclasses = new Classe[8] {new Atirador(), new Cavaleiro(),  new Feiticeiro(), new Espadachim(),
                                                  new Ladino(),   new Mago(),       new Mercenario(), new Ranger()};
         }
         public static void ListarChefesDeAndar()
         {
-           // ChefesDeAndarQuotes = new string[10] { };
+            // ChefesDeAndarQuotes = new string[10] { };
 
-          //  Inimigo inimigo = new Inimigo();
+            //  Inimigo inimigo = new Inimigo();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     internal class Grimorio : Arma
     {
-        public Grimorio() 
+        public Grimorio()
         {
             Nome = "Grimório";
         }
