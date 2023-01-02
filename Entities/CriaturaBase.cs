@@ -266,12 +266,26 @@ namespace Entities
                 if (VidaAtual > VidaTotal)
                     VidaAtual = VidaTotal;
             }
-            else
+            else if (pocao is PocaoMana)
             {
                 ManaAtual += ManaTotal / 3;
                 if (ManaAtual > ManaTotal)
                     ManaAtual = ManaTotal;
             }
+            else
+            {
+                if (pocao is PocaoAgilidade)
+                    AgilidadeExtra += 20;
+
+                else if (pocao is PocaoForca)
+                    ForcaExtra += 20;
+
+                else if (pocao is PocaoIntelecto)
+                    IntelectoExtra += 20;
+                else
+                    DefesaExtra += 20;
+            }
+
             Mochila.Items.Remove(pocao);
             Console.WriteLine($"     {Nome} bebeu uma {pocao.Nome}.");
         }

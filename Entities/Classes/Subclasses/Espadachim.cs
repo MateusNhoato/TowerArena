@@ -45,7 +45,6 @@ namespace Classes
             descricao = "Sequência de 4 golpes rápidos que causam dano devastador. Entalhar é aplicado em cada golpe.";
             habilidade = new Habilidade("Vendaval", 30, 2, descricao, EfeitosDeHabilidades.Vendaval, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
-
         }
 
         public override void ListarHabilidadesDaClasse()

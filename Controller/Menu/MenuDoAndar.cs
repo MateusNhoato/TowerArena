@@ -115,6 +115,7 @@ namespace Menu
 
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write("25G");
+
                 Console.ForegroundColor = aux;
                 Console.Write("]\n     2- Poção de Mana [");
 
@@ -122,16 +123,40 @@ namespace Menu
                 Console.Write("40G");
 
                 Console.ForegroundColor = aux;
+                Console.Write("]\n     3- Poção de Agi [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("100G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     4- Poção de For [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("100G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     5- Poção de Int [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("100G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     6- Poção de Def [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("100G");
+
+                Console.ForegroundColor = aux;
                 if (jogador.Classe is Mercenario)
                 {
-                    Console.WriteLine("]\n     3- Vender");
-                    Console.WriteLine("     4- Voltar");
-                    inputAux = "4";
+                    Console.WriteLine("]\n     7- Vender");
+                    Console.WriteLine("     8- Voltar");
+                    inputAux = "8";
                 }
                 else
                 {
-                    Console.WriteLine("]\n     3- Voltar");
-                    inputAux = "3";
+                    Console.WriteLine("]\n     7- Voltar");
+                    inputAux = "7";
                 }
 
                 Console.Write("     Digite a opção desejada: ");
@@ -147,11 +172,23 @@ namespace Menu
                         ComprarPocao(jogador, "2");
                         break;
                     case "3":
-                        if (jogador.Classe is Mercenario)
-                            vender(jogador);
+                        ComprarPocao(jogador, "3");
                         break;
 
                     case "4":
+                        ComprarPocao(jogador, "4");
+                        break;
+                    case "5":
+                        ComprarPocao(jogador, "5");
+                        break;
+                    case "6":
+                        ComprarPocao(jogador, "6");
+                        break;
+                    case "7":
+                        if (jogador.Classe is Mercenario)
+                            Vender(jogador);
+                        break;
+                    case "8":
                         break;
 
                     default:
@@ -166,8 +203,25 @@ namespace Menu
         {
             ConsoleColor aux = Console.ForegroundColor;
             Item pocao = new PocaoVida();
+            int dinheiroPorPocao = 25;
             if (tipo == "2")
+            {
+                dinheiroPorPocao = 40;
                 pocao = new PocaoMana();
+            }
+            else
+            {
+                dinheiroPorPocao = 100;
+                if (tipo == "3")
+                    pocao = new PocaoAgilidade();
+                else if (tipo == "4")
+                    pocao = new PocaoForca();
+                else if (tipo == "5")
+                    pocao = new PocaoIntelecto();
+                else
+                    pocao = new PocaoDefesa();
+            }
+
             int num;
             do
             {
@@ -181,7 +235,7 @@ namespace Menu
                 return;
             }
 
-            int totalDinheiro = (pocao is PocaoVida) ? num * 25 : num * 40;
+            int totalDinheiro = num * dinheiroPorPocao;
 
             if (jogador.Mochila.ChecarDinheiro(totalDinheiro))
             {
@@ -198,6 +252,7 @@ namespace Menu
                 Console.Write($"{totalDinheiro}");
                 Console.ForegroundColor = aux;
                 Console.WriteLine("G");
+                DadosDosJogadores.SalvarInfoJogador(jogador);
             }
             else
                 Console.WriteLine("     Gold insuficiente.");
@@ -206,9 +261,182 @@ namespace Menu
             Console.Clear();
 
         }
-        public static void vender(Jogador jogador)
+        public static void Vender(Jogador jogador)
         {
+            ConsoleColor aux = Console.ForegroundColor;
+            string inputAux;
+
+            string input;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(Texto.loja);
+                Console.Write($"\n     {jogador} | Vida [");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{jogador.VidaAtual} ");
+
+                Console.ForegroundColor = aux;
+                Console.Write("/");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{jogador.VidaTotal}");
+
+                Console.ForegroundColor = aux;
+                Console.Write("] | Mana [");
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"{jogador.ManaAtual}");
+
+                Console.ForegroundColor = aux;
+                Console.Write("/");
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"{jogador.ManaTotal}");
+
+                Console.ForegroundColor = aux;
+                Console.WriteLine("]\n");
+
+                Console.WriteLine(jogador.Mochila); ;
+
+                Console.WriteLine(Texto.linha);
+                Console.WriteLine("     Vender:");
+                Console.Write("     1- Poção de Vida [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("12G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     2- Poção de Mana [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("20G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     3- Poção de Agi  [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("50G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     4- Poção de For  [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("50G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     5- Poção de Int  [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("50G");
+
+                Console.ForegroundColor = aux;
+                Console.Write("]\n     6- Poção de Def  [");
+
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("50G");
+                Console.ForegroundColor = aux;
+                Console.WriteLine("]\n     7- Voltar");
+
+               
+                Console.Write("     Qual poção gostaria de vender? ");
+                input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        VenderPocao(jogador, "1");
+                        break;
+
+                    case "2":
+                        VenderPocao(jogador, "2");
+                        break;
+                    case "3":
+                        VenderPocao(jogador, "3");
+                        break;
+                    case "4":
+                        VenderPocao(jogador, "4");
+                        break;
+                    case "5":
+                        VenderPocao(jogador, "5");
+                        break;
+                    case "6":
+                        VenderPocao(jogador, "6");
+                        break;
+                    case "7":
+                        break;
+                    default:
+                        MenuPrincipal.EntradaInvalida();
+                        break;
+                }
+            } while (input != "7");
+
 
         }
+
+        public static void VenderPocao(Jogador jogador, string tipo)
+        {
+            ConsoleColor aux = Console.ForegroundColor;
+            Item pocao = new PocaoVida();
+            int dinheiroPorPocao = 12;
+            if (tipo == "2")
+            {
+                dinheiroPorPocao = 20;
+                pocao = new PocaoMana();
+            }
+            else
+            {
+                dinheiroPorPocao = 50;
+                if (tipo == "3")
+                    pocao = new PocaoAgilidade();
+                else if (tipo == "4")
+                    pocao = new PocaoForca();
+                else if (tipo == "5")
+                    pocao = new PocaoIntelecto();
+                else
+                    pocao = new PocaoDefesa();
+            }
+
+            int num;
+            do
+            {
+                Console.WriteLine(Texto.linha);
+                Console.Write($"\n     Digite a quantidade de {pocao.Nome} que gostaria de Vender: ");
+            } while (!(int.TryParse(Console.ReadLine(), out num)));
+
+            if (num <= 0)
+            {
+                MenuPrincipal.EntradaInvalida();
+                return;
+            }
+
+            int totalDinheiro = num * dinheiroPorPocao;
+
+            if (jogador.Mochila.Items.Count(x => x.Equals(pocao)) >= num)
+            {
+                jogador.Mochila.AlterarDinheiro(totalDinheiro);
+
+                for (int i = 0; i < num; i++)
+                {
+                    jogador.Mochila.Items.Remove(pocao);
+                }
+
+                Console.Write("     Total: ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"{totalDinheiro}");
+                Console.ForegroundColor = aux;
+                Console.WriteLine("G");
+                DadosDosJogadores.SalvarInfoJogador(jogador);
+            }
+            else
+                Console.WriteLine("     Poções insuficiente.");
+
+            MenuPrincipal.AperteEnterParaContinuar();
+            Console.Clear();
+        }
+
     }
 }
+
+
+
+
+

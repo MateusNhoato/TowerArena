@@ -67,6 +67,10 @@ namespace Entities
             sb.AppendLine($"{arma}");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
+            sb.AppendLine($"     [{Items.Count(x => x is PocaoAgilidade)}] Poções de Agilidade");
+            sb.AppendLine($"     [{Items.Count(x => x is PocaoForca)}] Poções de Forca");
+            sb.AppendLine($"     [{Items.Count(x => x is PocaoIntelecto)}] Poções de Intelecto");
+            sb.AppendLine($"     [{Items.Count(x => x is PocaoDefesa)}] Poções de Defesa");
             return sb.ToString();
         }
     }

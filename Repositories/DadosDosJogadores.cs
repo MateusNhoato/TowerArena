@@ -19,6 +19,13 @@ namespace Repositories
             int nivel = jogador.Nivel;
             int pocoesDeVida = jogador.Mochila.Items.Count(x => x is PocaoVida);
             int pocoesDeMana = jogador.Mochila.Items.Count(x => x is PocaoMana);
+            int pocoesDeAgi = jogador.Mochila.Items.Count(x => x is PocaoAgilidade);
+            int pocoesDeFor = jogador.Mochila.Items.Count(x => x is PocaoForca);
+            int pocoesDeInt = jogador.Mochila.Items.Count(x => x is PocaoIntelecto);
+            int pocoesDeDef = jogador.Mochila.Items.Count(x => x is PocaoDefesa);
+
+
+
             int dinheiro = jogador.Mochila.Dinheiro;
 
 
@@ -30,7 +37,7 @@ namespace Repositories
 
                 if (personagem[0] == nome)
                 {
-                    personagens[i] = $"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana};{dinheiro}";
+                    personagens[i] = $"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana},{pocoesDeAgi},{pocoesDeFor},{pocoesDeInt},{pocoesDeDef};{dinheiro}";
                     File.WriteAllLines(infoPersonagensPath, personagens);
                     return;
                 }
@@ -91,19 +98,21 @@ namespace Repositories
                         string[] pocoes = personagem[6].Split(",");
                         int pocoesVida = int.Parse(pocoes[0]);
                         int pocoesMana = int.Parse(pocoes[1]);
+                        int pocoesAgi = int.Parse(pocoes[2]);
+                        int pocoesFor = int.Parse(pocoes[3]);
+                        int pocoesInt = int.Parse(pocoes[4]);
+                        int pocoesDef = int.Parse(pocoes[5]);
+
+
                         int dinheiro = int.Parse(personagem[7]);
 
-                        for (int i = 0; i < pocoesVida; i++)
-                        {
-                            Item item = new PocaoVida();
-                            items.Add(item);
-                        }
+                        AdicionarPocoesNaLista(pocoesVida, new PocaoVida(), items);
+                        AdicionarPocoesNaLista(pocoesMana, new PocaoMana(), items);
+                        AdicionarPocoesNaLista(pocoesAgi, new PocaoAgilidade(), items);
+                        AdicionarPocoesNaLista(pocoesFor, new PocaoForca(), items);
+                        AdicionarPocoesNaLista(pocoesInt, new PocaoIntelecto(), items);
+                        AdicionarPocoesNaLista(pocoesDef, new PocaoDefesa(), items);
 
-                        for (int i = 0; i < pocoesMana; i++)
-                        {
-                            Item item = new PocaoMana();
-                            items.Add(item);
-                        }
 
                         Classe classe = Classe.Parse(personagem[3]);
 
@@ -125,6 +134,15 @@ namespace Repositories
                 return null;
             }
         }
+
+        public static void AdicionarPocoesNaLista(int quantia, Item pocao, List<Item> items)
+        {
+            for(int i=0; i <quantia; i++)
+            {
+                items.Add(pocao);
+            }
+        }
+
 
         public static void EditarInformacoesPersonagem(Jogador jogador)
         {
