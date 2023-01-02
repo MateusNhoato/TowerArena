@@ -17,10 +17,12 @@ namespace Classes
 
 
             VidaPorNivel = 4;
-            ManaPorNivel = 6;
-            PoderPorNivel = 6;
-            DefesaPorNivel = 4;
-            IniciativaPorNivel = 5;
+            ManaPorNivel = 3;
+            ForcaPorNivel = 3;
+            DefesaPorNivel = 3;
+            AgilidadePorNivel =4;
+            IntelectoPorNivel= 5;
+            AtributoPrincipal = AtributoPrincipal.Hibrido;
             AdicionarHabilidades();
         }
 
@@ -31,7 +33,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Arqueiro se prepara durante uma rodada, aumentando seu poder pelo resto do combate.";
-            habilidade = new Habilidade("Mente Afiada", 3, 3, descricao, EfeitosDeHabilidades.BuffPoder, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Mente Afiada", 3, 3, descricao, EfeitosDeHabilidades.BuffAgilidade2, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua iniciativa.";

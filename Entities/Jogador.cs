@@ -61,7 +61,11 @@ namespace Entities
             MudarClasse(Classe.MostrarSubclasses());
         }
 
-
+        public void RegeneracaoPosCombate()
+        {
+            VidaAtual += ForcaTotal * Nivel;
+            ManaAtual += IntelectoTotal * Nivel;
+        }
 
 
         public override int GetHashCode()

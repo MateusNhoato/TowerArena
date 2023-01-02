@@ -7,6 +7,6 @@
             Nome = "Espada e Escudo";
 
         }
-        public override int Dano { get => new Random().Next(125, 251); }
+        public override int Dano { get => new Random().Next(1, 7); }
     }
 }

@@ -17,8 +17,8 @@ namespace Classes
 
             VidaPorNivel = 5;
             DefesaPorNivel = 4;
-            IniciativaPorNivel=5;
-            PoderPorNivel = 6;
+            AgilidadePorNivel=5;
+            ForcaPorNivel = 6;
 
         }
 

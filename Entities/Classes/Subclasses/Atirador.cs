@@ -22,7 +22,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. O dano do Atirador aumenta.";
-            habilidade = new Habilidade("Na Mira", 5, 2, descricao, EfeitosDeHabilidades.BuffPoder10Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Na Mira", 5, 2, descricao, EfeitosDeHabilidades.BuffForca10Porcento, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua iniciativa.";

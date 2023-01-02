@@ -16,10 +16,13 @@ namespace Classes
             Arma = new Adaga();
 
             VidaPorNivel = 4;
-            ManaPorNivel = 4;
-            PoderPorNivel = 5;
-            DefesaPorNivel = 4;
-            IniciativaPorNivel = 8;
+            ManaPorNivel = 3;
+            IntelectoPorNivel = 4;
+            ForcaPorNivel = 3;
+            DefesaPorNivel = 3;
+            AgilidadePorNivel = 6;
+
+            AtributoPrincipal = AtributoPrincipal.Agilidade;
 
             AdicionarHabilidades();
         }
@@ -32,7 +35,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Uma bomba que debilita o poder e a defesa do oponente.";
-            habilidade = new Habilidade("Bomba de Fumaça", 3, 4,descricao, EfeitosDeHabilidades.DebuffPoderEDefesa, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Bomba de Fumaça", 3, 4,descricao, EfeitosDeHabilidades.DebuffDefesa2EDebuffStatusPrincipal2, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladrão assalta de 2 a 3 poções de seu oponente, se disponíveis.";

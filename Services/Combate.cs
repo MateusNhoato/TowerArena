@@ -20,20 +20,20 @@ namespace Services
             int iniAdicionalIn = random.Next(0, 5);
             CombateView.ImprimirIniciativa(iniAdicionalJg, iniAdicionalIn);
 
-            int iniciativaJogador = jogador.IniciativaTotal + iniAdicionalJg + 1;
-            int iniciativaInimigo = inimigo.IniciativaTotal + iniAdicionalIn + 1;
+            int iniciativaJogador = jogador.AgilidadeTotal + iniAdicionalJg + 1;
+            int iniciativaInimigo = inimigo.AgilidadeTotal + iniAdicionalIn + 1;
 
             if (iniciativaJogador >= iniciativaInimigo)
             {
                 if (jogador.Classe is Atirador)
-                    jogador.AlterarPoder(jogador.PoderTotal / 10);
+                    jogador.AlterarForca(jogador.PoderTotal / 10);
                 return true;
             }
 
             else
             {
                 if (inimigo.Classe is Atirador)
-                    inimigo.AlterarPoder(inimigo.PoderTotal / 10);
+                    inimigo.AlterarForca(inimigo.PoderTotal / 10);
                 return false;
             }
 

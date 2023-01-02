@@ -361,17 +361,17 @@ namespace View
             Console.WriteLine("]");
 
             
-            Console.Write("     Poder     :[");
+            Console.Write("     Força     :[");
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{jogador.PoderTotal}");
+            Console.Write($"{jogador.ForcaTotal}");
 
 
             Console.ForegroundColor = aux;
             Console.Write("(");
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{jogador.PoderExtra}");
+            Console.Write($"{jogador.ForcaExtra}");
 
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
@@ -393,22 +393,36 @@ namespace View
 
 
             Console.ForegroundColor = aux;
-            Console.Write("     Iniciativa:[");
+            Console.Write("     Agilidade :[");
 
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.Write($"{jogador.IniciativaTotal}");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write($"{jogador.AgilidadeTotal}");
 
             Console.ForegroundColor = aux;
             Console.Write("(");
 
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.Write($"{jogador.IniciativaExtra}");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write($"{jogador.AgilidadeExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine(")]");
+
+            Console.ForegroundColor = aux;
+            Console.Write("     Intelecto :[");
+
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"{jogador.IntelectoTotal}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"{jogador.IntelectoExtra}");
 
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
 
 
-           
             Console.WriteLine("\n\n     Obs: os números entre parênteses são atributos extras.");
             Console.WriteLine(Texto.linha);
             MenuPrincipal.AperteEnterParaContinuar();

@@ -28,7 +28,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Ranger recebe a benção de seu companheiro animal, aumentado o poder de ambos até o fim do combate.";
-            habilidade = new Habilidade("Aspecto Lupino", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder10Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Aspecto Lupino", 5, 4, descricao, EfeitosDeHabilidades.BuffForca10Porcento, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             descricao = "O Ranger e seu companheiro animal lutam e morrem como um só.\n          Até o fim do combate o Ranger recebe a vida de seu Lobo como vida extra.";

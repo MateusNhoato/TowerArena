@@ -12,15 +12,12 @@ namespace Inimigos
             // pegando os numeros aleatórios
             Random random= new Random();
             int numNome = random.Next(1, 21985);
-            int numNivel = random.Next(0);
+            int numNivel = random.Next(-1, 2);
             int pocoes = random.Next(0, 7);
             int classNum;
+                                           
 
-           
-
-                                              
-
-            if (nivel >= 10)
+            if (nivel >= 11)
             {
                 classNum = random.Next(0, 8);
                 Classe = JogoPrincipal.Subclasses[classNum];
@@ -30,14 +27,12 @@ namespace Inimigos
             {
                 classNum = random.Next(0, 4);
                 Classe = JogoPrincipal.ClassesBasicas[classNum];
-                VidaBase = 30;
-                DefesaBase = 7;
                 
             }
            
             if (boss)
             {
-                Nivel = nivel + 5;
+                Nivel = nivel + 3;
                 Nome = $"Chefe do Andar {andar} - " + NomeAleatorio(numNome);
 
                 Mochila = new Mochila(new List<Item>());
@@ -58,6 +53,10 @@ namespace Inimigos
             {
                 Nome = NomeAleatorio(numNome);
                 Nivel = nivel + numNivel;
+                if (Nivel <= 0)
+                    Nivel = 1;
+
+
                 VidaAtual = VidaTotal;
                 ManaAtual = ManaTotal;
 

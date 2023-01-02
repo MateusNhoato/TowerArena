@@ -16,11 +16,13 @@ namespace Classes
             Descricao = "Uma classe que se garante no combate corpo a corpo | Subclasses: Espachim e Cavaleiro.";
             Arma = new EspadaCurta();
 
-            VidaPorNivel = 7;
-            ManaPorNivel = 4;
-            PoderPorNivel = 5;
-            DefesaPorNivel = 5;
-            IniciativaPorNivel = 4;
+            VidaPorNivel = 5;
+            ManaPorNivel = 2;
+            IntelectoPorNivel = 3;
+            ForcaPorNivel = 5;
+            DefesaPorNivel = 4;
+            AgilidadePorNivel = 3;
+            AtributoPrincipal = AtributoPrincipal.Forca;
 
             AdicionarHabilidades();
 
@@ -33,12 +35,12 @@ namespace Classes
             Habilidade habilidade = new Habilidade("Golpe Duplo", 2, 5, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
-            descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua defesa.";
-            habilidade = new Habilidade("Instância De Defesa", 3, 3, descricao, EfeitosDeHabilidades.BuffDefesa, TipoDeHabilidade.Buff);
+            descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua Defesa.";
+            habilidade = new Habilidade("Instância De Defesa", 3, 3, descricao, EfeitosDeHabilidades.BuffDefesa2, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
-            descricao = "Golpe que atordoa o alvo, diminuindo sua defesa.";
-            habilidade = new Habilidade("Golpe Debilitante", 3, 3, descricao, EfeitosDeHabilidades.DebuffDefesa5, TipoDeHabilidade.Debuff);
+            descricao = "Golpe que atordoa o alvo, diminuindo sua Defesa.";
+            habilidade = new Habilidade("Golpe Debilitante", 3, 3, descricao, EfeitosDeHabilidades.DebuffDefesa2, TipoDeHabilidade.Debuff);
             Habilidades.Add(habilidade);
 
             descricao = "Sequência de golpes rápidos que causam dano devastador.";

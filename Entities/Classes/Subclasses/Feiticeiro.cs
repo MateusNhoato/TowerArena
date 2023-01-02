@@ -29,7 +29,7 @@ namespace Classes
 
             // 
             descricao = "";
-            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffPoder10Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Na Mira", 5, 4, descricao, EfeitosDeHabilidades.BuffForca10Porcento, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
             // 

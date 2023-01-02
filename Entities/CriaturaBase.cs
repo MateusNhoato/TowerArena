@@ -1,7 +1,7 @@
 ﻿using Classes;
 using Items;
-using Services;
-using System.Collections.Specialized;
+using Enums;
+
 
 namespace Entities
 {
@@ -12,20 +12,14 @@ namespace Entities
         public Mochila? Mochila { get; protected private set; }
         public string? Nome { get; protected private set; }
 
-
-        public int VidaBase { get; protected private set; } = 50;
-        public int ManaBase { get; protected private set; } = 20;
-        public int PoderBase { get; protected private set; } = 3;
-        public int DefesaBase { get; protected private set; } = 10;
-        public int IniciativaBase { get; protected private set; } = 3;
-
         public int VidaAtual { get; protected private set; }
         public int ManaAtual { get; protected private set; }
 
-        public int PoderExtra { get; private set; } = 0;
+        public int ForcaExtra { get; private set; } = 0;
         public int DefesaExtra { get; private set; } = 0;
-        public int IniciativaExtra { get; private set; } = 0;
+        public int AgilidadeExtra { get; private set; } = 0;
         public int VidaExtra { get; protected set; } = 0;
+        public int IntelectoExtra { get; protected set; } = 0;
 
         public CriaturaBase() { }
         public CriaturaBase(string nome, Classe classe)
@@ -34,22 +28,17 @@ namespace Entities
             Classe = classe;
 
         }
-        public CriaturaBase(int nivel, string nome, int vidaBase, int manaBase, int poderBase, int defesaBase, int iniciativaBase)
+        public CriaturaBase(int nivel, string nome)
         {
             Nivel = nivel;
             Nome = nome;
-            VidaBase = vidaBase;
-            ManaBase = manaBase;
-            PoderBase = poderBase;
-            DefesaBase = defesaBase;
-            IniciativaBase = iniciativaBase;
 
         }
-        public CriaturaBase(int nivel, Classe? classe, string? nome, int vidaBase, int manaBase, int poderBase, int defesaBase, int iniciativaBase, int vidaAtual, int manaAtual) : this(nivel, nome, vidaBase, manaBase, poderBase, defesaBase, iniciativaBase)
+        public CriaturaBase(int nivel, Classe? classe, string? nome, int vidaAtual, int manaAtual) : this(nivel, nome)
         {
-            Nome = nome;
             VidaAtual = vidaAtual;
             ManaAtual = manaAtual;
+            Classe = classe;
         }
 
 
@@ -57,14 +46,8 @@ namespace Entities
         {
             get
             {
-                if (Classe != null)
-                {
-                    if(Nivel < 10)
-                        return VidaBase + Classe.VidaPorNivel * Nivel + VidaExtra;
-                    return VidaBase + Classe.VidaPorNivel * Nivel * 5 + VidaExtra;
-                }
-                    
-                return VidaBase;
+                return (Classe != null) ? Classe.VidaPorNivel * DefesaTotal + VidaExtra : 0;
+
             }
         }
 
@@ -72,9 +55,7 @@ namespace Entities
         {
             get
             {
-                if (Classe != null)
-                    return ManaBase + Classe.ManaPorNivel * Nivel;
-                return ManaBase;
+                return (Classe != null) ? Classe.IntelectoPorNivel * Classe.ManaPorNivel : 0;
             }
         }
 
@@ -83,37 +64,64 @@ namespace Entities
             get
             {
                 if (Classe != null)
-                    return PoderBase + Classe.PoderPorNivel * Nivel + PoderExtra;
-                return PoderBase;
+                {
+                    if (Classe.AtributoPrincipal == AtributoPrincipal.Agilidade)
+                        return AgilidadeTotal;
+                    else if (Classe.AtributoPrincipal == AtributoPrincipal.Forca)
+                        return ForcaTotal;
+                    else if (Classe.AtributoPrincipal == AtributoPrincipal.Defesa)
+                        return DefesaTotal;
+                    else if (Classe.AtributoPrincipal == AtributoPrincipal.Intelecto)
+                        return IntelectoTotal;
+                    else
+                        return (AgilidadeTotal + ForcaTotal) / 2;
+                }
+                return 0;
+            }
+            
+        }
+        public int Esquiva
+        {
+            get
+            {
+                return AgilidadeTotal + 10;
+            }
+        }
+        public int ForcaTotal
+        {
+            get
+            {
+                return (Classe != null) ? Classe.ForcaPorNivel * Nivel + ForcaExtra : 0;
+            }
+        }
+        public int Acerto
+        {
+            get
+            {
+                return (Classe != null) ? PoderTotal + new Random().Next(1, 21) : 0;
+            }
+        }
+        public int IntelectoTotal
+        {
+            get
+            {
+                return (Classe != null) ? Classe.IntelectoPorNivel * Nivel + IntelectoExtra : 0;
             }
         }
 
         public int DefesaTotal
         {
             get
-            {
-                if (Classe != null)
-                {
-                    if(Nivel < 10)
-                    {
-                        int aux = DefesaBase + Classe.DefesaPorNivel * Nivel + DefesaExtra;
-                        if(aux > 0)
-                        return (aux > 0) ? aux : 1; 
-                    }
-                    int total = DefesaBase + Classe.DefesaPorNivel * Nivel * 2 + DefesaExtra;
-                    return (total > 0) ? total : 1;
-                }
-                return DefesaBase;
+            {              
+                return (Classe != null) ? Classe.DefesaPorNivel * Nivel + DefesaExtra: 0;
             }
         }
 
-        public int IniciativaTotal
+        public int AgilidadeTotal
         {
             get
-            {
-                if (Classe != null)
-                    return IniciativaBase + Classe.IniciativaPorNivel * Nivel + IniciativaExtra;
-                return IniciativaBase;
+            {                
+                    return (Classe != null) ? Classe.AgilidadePorNivel * Nivel + AgilidadeExtra : 0;               
             }
         }
 
@@ -121,11 +129,21 @@ namespace Entities
         {
             return (double)VidaAtual / VidaTotal * 100;
         }
-        
+
+        public bool CheckarAcerto(int acerto)
+        {
+            return acerto > Esquiva;
+        }
+
 
         public int ReceberDano(int dano)
         {
-            int danoTotal = dano / DefesaTotal;
+            int danoTotal;
+            if (DefesaTotal > 0)
+                danoTotal = dano - DefesaTotal;
+            else
+                danoTotal = dano;
+
             if (danoTotal > 0)
             {
                 VidaAtual -= danoTotal;
@@ -134,13 +152,49 @@ namespace Entities
         }
 
         public int ReceberDanoVerdadeiro(int dano)
-        {               
-               VidaAtual -= dano;          
+        {
+            VidaAtual -= dano;
             return dano;
         }
-        public int ReceberDanoNaIniciativa(int dano)
+        public int ReceberDanoNaAgilidade(int dano)
         {
-            int danoTotal = dano / IniciativaTotal;
+            int danoTotal;
+
+            if (AgilidadeTotal > 0)
+                danoTotal = dano - AgilidadeTotal;
+            else
+                danoTotal = dano;
+
+            if (danoTotal > 0)
+            {
+                VidaAtual -= danoTotal;
+            }
+            return danoTotal;
+        }
+        public int ReceberDanoNoIntelecto(int dano)
+        {
+            int danoTotal;
+
+            if (AgilidadeTotal > 0)
+                danoTotal = dano - IntelectoTotal;
+            else
+                danoTotal = dano;
+
+            if (danoTotal > 0)
+            {
+                VidaAtual -= danoTotal;
+            }
+            return danoTotal;
+        }
+        public int ReceberDanoNaForca(int dano)
+        {
+            int danoTotal;
+
+            if (AgilidadeTotal > 0)
+                danoTotal = dano - ForcaTotal;
+            else
+                danoTotal = dano;
+
             if (danoTotal > 0)
             {
                 VidaAtual -= danoTotal;
@@ -167,20 +221,25 @@ namespace Entities
             DefesaExtra += quantia;
         }
 
-        public void AlterarPoder(int quantia)
+        public void AlterarForca(int quantia)
         {
-            PoderExtra += quantia;
+            ForcaExtra += quantia;
         }
 
-        public void AlterarIniciativa(int quantia)
+        public void AlterarAgilidade(int quantia)
         {
-            IniciativaExtra += quantia;
+            AgilidadeExtra += quantia;
+        }
+
+        public void AlterarIntelecto(int quantia)
+        {
+            IntelectoExtra += quantia;
         }
 
         public void AlterarVida(int quantia)
         {
             VidaExtra += quantia;
-            VidaAtual+= VidaExtra;            
+            VidaAtual += VidaExtra;
         }
         public void AlterarMana(int quantia)
         {
@@ -190,8 +249,8 @@ namespace Entities
         }
         public void ZerarAtributosExtras()
         {
-            IniciativaExtra = 0;
-            PoderExtra = 0;
+            AgilidadeExtra = 0;
+            ForcaExtra = 0;
             DefesaExtra = 0;
             VidaAtual -= VidaExtra;
             VidaExtra = 0;

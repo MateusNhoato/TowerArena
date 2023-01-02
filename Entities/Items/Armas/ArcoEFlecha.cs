@@ -7,6 +7,6 @@
             Nome = "Arco e Flecha";           
         }
 
-        public override int Dano { get => new Random().Next(6, 61); }
+        public override int Dano { get => new Random().Next(1, 7) + 1; }
     }
 }

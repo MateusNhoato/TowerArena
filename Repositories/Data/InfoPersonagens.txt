@@ -1,0 +1,4 @@
+Lad;1;1;Ladrão;-2;0;3,5;0
+Mui;1;1;Guerreiro;20;6;5,5;0
+Arc;1;1;Arqueiro;12;15;5,5;0
+Con;1;1;Conjurador;12;24;5,5;0

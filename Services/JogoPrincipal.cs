@@ -9,9 +9,9 @@ namespace Services
     internal class JogoPrincipal
     {
         public static int Round { get; private set; } = 1;
-        private static string[] ChefesDeAndarQuotes;
-        public static Classe[] ClassesBasicas { get; private set; }
-        public static Classe[] Subclasses { get; private set; }
+        private static string[]? ChefesDeAndarQuotes;
+        public static Classe[]? ClassesBasicas { get; private set; }
+        public static Classe[]? Subclasses { get; private set; }
 
 
 
@@ -27,7 +27,7 @@ namespace Services
                 if (Round == 10)
                     inimigo = new Inimigo(jogador.Nivel, true, jogador.Andar);
 
-
+                
                 CombateView.ImprimirNumeroDoRound(Round);
                 if (!Combate.Combater(jogador, inimigo))    
                 {
@@ -45,6 +45,11 @@ namespace Services
                     jogador.Classe.AlterarPropriedadeEspecial();
                 }
                 jogador.ZerarAtributosExtras();
+
+                if (Round != 5 && Round != 10)
+                {
+                    jogador.RegeneracaoPosCombate();
+                }
 
             }
        

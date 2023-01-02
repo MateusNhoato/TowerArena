@@ -9,6 +9,6 @@
         }
 
 
-        public override int Dano { get => new Random().Next(5, 51); }
+        public override int Dano { get => new Random().Next(1, 5); }
     }
 }
