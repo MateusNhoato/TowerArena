@@ -37,8 +37,7 @@ namespace Menu
                         break;
 
                     case "2":
-                        ListarPersonagens();
-                        AperteEnterParaContinuar();
+                        MenuListaPersonagens();
                         break;
 
                     case "3":
@@ -54,7 +53,13 @@ namespace Menu
             } while (resposta != "0");
         }
 
-
+        private static void ListarPersonagens()
+        {
+            Console.Clear();
+            Console.WriteLine(Texto.personagens);
+            DadosDosJogadores.ListarPersonagens();
+            Console.WriteLine(Texto.linha);
+        }
         private static void MenuDeCriacaoDePersonagem()
         {
             Console.Clear();
@@ -106,18 +111,27 @@ namespace Menu
         }
 
 
-        private static void ListarPersonagens()
+        private static void MenuListaPersonagens()
         {
-            Console.Clear();
-            Console.WriteLine(Texto.personagens);
-            DadosDosJogadores.ListarPersonagens();
-            Console.WriteLine(Texto.linha);
+            string resposta;
+            do
+            {
+                ListarPersonagens();
+                Console.WriteLine("     1- Deletar personagens mortos");
+                Console.WriteLine("     0- Voltar");
+                Console.Write("     Digite a opção desejada: ");
+                resposta = Console.ReadLine();
+                if (resposta == "1")               
+                    DadosDosJogadores.DeletarPersonagensMortos();
+                
+
+            } while (resposta != "0");
         }
 
         private static void MenuEscolhaDePersonagem()
         {
             ListarPersonagens();
-            Console.Write("\n    Digite o nome do personagem gostaria de escolher: ");
+            Console.Write("\n    Digite o nome do personagem que gostaria de escolher: ");
             string nome = Console.ReadLine();
             if (!string.IsNullOrEmpty(nome))
             {
@@ -143,13 +157,13 @@ namespace Menu
 
         public static void AperteEnterParaContinuar()
         {
-            Console.Write("\n     Aperte enter para continuar");
+            Console.Write("\n     Aperte enter para continuar.");
             Console.ReadLine();
         }
 
         public static void EntradaInvalida()
         {
-            Console.Write("\n    Entrada Inválida.");
+            Console.Write("\n     Entrada Inválida.");
             System.Threading.Thread.Sleep(1200);
         }
     }

@@ -18,23 +18,23 @@ namespace Classes
         public override void AdicionarHabilidades()
         {
             string descricao = descricao = "";
-            Habilidade habilidade = new Habilidade("Símbolo da Dor", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Símbolo da Dor", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
 
             descricao = "";
-            habilidade = new Habilidade("Símbolo de Sangue", 20, 2, descricao, EfeitosDeHabilidades.ImagemDeFogo, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Símbolo de Sangue", 20, 2, descricao, EfeitosDeHabilidades.ImagemDeFogo);
             Habilidades.Add(habilidade);
 
 
             descricao = "";
-            habilidade = new Habilidade("", 20, 3, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("", 20, 3, descricao, EfeitosDeHabilidades.Ataque2x);
             Habilidades.Add(habilidade);
 
 
             descricao = "O Feiticeiro se transforma em um demônio." +
                 "\n          Além de ganhar 10 em cada atributo, todas as habilidades do feiticeiro se fortalecem.";
-           // habilidade = new Habilidade("Demonificação", 70, 1, descricao, EfeitosDeHabilidades.Demonificacao, TipoDeHabilidade.Buff);
+           // habilidade = new Habilidade("Demonificação", 70, 1, descricao, EfeitosDeHabilidades.Demonificacao);
             Habilidades.Add(habilidade);
         }
 

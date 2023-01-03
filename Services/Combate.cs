@@ -120,7 +120,7 @@ namespace Services
             {
                 // atacar
                 case "1":
-                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(jogador, inimigo);
+                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(jogador, inimigo);
                     break;
                 // habilidade especial
                 case "2":
@@ -248,7 +248,6 @@ namespace Services
 
                 if (consumivel == "4")
                     escolha = new PocaoForca();
-
                 else if (consumivel == "5")
                     escolha = new PocaoIntelecto();
                 else if (consumivel == "6")
@@ -279,7 +278,7 @@ namespace Services
                 n = random.Next(1, 101);
 
                 if (n > 25)
-                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
 
                 // habilidade
                 else
@@ -301,10 +300,10 @@ namespace Services
                                 inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                             }
                             else
-                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                         }
                     else
-                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
 
                 }
             }
@@ -322,11 +321,11 @@ namespace Services
                         inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                     }
                     else
-                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
 
                 }
                 else if (n < 51)
-                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
 
                 // habilidade
                 else
@@ -348,10 +347,10 @@ namespace Services
                                 inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                             }
                             else
-                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                         }
                     else
-                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
 
                 }
 

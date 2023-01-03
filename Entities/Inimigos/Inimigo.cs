@@ -13,7 +13,7 @@ namespace Inimigos
             Random random = new Random();
             int numNome = random.Next(1, 21985);
             int numNivel = random.Next(-1, 2);
-            int pocoes = random.Next(0, 7);
+            int pocoes = random.Next(0, 4);
             int classNum;
 
 
@@ -21,7 +21,7 @@ namespace Inimigos
             {
                 classNum = random.Next(0, 8);
                 Classe = JogoPrincipal.Subclasses[classNum];
-                pocoes = random.Next(2, 7);
+                pocoes = random.Next(2, 5);
             }
             else
             {
@@ -41,12 +41,9 @@ namespace Inimigos
                 Mochila.Items.Add(new PocaoMana());
                 Mochila.Items.Add(new PocaoMana());
 
+                Mochila.AlterarDinheiro(20 + new Random().Next(1, 20));
 
-                if (Classe is not Cavaleiro)
-                    VidaAtual = VidaTotal * 2;
-                else
-                    VidaAtual = VidaTotal;
-
+                VidaAtual = VidaTotal * 3 / 2;               
                 ManaAtual = ManaTotal;
             }
             else
@@ -61,7 +58,7 @@ namespace Inimigos
                 ManaAtual = ManaTotal;
 
                 Mochila = new Mochila(new List<Item>());
-
+                Mochila.AlterarDinheiro(5 + new Random().Next(1, 11));
 
                 for (int i = 0; i < pocoes; i++)
                 {

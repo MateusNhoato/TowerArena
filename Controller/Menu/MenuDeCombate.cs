@@ -42,7 +42,7 @@ namespace Menu
         public static string MenuDeConsumiveis()
         {
             
-            string[] opcoes = { "0", "1", "2", "3", "4","5","6", };
+            string[] opcoes = { "0", "1", "2", "3", "4", "5", "6", };
             string resposta;    
 
             do

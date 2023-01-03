@@ -28,19 +28,19 @@ namespace Classes
         public override void AdicionarHabilidades()
         {
             string descricao = "Causa dano ao oponente baseado na Defesa do Cavaleiro.";
-            Habilidade habilidade = new Habilidade("Golpe De Escudo", 8, 10, descricao, EfeitosDeHabilidades.GolpeDeEscudo, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Golpe De Escudo", 8, 10, descricao, EfeitosDeHabilidades.GolpeDeEscudo);
             Habilidades.Add(habilidade);
 
             descricao = "Concentrando-se no combate defensivo, o Cavaleiro aumenta sua Defesa.";
-            habilidade = new Habilidade("Instância De Defesa", 10, 3, descricao, EfeitosDeHabilidades.InstanciaDeDefesa, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Instância De Defesa", 10, 3, descricao, EfeitosDeHabilidades.InstanciaDeDefesa);
             Habilidades.Add(habilidade);
 
             descricao = "O Cavaleiro investe impiedosamente contra seu oponente, causando dano devastador.";
-            habilidade = new Habilidade("Investida", 10, 3, descricao, EfeitosDeHabilidades.Investida, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Investida", 10, 3, descricao, EfeitosDeHabilidades.Investida);
             Habilidades.Add(habilidade);
 
             descricao = "O Cavaleiro sacrifica 1/4 de sua Vida Máxima e causa o dano equivalente diretamente na vida do oponente (true damage).\n          Cuidado! Se o Cavaleiro estiver com 50% ou menos de vida ele vai fica somente com 1 de vida após o uso desta habilidade.";
-            habilidade = new Habilidade("Trocação Franca", 20, 2, descricao, EfeitosDeHabilidades.TrocacaoFranca, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Trocação Franca", 20, 2, descricao, EfeitosDeHabilidades.TrocacaoFranca);
             Habilidades.Add(habilidade);
         }
         public override void ListarHabilidadesDaClasse()

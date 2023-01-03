@@ -25,19 +25,19 @@ namespace Classes
         public override void AdicionarHabilidades()
         {
             string descricao = descricao = "Uma devastadora sucessão de flechas.";
-            Habilidade habilidade = new Habilidade("Saraivada de Flechas", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Saraivada de Flechas", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
             descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. A Agilidade do Atirador aumenta.";
-            habilidade = new Habilidade("Na Mira", 12, 3, descricao, EfeitosDeHabilidades.BuffAgilidade10Porcento, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Na Mira", 12, 3, descricao, EfeitosDeHabilidades.BuffAgilidade10Porcento);
             Habilidades.Add(habilidade);
 
             descricao = "Uma flechada tão rápida que o oponente só consegue se defender com sua Agilidade.";
-            habilidade = new Habilidade("Tiro Preciso", 10, 4, descricao, EfeitosDeHabilidades.TiroPreciso, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Tiro Preciso", 10, 4, descricao, EfeitosDeHabilidades.TiroPreciso);
             Habilidades.Add(habilidade);
 
             descricao = "As penas pretas desta flecha são a última coisa que os oponentes do Atirador verão.";
-            habilidade = new Habilidade("Flecha da Morte", 22, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Flecha da Morte", 22, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX);
             Habilidades.Add(habilidade);
 
         }

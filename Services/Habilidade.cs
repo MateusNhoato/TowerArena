@@ -11,17 +11,15 @@ namespace Services
         public int CustoDeMana { get; private set; }
         public string Descricao { get; private set; }
         public Efeito Efeito { get; private set; }
-        public TipoDeHabilidade Tipo { get; private set; }
         public int QuantidadeDeUsos { get; private set; }
         private int _usosMaximo;
 
-        public Habilidade(string nome, int custoDeMana, int quantidadeDeUsos, string descricao, Efeito efeito, TipoDeHabilidade tipo)
+        public Habilidade(string nome, int custoDeMana, int quantidadeDeUsos, string descricao, Efeito efeito)
         {
             Nome = nome;
             CustoDeMana = custoDeMana;
             Descricao = descricao;
-            Efeito = efeito;
-            Tipo = tipo;
+            Efeito = efeito;           
 
             _usosMaximo = quantidadeDeUsos;
             QuantidadeDeUsos = quantidadeDeUsos;

@@ -98,15 +98,20 @@ namespace Entities
             Item arma = Items.Find(x => x is Arma);
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("     Mochila:");
-            sb.AppendLine($"     Gold: {Dinheiro}");
-            sb.AppendLine($"     {arma}");
-            sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
-            sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
-            sb.AppendLine($"     [{Items.Count(x => x is PocaoAgilidade)}] Poções de Agilidade");
-            sb.AppendLine($"     [{Items.Count(x => x is PocaoForca)}] Poções de Forca");
-            sb.AppendLine($"     [{Items.Count(x => x is PocaoIntelecto)}] Poções de Intelecto");
-            sb.AppendLine($"     [{Items.Count(x => x is PocaoDefesa)}] Poções de Defesa");
+            if (Dinheiro > 0)
+                sb.AppendLine($"     Gold: {Dinheiro}");
+            if (Items.Count(x => x is PocaoVida) > 0)
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
+            if (Items.Count(x => x is PocaoMana) > 0)
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
+            if (Items.Count(x => x is PocaoAgilidade) > 0)
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoAgilidade)}] Poções de Agilidade");
+            if (Items.Count(x => x is PocaoForca) > 0)
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoForca)}] Poções de Forca");
+            if (Items.Count(x => x is PocaoIntelecto) > 0)
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoIntelecto)}] Poções de Intelecto");
+            if (Items.Count(x => x is PocaoDefesa) > 0)
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoDefesa)}] Poções de Defesa");
             return sb.ToString();
         }
     }

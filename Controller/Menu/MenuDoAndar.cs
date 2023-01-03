@@ -105,7 +105,7 @@ namespace Menu
 
                 Console.ForegroundColor = aux;
                 Console.WriteLine("]\n");
-
+                Console.WriteLine($"     Itens na mochila de {jogador.Nome}:");
                 Console.WriteLine(jogador.Mochila); ;
 
                 Console.WriteLine(Texto.linha);
@@ -287,7 +287,7 @@ namespace Menu
 
                 Console.ForegroundColor = aux;
                 Console.WriteLine("]\n");
-
+                Console.WriteLine($"     Itens na mochila de {jogador.Nome}:");
                 Console.WriteLine(jogador.Mochila); ;
 
                 Console.WriteLine(Texto.linha);

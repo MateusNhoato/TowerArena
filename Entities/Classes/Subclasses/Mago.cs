@@ -21,22 +21,22 @@ namespace Classes
         {
 
             string descricao = descricao = "";
-            Habilidade habilidade = new Habilidade("Bola de Água", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Bola de Água", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
 
             descricao = "O Mago faz uma cópia de si mesmo que irá receber o dano causado pelo oponente até se extinguir ou o combate chegar ao fim.";
-            habilidade = new Habilidade("Imagem de Fogo", 20, 2, descricao, EfeitosDeHabilidades.ImagemDeFogo, TipoDeHabilidade.Buff);
+            habilidade = new Habilidade("Imagem de Fogo", 20, 2, descricao, EfeitosDeHabilidades.ImagemDeFogo);
             Habilidades.Add(habilidade);
 
 
             descricao = "O chão treme por causa do ar? Nem o Mago soube me explicar direito para escrever a descrição da habilidade...\n          De qualquer jeito, o oponente recebe dano.";
-            habilidade = new Habilidade("Terremoto de Ar", 20, 3, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Terremoto de Ar", 20, 3, descricao, EfeitosDeHabilidades.Ataque2x);
             Habilidades.Add(habilidade);
 
 
             descricao = "";
-            habilidade = new Habilidade("", 40, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("", 40, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX);
             Habilidades.Add(habilidade);
         }
 

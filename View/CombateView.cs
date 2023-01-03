@@ -236,8 +236,8 @@ namespace View
         ███    ███   ███    █▄  ███   ███ ███    █▄    ███    █▄  ███    ███ 
         ███    ███   ███    ███ ███   ███ ███    ███   ███    ███ ███    ███ 
          ▀██████▀    ██████████  ▀█   █▀  ████████▀    ██████████ ████████▀  
-                                                                              
-"; public static string fugiu = @"
+                                                                           ";
+        public static string fugiu = @"
                ▄████████ ███    █▄     ▄██████▄   ▄█  ███    █▄  
               ███    ███ ███    ███   ███    ███ ███  ███    ███ 
               ███    █▀  ███    ███   ███    █▀  ███▌ ███    ███ 
@@ -246,8 +246,17 @@ namespace View
               ███        ███    ███   ███    ███ ███  ███    ███ 
               ███        ███    ███   ███    ███ ███  ███    ███ 
               ███        ████████▀    ████████▀  █▀   ████████▀  
-                                                              
-";
+                                                              ";
+        public static string loot = @"
+      ▄█        ▄██████▄   ▄██████▄      ███     
+     ███       ███    ███ ███    ███ ▀█████████▄ 
+     ███       ███    ███ ███    ███    ▀███▀▀██ 
+     ███       ███    ███ ███    ███     ███   ▀ 
+     ███       ███    ███ ███    ███     ███     
+     ███       ███    ███ ███    ███     ███     
+     ███▌    ▄ ███    ███ ███    ███     ███     
+     █████▄▄██  ▀██████▀   ▀██████▀     ▄████▀   
+     ▀                                        ";
         public static void ImprimirNumeroDoRound(int numero)
         {
             Console.Clear();
@@ -387,7 +396,7 @@ namespace View
 
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
-         
+
             Console.ForegroundColor = aux;
             Console.Write("     Intelecto :[");
 
@@ -419,7 +428,7 @@ namespace View
 
             Console.WriteLine("\n\n     Obs: os números entre parênteses são atributos extras.");
             Console.WriteLine(Texto.linha);
-         
+
             MenuPrincipal.AperteEnterParaContinuar();
         }
 
@@ -579,5 +588,17 @@ namespace View
             Thread.Sleep(1000);
         }
 
+        public static void ImprimirRecompensasDoCombate(Inimigo inimigo)
+        {
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.Clear();
+            Console.WriteLine(loot);
+            Console.WriteLine($"     Itens de {inimigo.Nome}:");
+            Console.WriteLine($"{inimigo.Mochila}"); 
+
+            Console.WriteLine(Texto.linha);
+            MenuPrincipal.AperteEnterParaContinuar();
+
+        }
     }
 }

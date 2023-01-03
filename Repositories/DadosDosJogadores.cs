@@ -86,7 +86,7 @@ namespace Repositories
                 {
                     string[] personagem = s.Split(';');
 
-                    if (personagem[0] == nome && int.Parse(personagem[4]) > 0)
+                    if (personagem[0] == nome && int.Parse(personagem[4]) > 0 && int.Parse(personagem[2]) < 11)
                     {
                         int nivel = int.Parse(personagem[1]);
                         int andar = int.Parse(personagem[2]);
@@ -137,23 +137,41 @@ namespace Repositories
 
         public static void AdicionarPocoesNaLista(int quantia, Item pocao, List<Item> items)
         {
-            for(int i=0; i <quantia; i++)
+            for (int i = 0; i < quantia; i++)
             {
                 items.Add(pocao);
             }
         }
 
 
-        public static void EditarInformacoesPersonagem(Jogador jogador)
+        //public static void EditarInformacoesPersonagem(Jogador jogador)
+        //{
+        //    string nome = jogador.Nome;
+        //    string[] personagensDoArquivo = File.ReadAllLines(infoPersonagensPath);
+        //    for (int i = 0; i < personagensDoArquivo.Length; i++)
+        //    {
+        //        string[] personagem = personagensDoArquivo[i].Split(';');
+        //    }
+        //}
+
+        public static void DeletarPersonagensMortos()
         {
-            string nome = jogador.Nome;
-            string[] personagensDoArquivo = File.ReadAllLines(infoPersonagensPath);
-            for (int i = 0; i < personagensDoArquivo.Length; i++)
+            List<string> personagens = File.ReadAllLines(infoPersonagensPath).ToList();
+
+            for (int i = 0; i < personagens.Count; i++)
             {
-                string[] personagem = personagensDoArquivo[i].Split(';');
+                string[] personagem = personagens[i].Split(';');
+
+                if (int.Parse(personagem[4]) <= 0)
+                {
+                    personagens.RemoveAt(i);
+                    i--;
+                }
             }
+            File.WriteAllLines(infoPersonagensPath, personagens);
         }
-        public static void ListarPersonagens()
+            
+    public static void ListarPersonagens()
         {
             try
             {
@@ -173,13 +191,26 @@ namespace Repositories
                         string manaAtual = infoArray[5];
                         string gold = infoArray[7];
 
-                        if (int.Parse(vidaAtual) > 0)
+
+                        ConsoleColor aux = Console.ForegroundColor;
+
+                        if (int.Parse(andar) > 10)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine($"\n     {nome} ({classe}) | Nv:{nivel} | Conquistador da Torre");
+                            Console.ForegroundColor = aux;
+                        }
+                        else if (int.Parse(vidaAtual) > 0)
                         {
                             Console.WriteLine($"\n     {cont}: {nome} ({classe}) | Nv:{nivel} | Andar:{andar} | Vida:{vidaAtual} | Mana:{manaAtual} | Gold:{gold}");
                             cont++;
                         }
                         else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.WriteLine($"\n     {nome} ({classe}) | Morto | Recorde: {andar} Andar(es)");
+                            Console.ForegroundColor = aux;
+                        }
 
 
                         info = sr.ReadLine();
@@ -192,5 +223,10 @@ namespace Repositories
                 Console.WriteLine("     Nenhum Personagem encontrado.");
             }
         }
+
     }
+
 }
+
+
+
