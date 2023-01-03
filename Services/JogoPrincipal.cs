@@ -73,7 +73,9 @@ namespace Services
                         jogador.Classe.AlterarPropriedadeEspecial();
                     jogador.ZerarAtributosExtras();
                     jogador.RegeneracaoPosCombate();
-
+                    // resetando os usos das habilidades
+                    foreach (Habilidade hab in jogador.Classe.Habilidades)
+                        hab.ResetarUsos();
 
                     PausaDoAndar(jogador, Round);
                     CombateView.BossRound(jogador.Andar);

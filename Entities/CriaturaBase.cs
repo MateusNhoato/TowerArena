@@ -21,6 +21,9 @@ namespace Entities
         public int VidaExtra { get; protected set; } = 0;
         public int IntelectoExtra { get; protected set; } = 0;
 
+        public int EsquivaExtra { get; private set; } = 0;
+        public int AcertoExtra { get; private set; } = 0;
+
         public CriaturaBase() { }
         public CriaturaBase(string nome, Classe classe)
         {
@@ -84,7 +87,7 @@ namespace Entities
         {
             get
             {
-                return AgilidadeTotal + 10;
+                return AgilidadeTotal + 10 + EsquivaExtra;
             }
         }
         public int ForcaTotal
@@ -98,7 +101,7 @@ namespace Entities
         {
             get
             {
-                return (Classe != null) ? PoderTotal + new Random().Next(1, 21) : 0;
+                return (Classe != null) ? PoderTotal + new Random().Next(1, 21) + AcertoExtra: 0;
             }
         }
         public int IntelectoTotal
@@ -248,12 +251,24 @@ namespace Entities
             if (ManaAtual > ManaTotal)
                 ManaAtual = ManaTotal;
         }
+
+        public void AlterarAcerto(int quantia)
+        {
+            AcertoExtra += quantia;
+        }
+        public void AlterarEsquiva(int quantia)
+        {
+            EsquivaExtra += quantia;
+        }
+
         public void ZerarAtributosExtras()
         {
             AgilidadeExtra = 0;
             ForcaExtra = 0;
             DefesaExtra = 0;
             IntelectoExtra= 0;
+            AcertoExtra = 0;
+            EsquivaExtra = 0;
 
             VidaAtual -= VidaExtra;
             VidaExtra = 0;

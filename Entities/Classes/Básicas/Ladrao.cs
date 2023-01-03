@@ -46,7 +46,12 @@ namespace Classes
             habilidade = new Habilidade("Fuga", 9, 1, descricao, EfeitosDeHabilidades.Fuga);
             Habilidades.Add(habilidade);
         }
-
+        public override void ListarHabilidadesDaClasse()
+        {
+            Console.WriteLine("     Elusão (Passiva): Se o Ladrão ganhar a Iniciativa,\n" +
+                "          ele ganha 2 de Esquiva e 1 de acerto pelo resto do Round.");
+            base.ListarHabilidadesDaClasse();
+        }
         public override Classe MostrarSubclasses()
         {
             return OpcoesSubClasses(new Ladino(), new Mercenario());

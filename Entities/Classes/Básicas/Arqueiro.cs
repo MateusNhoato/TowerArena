@@ -43,7 +43,12 @@ namespace Classes
             habilidade = new Habilidade("Saraivada de Flechas", 9, 3, descricao, EfeitosDeHabilidades.Ataque2EMeioX);
             Habilidades.Add(habilidade);
         }
-
+        public override void ListarHabilidadesDaClasse()
+        {
+            Console.WriteLine("     Tocaia (Passiva): Se o Arqueiro ganha na iniciativa,\n" +
+                "           ele ganha 2 de acerto e 1 de defesa pelo resto do combate.");
+            base.ListarHabilidadesDaClasse();
+        }
         public override Classe MostrarSubclasses()
         {
             return OpcoesSubClasses(new Ranger(), new Atirador());

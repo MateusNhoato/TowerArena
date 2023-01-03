@@ -62,12 +62,7 @@ namespace Services
                 if (!resultadoIniciativa)
                 {
                     AcaoDoInimigo(inimigo, jogador);
-
-                    // regeneração do Feiticeiro
-                    if (jogador.Classe is Feiticeiro)
-                        jogador.AlterarVida(jogador.ForcaTotal / 4);
-
-
+                    CheckarBuffsComecoDoTurno(jogador, inimigo);
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
@@ -76,11 +71,8 @@ namespace Services
                 }
                 else
                 {
-                    // regeneração do Feiticeiro
-                    if (jogador.Classe is Feiticeiro)
-                        jogador.AlterarVida(jogador.ForcaTotal / 2);
-
-
+                    CheckarBuffsComecoDoTurno(jogador, inimigo);
+                    CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     AcaoDoJogador(jogador, inimigo);
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
@@ -161,6 +153,12 @@ namespace Services
                 jogador.AlterarDefesa(new Random().Next(1, 7));
         }
 
+        public static void CheckarBuffsComecoDoTurno(CriaturaBase jogador, CriaturaBase inimigo)
+        {
+            // regeneração do Feiticeiro
+            if (jogador.Classe is Feiticeiro)
+                jogador.AlterarVida(jogador.ForcaTotal / 4);
+        }
 
 
         public static bool FimDoRound(CriaturaBase jogador, CriaturaBase inimigo)

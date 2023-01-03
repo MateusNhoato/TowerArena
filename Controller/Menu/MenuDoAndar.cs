@@ -71,7 +71,7 @@ namespace Menu
                 CombateView.JanelaDeStatus(jogador);
                 Console.WriteLine("\n     Mochila:");
                 jogador.Mochila.ListarConsumiveisNaMochila();
-                Console.Write("\n     Obs: ao utilizar uma poção de atributo, a poção só terá seu efeito pelo próximo Round.");
+                Console.Write("\n     Obs: ao utilizar uma poção de atributo, o personagem só terá seu efeito pelo próximo Round.");
                 Console.Write("\n     Digite a opção desejada: ");
                 
                 input = Console.ReadLine();
@@ -259,7 +259,6 @@ namespace Menu
                 Console.Write($"{totalDinheiro}");
                 Console.ForegroundColor = aux;
                 Console.WriteLine("G");
-                DadosDosJogadores.SalvarInfoJogador(jogador);
             }
             else
                 Console.WriteLine("     Gold insuficiente.");
@@ -431,7 +430,6 @@ namespace Menu
                 Console.Write($"{totalDinheiro}");
                 Console.ForegroundColor = aux;
                 Console.WriteLine("G");
-                DadosDosJogadores.SalvarInfoJogador(jogador);
             }
             else
                 Console.WriteLine("     Poções insuficiente.");

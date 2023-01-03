@@ -43,6 +43,12 @@ namespace Classes
             Habilidades.Add(habilidade);
         }
 
+        public override void ListarHabilidadesDaClasse()
+        {
+            Console.WriteLine("     Persistência (Passiva): Se o Conjurador perde na iniciativa,\n" +
+                "          ele ganha 2 de Esquiva e 1 de defesa pelo resto do combate.");
+            base.ListarHabilidadesDaClasse();
+        }
         public override Classe MostrarSubclasses()
         {
             return OpcoesSubClasses(new Feiticeiro(), new Mago());

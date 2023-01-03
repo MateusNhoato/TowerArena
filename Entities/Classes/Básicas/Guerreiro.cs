@@ -47,7 +47,12 @@ namespace Classes
             Habilidades.Add(habilidade);
 
         }
-
+        public override void ListarHabilidadesDaClasse()
+        {
+            Console.WriteLine("     O primeiro que apanha, o último que ri (Passiva): Se o guerreiro perder a Iniciativa\n" +
+                "          ele ganha 2 de Acerto e 1 de Força pelo resto do Round.");
+            base.ListarHabilidadesDaClasse();
+        }
         public override Classe MostrarSubclasses()
         {
             return OpcoesSubClasses(new Espadachim(), new Cavaleiro());
