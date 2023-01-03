@@ -24,7 +24,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Ladino assalta de 2 a 3 poções de seu oponente e as bebe.\n          Atenção: o oponente pode ou não ter poções.";
-            habilidade = new Habilidade("Pilhagem Conturbada", 15, 2, descricao, EfeitosDeHabilidades.PilhagemConturbado, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Pilhagem Conturbada", 15, 2, descricao, EfeitosDeHabilidades.PilhagemConturbada, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Ataque que soma todos os atributos do Ladino e dão o dano equivalente diretamente na vida do inimigo (true damage).";

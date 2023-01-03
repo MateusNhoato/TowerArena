@@ -9,7 +9,6 @@ namespace Services
     internal class JogoPrincipal
     {
         public static int Round { get; private set; } = 1;
-        private static string[]? ChefesDeAndarQuotes;
         public static Classe[]? ClassesBasicas { get; private set; }
         public static Classe[]? Subclasses { get; private set; }
 
@@ -103,11 +102,6 @@ namespace Services
             Subclasses = new Classe[8] {new Atirador(), new Cavaleiro(),  new Feiticeiro(), new Espadachim(),
                                                  new Ladino(),   new Mago(),       new Mercenario(), new Ranger()};
         }
-        public static void ListarChefesDeAndar()
-        {
-            // ChefesDeAndarQuotes = new string[10] { };
-
-            //  Inimigo inimigo = new Inimigo();
-        }
+        
     }
 }

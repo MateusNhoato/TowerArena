@@ -45,7 +45,8 @@ namespace Classes
         }
         public override void ListarHabilidadesDaClasse()
         {
-            Console.WriteLine("     Defesa É O Melhor Ataque(Passiva): Toda vez que o cavaleiro usa uma habilidade ele ganha 2 de defesa.");
+            Console.WriteLine("     Defesa É O Melhor Ataque(Passiva): Toda vez que o cavaleiro usa uma habilidade ele ganha 2 de defesa." +
+                "\n          No começo de todo combate, o Caveleiro ganha de 1 a 6 de Defesa, garantidos pelo seu escudo.");
             base.ListarHabilidadesDaClasse();
         }
     }

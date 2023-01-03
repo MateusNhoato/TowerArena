@@ -171,9 +171,9 @@ namespace Delegates
         }
 
         public static void Ataque2xComDebuffDefesa2(CriaturaBase conjurador, CriaturaBase receptor)
-        {
-            DebuffDefesa2(conjurador, receptor);
+        {           
             Ataque2x(conjurador, receptor);
+            DebuffDefesa2(conjurador, receptor);
 
         }
 
@@ -457,7 +457,7 @@ namespace Delegates
         {
             if (receptor.CheckarAcerto(conjurador.Acerto * 2))
             {
-                int dano = receptor.ReceberDanoNaAgilidade((conjurador.PoderTotal * 2) + conjurador.Classe.Arma.Dano);
+                int dano = receptor.ReceberDanoNaAgilidade(conjurador.PoderTotal * 3 / 2 + conjurador.Classe.Arma.Dano);
                 CombateView.ImprimirTelaDeCombate(conjurador, receptor);
                 Console.WriteLine($"     {receptor.Nome} recebe {dano} de dano.");
             }
@@ -505,7 +505,7 @@ namespace Delegates
             }
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {conjurador.Nome} roubou:\n     [{contPocaoVida}] Poções de Vida\n     [{contPocaoMana}] Poções de Mana\n     de {receptor.Nome}.");
-            MenuPrincipal.AperteEnterParaContinuar();
+            Thread.Sleep(1500);
         }
         // Cavaleiro
         public static void TrocacaoFranca(CriaturaBase conjurador, CriaturaBase receptor)
@@ -599,7 +599,7 @@ namespace Delegates
         }
         // Ladino
 
-        public static void PilhagemConturbado(CriaturaBase conjurador, CriaturaBase receptor)
+        public static void PilhagemConturbada(CriaturaBase conjurador, CriaturaBase receptor)
         {
             if (receptor.Nivel - conjurador.Nivel >= 4)
             {
@@ -631,7 +631,7 @@ namespace Delegates
             }
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {conjurador.Nome} bebeu:\n     [{contPocaoVida}] Poções de Vida\n     [{contPocaoMana}] Poções de Mana\n     de {receptor.Nome}.");
-            MenuPrincipal.AperteEnterParaContinuar();
+            Thread.Sleep(1500);
         }
 
         public static void Rasteira(CriaturaBase conjurador, CriaturaBase receptor)

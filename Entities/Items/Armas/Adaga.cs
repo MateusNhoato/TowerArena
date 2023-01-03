@@ -6,6 +6,7 @@
         public Adaga()
         {
             Nome = "Adaga";
+            Descricao = "| Dano: 1-4";
         }
 
 

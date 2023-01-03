@@ -31,19 +31,19 @@ namespace Classes
         {
 
             string descricao = "O Guerreiro investe contra seu alvo e ataca duas vezes rapidamente.";
-            Habilidade habilidade = new Habilidade("Golpe Duplo", 2, 10, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Golpe Duplo", 2, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua Defesa.";
             habilidade = new Habilidade("Instância De Defesa", 2, 4, descricao, EfeitosDeHabilidades.BuffDefesa5, TipoDeHabilidade.Buff);
             Habilidades.Add(habilidade);
 
-            descricao = "Golpe que atordoa o alvo, diminuindo sua Defesa.";
+            descricao = "Golpe que causa dano e atordoa o alvo, diminuindo sua Defesa.";
             habilidade = new Habilidade("Golpe Debilitante", 4, 3, descricao, EfeitosDeHabilidades.Ataque2xComDebuffDefesa2, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Sequência de golpes rápidos que causam dano devastador.";
-            habilidade = new Habilidade("Combo Triplo", 6, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX, TipoDeHabilidade.Ataque);
+            habilidade = new Habilidade("Combo Triplo", 6, 2, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
         }

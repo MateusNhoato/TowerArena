@@ -5,7 +5,9 @@
         public PocaoVida()
         {
             Nome = "Poção de Vida";
+            Descricao = "   (Recupera 30% da Vida máxima)";
         }
 
+        
     }
 }

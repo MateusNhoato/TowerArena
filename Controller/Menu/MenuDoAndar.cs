@@ -21,7 +21,7 @@ namespace Menu
                 Console.WriteLine($"     1- Entrar no Próximo Andar - {(jogador.Andar)}");
                 Console.WriteLine("     2- Usar Consumíveis");
                 Console.WriteLine("     3- Loja");
-                Console.WriteLine("     4- Voltar");
+                Console.WriteLine("     0- Voltar");
                 Console.Write("     Digite a opção desejada: ");
                 resposta = Console.ReadLine();
 
@@ -34,7 +34,7 @@ namespace Menu
                         else
                         {
                             DadosDosJogadores.SalvarInfoJogador(jogador);
-                            resposta = "4";
+                            resposta = "0";
                         }
                         break;
 
@@ -46,14 +46,14 @@ namespace Menu
                         MenuLoja(jogador);
                         break;
 
-                    case "4":
+                    case "0":
                         break;
 
                     default:
                         MenuPrincipal.EntradaInvalida();
                         break;
                 }
-            } while (resposta != "4");
+            } while (resposta != "0");
 
         }
 
@@ -68,15 +68,14 @@ namespace Menu
                 jogador.Mochila.ListarConsumiveisNaMochila(false);
                 Console.Write("     Digite a opção desejada: ");
                 input = Console.ReadLine();
-                Combate.ItensConsumiveisDoJogador(jogador, input);
-            } while (input != "3");
+                Combate.ItensConsumiveisDoJogador(jogador, input, false);
+            } while (input != "0");
 
         }
 
         public static void MenuLoja(Jogador jogador)
         {
             ConsoleColor aux = Console.ForegroundColor;
-            string inputAux;
 
             string input;
             do
@@ -148,16 +147,10 @@ namespace Menu
 
                 Console.ForegroundColor = aux;
                 if (jogador.Classe is Mercenario)
-                {
                     Console.WriteLine("]\n     7- Vender");
-                    Console.WriteLine("     8- Voltar");
-                    inputAux = "8";
-                }
-                else
-                {
-                    Console.WriteLine("]\n     7- Voltar");
-                    inputAux = "7";
-                }
+
+                Console.WriteLine("]\n     0- Voltar");
+
 
                 Console.Write("     Digite a opção desejada: ");
                 input = Console.ReadLine();
@@ -188,7 +181,7 @@ namespace Menu
                         if (jogador.Classe is Mercenario)
                             Vender(jogador);
                         break;
-                    case "8":
+                    case "0":
                         break;
 
                     default:
@@ -196,7 +189,7 @@ namespace Menu
                         break;
 
                 }
-            } while (input != inputAux);
+            } while (input != "0");
         }
 
         public static void ComprarPocao(Jogador jogador, string tipo)
@@ -264,7 +257,7 @@ namespace Menu
         public static void Vender(Jogador jogador)
         {
             ConsoleColor aux = Console.ForegroundColor;
-            string inputAux;
+
 
             string input;
             do
@@ -334,9 +327,9 @@ namespace Menu
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write("50G");
                 Console.ForegroundColor = aux;
-                Console.WriteLine("]\n     7- Voltar");
+                Console.WriteLine("]\n     0- Voltar");
 
-               
+
                 Console.Write("     Qual poção gostaria de vender? ");
                 input = Console.ReadLine();
 
@@ -361,13 +354,13 @@ namespace Menu
                     case "6":
                         VenderPocao(jogador, "6");
                         break;
-                    case "7":
+                    case "0":
                         break;
                     default:
                         MenuPrincipal.EntradaInvalida();
                         break;
                 }
-            } while (input != "7");
+            } while (input != "0");
 
 
         }

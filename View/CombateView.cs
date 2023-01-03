@@ -309,11 +309,11 @@ namespace View
             return MenuDeCombate.MenuDeHabilidades(jogador);
 
         }
-        public static string MostrarItensConsumiveis(CriaturaBase jogador, CriaturaBase inimigo)
+        public static string MostrarItensConsumiveis(CriaturaBase jogador, CriaturaBase inimigo, bool mostrarPocoesDeStatus)
         {
             Console.Clear();
             ImprimirTelaDeCombate(jogador, inimigo);
-            jogador.Mochila.ListarConsumiveisNaMochila(false);
+            jogador.Mochila.ListarConsumiveisNaMochila(mostrarPocoesDeStatus);
             return MenuDeCombate.MenuDeConsumiveis();
         }
         public static void JanelaDeStatus(CriaturaBase jogador)
@@ -358,38 +358,6 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine("]");
 
-
-            Console.Write("     Força     :[");
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{jogador.ForcaTotal}");
-
-
-            Console.ForegroundColor = aux;
-            Console.Write("(");
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{jogador.ForcaExtra}");
-
-            Console.ForegroundColor = aux;
-            Console.WriteLine(")]");
-
-
-            Console.Write("     Defesa    :[");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write($"{jogador.DefesaTotal}");
-
-            Console.ForegroundColor = aux;
-            Console.Write("(");
-
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write($"{jogador.DefesaExtra}");
-
-            Console.ForegroundColor = aux;
-            Console.WriteLine(")]");
-
-
-
             Console.ForegroundColor = aux;
             Console.Write("     Agilidade :[");
 
@@ -405,6 +373,21 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
 
+            Console.Write("     Força     :[");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{jogador.ForcaTotal}");
+
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{jogador.ForcaExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine(")]");
+         
             Console.ForegroundColor = aux;
             Console.Write("     Intelecto :[");
 
@@ -420,9 +403,23 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
 
+            Console.Write("     Defesa    :[");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"{jogador.DefesaTotal}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"{jogador.DefesaExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine(")]");
+
 
             Console.WriteLine("\n\n     Obs: os números entre parênteses são atributos extras.");
             Console.WriteLine(Texto.linha);
+         
             MenuPrincipal.AperteEnterParaContinuar();
         }
 

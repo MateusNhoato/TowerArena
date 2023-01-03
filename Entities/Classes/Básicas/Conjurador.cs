@@ -27,7 +27,7 @@ namespace Classes
         public override void AdicionarHabilidades()
         {
             string descricao = "Uma onda de energia que é lançada ao oponente.";
-            Habilidade habilidade = new Habilidade("Alakazam", 4, 10, descricao, EfeitosDeHabilidades.Ataque2x, TipoDeHabilidade.Ataque);
+            Habilidade habilidade = new Habilidade("Alakazam", 4, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX, TipoDeHabilidade.Ataque);
             Habilidades.Add(habilidade);
 
             descricao = "Aumento o poder do Conjurador até o fim do combate.";

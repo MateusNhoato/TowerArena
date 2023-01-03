@@ -53,7 +53,7 @@ namespace Inimigos
             {
                 Nome = NomeAleatorio(numNome);
                 Nivel = nivel + numNivel;
-                if (Nivel <= 0)
+                if (nivel == 1)
                     Nivel = 1;
 
 

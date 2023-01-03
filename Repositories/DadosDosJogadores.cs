@@ -45,7 +45,7 @@ namespace Repositories
 
             using (StreamWriter sw = new StreamWriter(infoPersonagensPath, true))
             {
-                sw.WriteLine($"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana};{dinheiro}");
+                sw.WriteLine($"{nome};{nivel};{andar};{classe};{vidaAtual};{manaAtual};{pocoesDeVida},{pocoesDeMana},{pocoesDeAgi},{pocoesDeFor},{pocoesDeInt},{pocoesDeDef};{dinheiro}");
             }
         }
 

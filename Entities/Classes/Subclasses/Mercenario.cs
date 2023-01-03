@@ -47,8 +47,7 @@ namespace Classes
 
         public override void ListarHabilidadesDaClasse()
         {
-            Console.WriteLine("     Ganância(Passiva): O Mercenário ganha o dobro de Gold por luta." +
-                "\n          Para cada 100 de Gold em sua mochila, o Mercenário ganha 1 ponto em cada atributo.");
+            Console.WriteLine("     Ganância(Passiva): Para cada 100 de Gold em sua mochila, o Mercenário ganha 1 ponto em Força.");
             base.ListarHabilidadesDaClasse();
         }
     }

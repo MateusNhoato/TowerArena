@@ -27,10 +27,9 @@ namespace Menu
         public static string MenuDeHabilidades(CriaturaBase jogador)
         {
             int numeroDeHabilidades = jogador.Classe.Habilidades.Count;
-            IEnumerable<int> enumerable = Enumerable.Range(1, numeroDeHabilidades + 2);
+            IEnumerable<int> enumerable = Enumerable.Range(0, numeroDeHabilidades + 1);
             string[] opcoes = enumerable.Select(x => x.ToString()).ToArray();
             string resposta;
-
 
             do
             {
@@ -42,14 +41,16 @@ namespace Menu
 
         public static string MenuDeConsumiveis()
         {
-            string[] opcoes = { "1", "2", "3" };
-            string resposta;
+            
+            string[] opcoes = { "0", "1", "2", "3", "4","5","6", };
+            string resposta;    
 
             do
             {
                 Console.Write("     Digite a opção desejada: ");
                 resposta = Console.ReadLine();
             } while (!opcoes.Contains(resposta));
+
             return resposta;
 
         }

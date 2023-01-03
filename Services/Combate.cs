@@ -41,18 +41,17 @@ namespace Services
             _combate = true;
             // buff inicial do Mercenário
             if (jogador.Classe is Mercenario)
-            {
-                int buff = jogador.Mochila.Dinheiro / 100;
-                jogador.AlterarForca(buff);
-                jogador.AlterarDefesa(buff);
-                jogador.AlterarAgilidade(buff);
-                jogador.AlterarIntelecto(buff);
-            }
+                jogador.AlterarForca(jogador.Mochila.Dinheiro / 100);
+
 
             // buff inicial de Mago
             if (jogador.Classe is Mago)
                 if (jogador.PoderTotal > inimigo.PoderTotal)
                     jogador.AlterarDefesa(5);
+
+            // buff inicial do Cavaleiro
+            if(jogador.Classe is Cavaleiro)
+                jogador.AlterarDefesa(new Random().Next(1, 7));
 
 
             bool resultadoIniciativa = Iniciativa(jogador, inimigo);
@@ -121,7 +120,7 @@ namespace Services
             {
                 // atacar
                 case "1":
-                    new Habilidade("Ataque", 0, 1, $"{jogador.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(jogador, inimigo);
+                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(jogador, inimigo);
                     break;
                 // habilidade especial
                 case "2":
@@ -135,8 +134,8 @@ namespace Services
 
                 // consumiveis            
                 case "3":
-                    string consumivel = CombateView.MostrarItensConsumiveis(jogador, inimigo);
-                    if (!(ItensConsumiveisDoJogador(jogador, consumivel)))
+                    string consumivel = CombateView.MostrarItensConsumiveis(jogador, inimigo, true);
+                    if (!(ItensConsumiveisDoJogador(jogador, consumivel, true)))
                     {
                         CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                         AcaoDoJogador(jogador, inimigo);
@@ -155,9 +154,8 @@ namespace Services
 
         public static bool HabilidadesDoJogador(CriaturaBase jogador, CriaturaBase inimigo, string habilidade)
         {
-            string sair = (jogador.Classe.Habilidades.Count + 1).ToString();
-
-            if (habilidade == sair)
+            
+            if (habilidade == "0")
                 return false;
             else
             {
@@ -187,9 +185,9 @@ namespace Services
         }
 
         // opções de usar poção de vida e mana ou voltar
-        public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel)
+        public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel, bool pocoesDeStatus)
         {
-            if (consumivel == "3")
+            if (consumivel == "0")
                 return false;
 
 
@@ -216,24 +214,61 @@ namespace Services
                 return false;
             }
 
-            if (jogador.ManaAtual >= jogador.ManaTotal)
+            else if (consumivel == "2")
             {
-                Console.WriteLine("\n     Sua mana está cheia, não ha porque usar uma poção.");
-                Thread.Sleep(1000);
-                return false;
+                if (jogador.ManaAtual >= jogador.ManaTotal)
+                {
+                    Console.WriteLine("\n     Sua mana está cheia, não ha porque usar uma poção.");
+                    Thread.Sleep(1000);
+                    return false;
+                }
+
+                if (jogador.Mochila.Items.Exists(x => x is PocaoMana))
+                {
+                    Item pocao = jogador.Mochila.Items.Find(x => x is PocaoMana);
+                    jogador.BeberPocao(pocao);
+                    jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                    Thread.Sleep(1000);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("\n     Sem poção de mana disponível.");
+                    Thread.Sleep(1000);
+                    return false;
+                }
             }
 
-            if (jogador.Mochila.Items.Exists(x => x is PocaoMana))
+            else
             {
-                Item pocao = jogador.Mochila.Items.Find(x => x is PocaoMana);
-                jogador.BeberPocao(pocao);
-                jogador.Mochila.RemoverConsumivelDaMochila(pocao);
-                Thread.Sleep(1000);
-                return true;
+                if (!pocoesDeStatus)
+                    return false;
+
+                Item escolha = new PocaoAgilidade();
+
+                if (consumivel == "4")
+                    escolha = new PocaoForca();
+
+                else if (consumivel == "5")
+                    escolha = new PocaoIntelecto();
+                else if (consumivel == "6")
+                    escolha = new PocaoDefesa();
+
+                if (jogador.Mochila.Items.Exists(x => x.Equals(escolha)))
+                {
+                    Item pocao = jogador.Mochila.Items.Find(x => x.Equals(escolha));
+                    jogador.BeberPocao(pocao);
+                    jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                    Thread.Sleep(1000);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"\n     Sem {escolha.Nome} disponível.");
+                    Thread.Sleep(1000);
+                    return false;
+                }
             }
-            Console.WriteLine("\n     Sem poção de mana disponível.");
-            Thread.Sleep(1000);
-            return false;
         }
         public static void AcaoDoInimigo(CriaturaBase inimigo, CriaturaBase jogador)
         {
@@ -266,10 +301,10 @@ namespace Services
                                 inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                             }
                             else
-                                new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
                         }
                     else
-                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
 
                 }
             }
@@ -287,11 +322,11 @@ namespace Services
                         inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                     }
                     else
-                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
 
                 }
                 else if (n < 51)
-                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
 
                 // habilidade
                 else
@@ -313,16 +348,15 @@ namespace Services
                                 inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                             }
                             else
-                                new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
                         }
                     else
-                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
+                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x, TipoDeHabilidade.Ataque).Efeito(inimigo, jogador);
 
                 }
 
             }
-
-
+            CombateView.ImprimirTelaDeCombate(jogador, inimigo);
             MenuPrincipal.AperteEnterParaContinuar();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Items;
+using System;
 using System.Text;
 
 namespace Entities
@@ -21,25 +22,60 @@ namespace Entities
             Items = items;
         }
 
-        public void ListarConsumiveisNaMochila(bool loja)
+        public void ListarConsumiveisNaMochila(bool mostrarPotsDeStatus)
         {
-            Console.Write($"     1- Poções de Vida [");
-
             ConsoleColor aux = Console.ForegroundColor;
+            Console.Write($"     1- {new PocaoVida()} [");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($"{Items.Count(x => x is PocaoVida)}");
 
             Console.ForegroundColor = aux;
             Console.WriteLine($"]");
-            Console.Write($"     2- Poções de Mana [");
+            Console.Write($"     2- {new PocaoMana()} [");
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"{Items.Count(x => x is PocaoMana)}");
+
             Console.ForegroundColor = aux;
             Console.WriteLine("]");
 
-            if (!loja)
-                Console.WriteLine("     3- Voltar");
+            if (mostrarPotsDeStatus)
+            {
+                Console.Write($"     3- {new PocaoAgilidade()} [");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write($"{Items.Count(x => x is PocaoAgilidade)}");
+
+                Console.ForegroundColor = aux;
+                Console.WriteLine("]");
+
+
+
+                Console.ForegroundColor = aux;
+                Console.Write($"     4- {new PocaoForca()} [");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write($"{Items.Count(x => x is PocaoForca)}");
+
+                Console.ForegroundColor = aux;
+                Console.WriteLine("]");
+
+                Console.ForegroundColor = aux;
+                Console.Write($"     5- {new PocaoIntelecto()} [");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.Write($"{Items.Count(x => x is PocaoIntelecto)}");
+
+                Console.ForegroundColor = aux;
+                Console.WriteLine("]");
+
+                Console.ForegroundColor = aux;
+                Console.Write($"     6- {new PocaoDefesa()} [");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"{Items.Count(x => x is PocaoDefesa)}");
+
+                Console.ForegroundColor = aux;
+                Console.WriteLine("]");
+            }
+
+            Console.WriteLine("     0- Voltar");
         }
 
         public void RemoverConsumivelDaMochila(Item pocao)
@@ -64,7 +100,7 @@ namespace Entities
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("     Mochila:");
             sb.AppendLine($"     Gold: {Dinheiro}");
-            sb.AppendLine($"{arma}");
+            sb.AppendLine($"     {arma}");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoVida)}] Poções de Vida");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
             sb.AppendLine($"     [{Items.Count(x => x is PocaoAgilidade)}] Poções de Agilidade");

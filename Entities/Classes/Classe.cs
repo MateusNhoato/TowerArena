@@ -94,7 +94,7 @@ namespace Classes
                 Console.Write($"     {i}- ");
                 Habilidades[i - 1].ImprimirHabilidade();
             }
-            Console.WriteLine($"     {i}- Voltar");
+            Console.WriteLine($"     0- Voltar");
         }
 
         public virtual void AlterarPropriedadeEspecial()

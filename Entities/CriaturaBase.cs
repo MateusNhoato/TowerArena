@@ -46,7 +46,7 @@ namespace Entities
         {
             get
             {
-                return (Classe != null) ? Classe.VidaPorNivel * DefesaTotal + VidaExtra : 0;
+                return (Classe != null) ? Classe.VidaPorNivel * Classe.DefesaPorNivel * Nivel : 0;
 
             }
         }
@@ -116,6 +116,7 @@ namespace Entities
                 return (Classe != null) ? Classe.DefesaPorNivel * Nivel + DefesaExtra : 0;
             }
         }
+
 
         public int AgilidadeTotal
         {
