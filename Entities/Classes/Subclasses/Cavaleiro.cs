@@ -12,7 +12,7 @@ namespace Classes
         {
 
             Nome = "Cavaleiro";
-            Descricao = "";
+            Descricao = "Um combatente resistente, especialista em lutas longas.";
             Arma = new EspadaEEscudo();
 
             VidaPorNivel = 6;

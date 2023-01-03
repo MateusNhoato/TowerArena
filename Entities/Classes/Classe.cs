@@ -58,6 +58,8 @@ namespace Classes
                 classe = new Mercenario();
             else if (input == "Ranger")
                 classe = new Ranger();
+            else if (input == "Teste")
+                classe = new Teste();
             else
                 classe = null;
 
@@ -107,7 +109,7 @@ namespace Classes
 
         public override string ToString()
         {
-            return $"{Nome} | Arma: {Arma.Nome} | {Descricao}";
+            return $"{Nome} | Arma: {Arma.Nome} | Atributo Principal: {AtributoPrincipal}|\n        {Descricao}";
         }
 
     }

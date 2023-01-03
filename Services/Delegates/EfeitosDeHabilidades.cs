@@ -480,7 +480,7 @@ namespace Delegates
             }
 
             if (Combate.Iniciativa(conjurador, receptor))
-                Combate._combate = false;
+                Combate.Luta = false;
 
         }
 
@@ -510,6 +510,7 @@ namespace Delegates
         // Cavaleiro
         public static void TrocacaoFranca(CriaturaBase conjurador, CriaturaBase receptor)
         {
+            conjurador.AlterarDefesa(2);
             int dano = conjurador.VidaTotal / 4;
 
             conjurador.ReceberDanoVerdadeiro(dano);
@@ -791,8 +792,40 @@ namespace Delegates
 
         }
 
+        // feiticeiro
+        public static void Demonificacao(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            conjurador.AlterarAgilidade(10);
+            conjurador.AlterarIntelecto(10);
+            conjurador.AlterarDefesa(10);
+            conjurador.AlterarForca(10);
 
+            conjurador.Classe.AlterarPropriedadeEspecial();
+        }
+        public static void MaldiçãoDeSangue(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            if (conjurador.Classe.PropriedadeEspecial == true)
+                Ataque2xComLifeSteal(conjurador, receptor);
+            else
+                Ataque2x(conjurador, receptor);
 
+        }
+        public static void MaldiçãoDaDor(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            if (conjurador.Classe.PropriedadeEspecial == true)
+                Ataque2x(conjurador, receptor);
+            else
+                Ataque1EMeioX(conjurador, receptor);
+
+        }
+        public static void BarreiraDeSangue(CriaturaBase conjurador, CriaturaBase receptor)
+        {
+            if (conjurador.Classe.PropriedadeEspecial == false)            
+                conjurador.ReceberDanoVerdadeiro(conjurador.VidaTotal / 4);
+
+            BuffDefesa10Porcento(conjurador, receptor);
+            conjurador.AlterarVida(conjurador.VidaTotal / 2);
+        }
         #endregion
 
 

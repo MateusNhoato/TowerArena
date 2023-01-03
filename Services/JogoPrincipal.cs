@@ -24,51 +24,73 @@ namespace Services
             // loop principal do jogo
             for (; Round <= 10; Round++)
             {
+                // resets antes do combate
+                if (jogador.Classe.PropriedadeEspecial == true)
+                    jogador.Classe.AlterarPropriedadeEspecial();
+
+                if (Round != 1 && Round != 6)
+                {
+                    jogador.ZerarAtributosExtras();
+                    jogador.RegeneracaoPosCombate();
+                }
+
+
                 // gerando um inimigo aleatório, que não é boss
                 Inimigo inimigo = new Inimigo(jogador.Nivel, false, jogador.Andar);
 
                 CombateView.ImprimirNumeroDoRound(Round);
-                if (!Combate.Combater(jogador, inimigo))
+                bool? resultado = Combate.Combater(jogador, inimigo);
+                if ( resultado == false)
                 {
                     // se o jogador perder um combate
                     return false;
                 }
                 // loot do combate
-                CombateView.ImprimirRecompensasDoCombate(inimigo);
-                RecompensasDoCombate(jogador, inimigo);
+                if(resultado != null)
+                {
+                    CombateView.ImprimirRecompensasDoCombate(inimigo);
+                    RecompensasDoCombate(jogador, inimigo);
+                }
                 
+
                 // pausa depois do quinto round
                 if (Round == 5)
                 {
+                    // resets antes da pausa
+                    jogador.ZerarAtributosExtras();
+                    jogador.RegeneracaoPosCombate();
+
                     jogador.LevelUp();
                     PausaDoAndar(jogador, Round);
                 }
-                // resets pós combate
-                if (jogador.Classe.PropriedadeEspecial == true)
-                {
-                    jogador.Classe.AlterarPropriedadeEspecial();
-                }              
-                jogador.ZerarAtributosExtras();
-                jogador.RegeneracaoPosCombate();
+
 
                 // round do boss
                 if (Round == 10)
                 {
+                    // resets antes do combate
+                    if (jogador.Classe.PropriedadeEspecial == true)
+                        jogador.Classe.AlterarPropriedadeEspecial();
+                    jogador.ZerarAtributosExtras();
+                    jogador.RegeneracaoPosCombate();
+
+
                     PausaDoAndar(jogador, Round);
                     CombateView.BossRound(jogador.Andar);
                     inimigo = new Inimigo(jogador.Nivel, true, jogador.Andar);
-
-                    if (!Combate.Combater(jogador, inimigo))
+                    resultado = Combate.Combater(jogador, inimigo);
+                    if (resultado == false)
                     {
                         // se o jogador perder para o boss
                         return false;
                     }
                     // loot boss
-                    CombateView.ImprimirRecompensasDoCombate(inimigo);
-                    RecompensasDoCombate(jogador, inimigo);
+                    if(jogador.Andar < 10)
+                    {
+                        CombateView.ImprimirRecompensasDoCombate(inimigo);
+                        RecompensasDoCombate(jogador, inimigo);
+                    }                   
                 }
-
-
             }
 
             return true;
@@ -78,12 +100,16 @@ namespace Services
         {
             string resposta;
             string continuar = "Round 6";
+            string titulo = Texto.meioDoAndar;
             if (round == 10)
+            {
                 continuar = "Boss";
+                titulo = Texto.finalDoAndar;
+            }
             do
             {
                 Console.Clear();
-                Console.WriteLine(Texto.meioDoAndar);
+                Console.WriteLine(titulo);
                 Console.WriteLine("     1- Loja");
                 Console.WriteLine("     2- Usar consumíveis");
                 Console.WriteLine($"     3- Continuar para o {continuar}");
@@ -113,7 +139,7 @@ namespace Services
         {
             jogador.Mochila.AlterarDinheiro(inimigo.Mochila.Dinheiro);
 
-            for(int i=1; i <inimigo.Mochila.Items.Count; i++)
+            for (int i = 1; i < inimigo.Mochila.Items.Count; i++)
             {
                 jogador.Mochila.Items.Add(inimigo.Mochila.Items[i]);
             }
@@ -125,6 +151,6 @@ namespace Services
             Subclasses = new Classe[8] {new Atirador(), new Cavaleiro(),  new Feiticeiro(), new Espadachim(),
                                                  new Ladino(),   new Mago(),       new Mercenario(), new Ranger()};
         }
-        
+
     }
 }

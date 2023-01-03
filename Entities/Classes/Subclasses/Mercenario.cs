@@ -41,7 +41,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Sequência de 3 ataques de Lâmina Sagrenta.";
-            habilidade = new Habilidade("Combo Sangrento", 30, 2, descricao, EfeitosDeHabilidades.ComboSangrento);
+            habilidade = new Habilidade("Combo Sangrento", 25, 2, descricao, EfeitosDeHabilidades.ComboSangrento);
             Habilidades.Add(habilidade);
         }
 

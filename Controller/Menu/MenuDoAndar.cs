@@ -30,12 +30,17 @@ namespace Menu
                     case "1":
                         Texto.ImprimirAndarAtual(jogador.Andar);
                         if (JogoPrincipal.Jogar(jogador))
-                            jogador.SubirAndar();
-                        else
                         {
-                            DadosDosJogadores.SalvarInfoJogador(jogador);
-                            resposta = "0";
+                            jogador.SubirAndar();
+                            if (jogador.Andar > 10)
+                            {
+                                Texto.FinalDoJogo(jogador.Nome);
+                                resposta = "0";
+                            }
                         }
+                        else
+                            resposta = "0";
+                        DadosDosJogadores.SalvarInfoJogador(jogador);                                    
                         break;
 
                     case "2":
@@ -63,12 +68,15 @@ namespace Menu
             do
             {
                 Console.Clear();
-                Console.WriteLine(Texto.consumiveis);
-                Console.WriteLine($"\n     {jogador} | Vida [{jogador.VidaAtual} / {jogador.VidaTotal}] | Mana [{jogador.ManaAtual} / {jogador.ManaTotal}]\n");
-                jogador.Mochila.ListarConsumiveisNaMochila(false);
-                Console.Write("     Digite a opção desejada: ");
+                CombateView.JanelaDeStatus(jogador);
+                Console.WriteLine("\n     Mochila:");
+                jogador.Mochila.ListarConsumiveisNaMochila();
+                Console.Write("\n     Obs: ao utilizar uma poção de atributo, a poção só terá seu efeito pelo próximo Round.");
+                Console.Write("\n     Digite a opção desejada: ");
+                
                 input = Console.ReadLine();
-                Combate.ItensConsumiveisDoJogador(jogador, input, false);
+                if(!string.IsNullOrEmpty(input))
+                    Combate.ItensConsumiveisDoJogador(jogador, input);
             } while (input != "0");
 
         }
@@ -195,9 +203,15 @@ namespace Menu
         public static void ComprarPocao(Jogador jogador, string tipo)
         {
             ConsoleColor aux = Console.ForegroundColor;
-            Item pocao = new PocaoVida();
-            int dinheiroPorPocao = 25;
-            if (tipo == "2")
+            Item pocao;
+            int dinheiroPorPocao;
+
+            if(tipo == "1")
+            {
+                pocao = new PocaoVida();
+                dinheiroPorPocao = 25;
+            }
+            else if (tipo == "2")
             {
                 dinheiroPorPocao = 40;
                 pocao = new PocaoMana();

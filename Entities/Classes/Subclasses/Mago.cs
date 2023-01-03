@@ -20,7 +20,7 @@ namespace Classes
         public override void AdicionarHabilidades()
         {
 
-            string descricao = descricao = "";
+            string descricao = "O Mago conjura uma esfera de água e a joga no oponente.";
             Habilidade habilidade = new Habilidade("Bola de Água", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
@@ -35,8 +35,8 @@ namespace Classes
             Habilidades.Add(habilidade);
 
 
-            descricao = "";
-            habilidade = new Habilidade("", 40, 2, descricao, EfeitosDeHabilidades.Ataque2EMeioX);
+            descricao = "O Mago invoca a fúria dos céus para abater seu oponente.";
+            habilidade = new Habilidade("Raios e Trovões", 50, 2, descricao, EfeitosDeHabilidades.Ataque3x);
             Habilidades.Add(habilidade);
         }
 

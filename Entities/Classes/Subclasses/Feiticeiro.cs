@@ -10,37 +10,41 @@ namespace Classes
         public Feiticeiro()
         {
             Nome = "Feiticeiro";
-            Descricao = "Conjurador que utiliza maldições e magias de sangue para lutar.";
+            Descricao = "Um conjurador das trevas que utiliza maldições e magias de sangue para lutar.";
             Arma = new Grimorio();
 
         }
 
         public override void AdicionarHabilidades()
         {
-            string descricao = descricao = "";
-            Habilidade habilidade = new Habilidade("Símbolo da Dor", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
+            string descricao = "Maldição que causa dano ao inimigo." +
+                "\n          Se 'Demonificação' estiver ativa, 'Maldição da Dor' causa mais dano.";
+            Habilidade habilidade = new Habilidade("Maldição da Dor", 8, 10, descricao, EfeitosDeHabilidades.MaldiçãoDaDor);
             Habilidades.Add(habilidade);
 
 
-            descricao = "";
-            habilidade = new Habilidade("Símbolo de Sangue", 20, 2, descricao, EfeitosDeHabilidades.ImagemDeFogo);
+            descricao = "Maldição que causa dano ao inimigo." +
+                "\n          Se 'Demonificação' estiver ativa, o Feiticeiro recupera metade do dano causado em Vida.";
+            habilidade = new Habilidade("Maldição de Sangue", 14, 4, descricao, EfeitosDeHabilidades.MaldiçãoDeSangue);
             Habilidades.Add(habilidade);
 
 
-            descricao = "";
-            habilidade = new Habilidade("", 20, 3, descricao, EfeitosDeHabilidades.Ataque2x);
+            descricao = "O Feiticeiro usa seu próprio sangue para fazer uma barreira poderosa (aumenta Defesa e Vida Temporária)." +
+                "\n          O Feiticeiro gasta 1/4 de sua Vida Máxima para utilizar esta habilidade." +
+                "\n          Se 'Demonificação' estiver ativa, esta habilidade não gasta Vida..";
+            habilidade = new Habilidade("Barreira de Sangue", 10, 3, descricao, EfeitosDeHabilidades.BarreiraDeSangue);
             Habilidades.Add(habilidade);
 
 
             descricao = "O Feiticeiro se transforma em um demônio." +
                 "\n          Além de ganhar 10 em cada atributo, todas as habilidades do feiticeiro se fortalecem.";
-           // habilidade = new Habilidade("Demonificação", 70, 1, descricao, EfeitosDeHabilidades.Demonificacao);
+            habilidade = new Habilidade("Demonificação", 70, 1, descricao, EfeitosDeHabilidades.Demonificacao);
             Habilidades.Add(habilidade);
         }
 
         public override void ListarHabilidadesDaClasse()
         {
-            Console.WriteLine("     Leve Como Pedra(Passiva): ");
+            Console.WriteLine("    Regeneração (Passiva): O Feiticeiro recupera seu Intelecto Extra + Forca Extra em Vida no começo de seu turno.");
             base.ListarHabilidadesDaClasse();
         }
     }

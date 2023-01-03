@@ -322,7 +322,7 @@ namespace View
         {
             Console.Clear();
             ImprimirTelaDeCombate(jogador, inimigo);
-            jogador.Mochila.ListarConsumiveisNaMochila(mostrarPocoesDeStatus);
+            jogador.Mochila.ListarConsumiveisNaMochila();
             return MenuDeCombate.MenuDeConsumiveis();
         }
         public static void JanelaDeStatus(CriaturaBase jogador)
@@ -365,7 +365,7 @@ namespace View
             Console.Write($"{jogador.ManaTotal}");
 
             Console.ForegroundColor = aux;
-            Console.WriteLine("]");
+            Console.WriteLine("]\n");
 
             Console.ForegroundColor = aux;
             Console.Write("     Agilidade :[");
@@ -426,10 +426,8 @@ namespace View
             Console.WriteLine(")]");
 
 
-            Console.WriteLine("\n\n     Obs: os números entre parênteses são atributos extras.");
-            Console.WriteLine(Texto.linha);
-
-            MenuPrincipal.AperteEnterParaContinuar();
+            Console.WriteLine("\n     Obs: os números entre parênteses são atributos extras.");
+            Console.WriteLine(Texto.linha);        
         }
 
         public static void BossRound(int andar)

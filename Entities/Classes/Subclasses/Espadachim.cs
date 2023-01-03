@@ -10,7 +10,7 @@ namespace Classes
         public Espadachim()
         {
             Nome = "Espadachim";
-            Descricao = "Um combatente ágil que usa duas espadas.";
+            Descricao = "Um combatente ágil que usa duas espadas para retalhar seus inimigos.";
             Arma = new DuasEspadas();
             PropriedadeEspecial = false;
 

@@ -5,13 +5,14 @@ using Enums;
 using Inimigos;
 using Items;
 using Menu;
+using System.Security.Cryptography.X509Certificates;
 using View;
 
 namespace Services
 {
     internal class Combate
     {
-        public static bool _combate { get; set; } = true;
+        public static bool Luta { get; set; } = true;
 
         public static bool Iniciativa(CriaturaBase jogador, CriaturaBase inimigo)
         {
@@ -30,15 +31,14 @@ namespace Services
                     jogador.AlterarAgilidade(jogador.AgilidadeTotal / 10);
                 return true;
             }
-
             else
                 return false;
 
 
         }
-        public static bool Combater(Jogador jogador, Inimigo inimigo)
+        public static bool? Combater(Jogador jogador, Inimigo inimigo)
         {
-            _combate = true;
+            Luta = true;
             // buff inicial do Mercenário
             if (jogador.Classe is Mercenario)
                 jogador.AlterarForca(jogador.Mochila.Dinheiro / 100);
@@ -72,6 +72,14 @@ namespace Services
                 if (!resultadoIniciativa)
                 {
                     AcaoDoInimigo(inimigo, jogador);
+
+                    // regeneração do Feiticeiro
+                    if (jogador.Classe is Feiticeiro)
+                    {
+                        int quantia = jogador.IntelectoExtra + jogador.ForcaExtra;
+                        if (quantia > 0)
+                            jogador.AlterarVida(quantia);
+                    }
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
@@ -80,6 +88,14 @@ namespace Services
                 }
                 else
                 {
+                    // regeneração do Feiticeiro
+                    if (jogador.Classe is Feiticeiro)
+                    {
+                        int quantia = jogador.IntelectoExtra + jogador.ForcaExtra;
+                        if (quantia > 0)
+                            jogador.AlterarVida(quantia);
+                    }
+
                     AcaoDoJogador(jogador, inimigo);
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
@@ -96,10 +112,13 @@ namespace Services
             }
             else
             {
-                if (!_combate)
+                if (!Luta)
+                {
                     CombateView.JogadorFugiu();
-                else
-                    CombateView.VitoriaDoJogador();
+                    return null;
+                }
+
+                CombateView.VitoriaDoJogador();
                 return true;
             }
 
@@ -108,7 +127,7 @@ namespace Services
 
         public static bool FimDoRound(CriaturaBase jogador, CriaturaBase inimigo)
         {
-            if (jogador.VidaAtual <= 0 || inimigo.VidaAtual <= 0 || _combate == false)
+            if (jogador.VidaAtual <= 0 || inimigo.VidaAtual <= 0 || Luta == false)
                 return true;
             return false;
         }
@@ -135,7 +154,7 @@ namespace Services
                 // consumiveis            
                 case "3":
                     string consumivel = CombateView.MostrarItensConsumiveis(jogador, inimigo, true);
-                    if (!(ItensConsumiveisDoJogador(jogador, consumivel, true)))
+                    if (!(ItensConsumiveisDoJogador(jogador, consumivel)))
                     {
                         CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                         AcaoDoJogador(jogador, inimigo);
@@ -144,6 +163,7 @@ namespace Services
                 // janela de status
                 case "4":
                     CombateView.JanelaDeStatus(jogador);
+                    MenuPrincipal.AperteEnterParaContinuar();
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     AcaoDoJogador(jogador, inimigo);
                     break;
@@ -185,7 +205,7 @@ namespace Services
         }
 
         // opções de usar poção de vida e mana ou voltar
-        public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel, bool pocoesDeStatus)
+        public static bool ItensConsumiveisDoJogador(CriaturaBase jogador, string consumivel)
         {
             if (consumivel == "0")
                 return false;
@@ -205,7 +225,6 @@ namespace Services
                 {
                     Item pocao = jogador.Mochila.Items.Find(x => x is PocaoVida);
                     jogador.BeberPocao(pocao);
-                    jogador.Mochila.RemoverConsumivelDaMochila(pocao);
                     Thread.Sleep(1000);
                     return true;
                 }
@@ -226,8 +245,7 @@ namespace Services
                 if (jogador.Mochila.Items.Exists(x => x is PocaoMana))
                 {
                     Item pocao = jogador.Mochila.Items.Find(x => x is PocaoMana);
-                    jogador.BeberPocao(pocao);
-                    jogador.Mochila.RemoverConsumivelDaMochila(pocao);
+                    jogador.BeberPocao(pocao);                    
                     Thread.Sleep(1000);
                     return true;
                 }
@@ -241,8 +259,6 @@ namespace Services
 
             else
             {
-                if (!pocoesDeStatus)
-                    return false;
 
                 Item escolha = new PocaoAgilidade();
 
@@ -257,7 +273,6 @@ namespace Services
                 {
                     Item pocao = jogador.Mochila.Items.Find(x => x.Equals(escolha));
                     jogador.BeberPocao(pocao);
-                    jogador.Mochila.RemoverConsumivelDaMochila(pocao);
                     Thread.Sleep(1000);
                     return true;
                 }
@@ -296,8 +311,7 @@ namespace Services
                             if (inimigo.Mochila.Items.Exists(x => x is PocaoMana))
                             {
                                 Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Mana");
-                                inimigo.BeberPocao(pocao);
-                                inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
+                                inimigo.BeberPocao(pocao);                            
                             }
                             else
                                 new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
@@ -318,7 +332,6 @@ namespace Services
                     {
                         Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Vida");
                         inimigo.BeberPocao(pocao);
-                        inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                     }
                     else
                         new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
@@ -344,7 +357,6 @@ namespace Services
                             {
                                 Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Mana");
                                 inimigo.BeberPocao(pocao);
-                                inimigo.Mochila.RemoverConsumivelDaMochila(pocao);
                             }
                             else
                                 new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);

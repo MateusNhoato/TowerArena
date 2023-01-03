@@ -253,6 +253,8 @@ namespace Entities
             AgilidadeExtra = 0;
             ForcaExtra = 0;
             DefesaExtra = 0;
+            IntelectoExtra= 0;
+
             VidaAtual -= VidaExtra;
             VidaExtra = 0;
             if (VidaAtual <= 0)

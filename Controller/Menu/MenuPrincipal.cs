@@ -164,7 +164,7 @@ namespace Menu
         public static void EntradaInvalida()
         {
             Console.Write("\n     Entrada Inválida.");
-            System.Threading.Thread.Sleep(1200);
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }
