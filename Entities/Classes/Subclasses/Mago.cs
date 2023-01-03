@@ -21,7 +21,7 @@ namespace Classes
         {
 
             string descricao = "O Mago conjura uma esfera de água e a joga no oponente.";
-            Habilidade habilidade = new Habilidade("Bola de Água", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
+            Habilidade habilidade = new Habilidade("Bola de Água", 8, 20, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
 

@@ -23,36 +23,26 @@ namespace Services
 
             int iniciativaJogador = jogador.AgilidadeTotal + iniAdicionalJg + 1;
             int iniciativaInimigo = inimigo.AgilidadeTotal + iniAdicionalIn + 1;
-
+            
             if (iniciativaJogador >= iniciativaInimigo)
             {
-                // buff inicial de Atirador
-                if (jogador.Classe is Atirador)
-                    jogador.AlterarAgilidade(jogador.AgilidadeTotal / 10);
+                CheckarBuffsIniciativa(jogador, true);
                 return true;
             }
             else
+            {
+                CheckarBuffsIniciativa(jogador, false);
                 return false;
+
+            }
 
 
         }
         public static bool? Combater(Jogador jogador, Inimigo inimigo)
         {
             Luta = true;
-            // buff inicial do Mercenário
-            if (jogador.Classe is Mercenario)
-                jogador.AlterarForca(jogador.Mochila.Dinheiro / 100);
 
-
-            // buff inicial de Mago
-            if (jogador.Classe is Mago)
-                if (jogador.PoderTotal > inimigo.PoderTotal)
-                    jogador.AlterarDefesa(5);
-
-            // buff inicial do Cavaleiro
-            if(jogador.Classe is Cavaleiro)
-                jogador.AlterarDefesa(new Random().Next(1, 7));
-
+            CheckarBuffsComecoDoCombate(jogador, inimigo);
 
             bool resultadoIniciativa = Iniciativa(jogador, inimigo);
 
@@ -75,11 +65,9 @@ namespace Services
 
                     // regeneração do Feiticeiro
                     if (jogador.Classe is Feiticeiro)
-                    {
-                        int quantia = jogador.IntelectoExtra + jogador.ForcaExtra;
-                        if (quantia > 0)
-                            jogador.AlterarVida(quantia);
-                    }
+                        jogador.AlterarVida(jogador.ForcaTotal / 4);
+
+
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
                     Thread.Sleep(500);
                     if (FimDoRound(jogador, inimigo))
@@ -90,11 +78,8 @@ namespace Services
                 {
                     // regeneração do Feiticeiro
                     if (jogador.Classe is Feiticeiro)
-                    {
-                        int quantia = jogador.IntelectoExtra + jogador.ForcaExtra;
-                        if (quantia > 0)
-                            jogador.AlterarVida(quantia);
-                    }
+                        jogador.AlterarVida(jogador.ForcaTotal / 2);
+
 
                     AcaoDoJogador(jogador, inimigo);
                     CombateView.ImprimirTelaDeCombate(jogador, inimigo);
@@ -124,6 +109,59 @@ namespace Services
 
 
         }
+
+        public static void CheckarBuffsIniciativa(CriaturaBase jogador, bool ganhouIniciativa)
+        {
+            if (ganhouIniciativa)
+            {
+                if (jogador.Classe is Atirador)
+                    jogador.AlterarAgilidade(jogador.AgilidadeTotal / 10);
+                else if (jogador.Classe is Ladrao)
+                {
+                    jogador.AlterarEsquiva(2);
+                    jogador.AlterarAcerto(1);
+                }
+                else if (jogador.Classe is Arqueiro)
+                {
+                    jogador.AlterarAcerto(2);
+                    jogador.AlterarDefesa(1);
+                }
+            }
+            else
+            {
+                if (jogador.Classe is Guerreiro)
+                {
+                    jogador.AlterarAcerto(2);
+                    jogador.AlterarForca(1);
+                }                   
+                else if (jogador.Classe is Conjurador)
+                {
+                    jogador.AlterarEsquiva(2);
+                    jogador.AlterarDefesa(1);
+                }
+            }
+
+
+        }
+
+        public static void CheckarBuffsComecoDoCombate(CriaturaBase jogador, CriaturaBase inimigo)
+        {
+            // buff inicial do Mercenário
+            if (jogador.Classe is Mercenario)
+                jogador.AlterarForca(jogador.Mochila.Dinheiro / 100);
+
+
+            // buff inicial de Mago
+            else if (jogador.Classe is Mago)
+                if (jogador.PoderTotal > inimigo.PoderTotal)
+                    jogador.AlterarDefesa(5);
+
+            // buff inicial do Cavaleiro
+            else if (jogador.Classe is Cavaleiro)
+                jogador.AlterarDefesa(new Random().Next(1, 7));
+        }
+
+
 
         public static bool FimDoRound(CriaturaBase jogador, CriaturaBase inimigo)
         {
@@ -174,7 +212,7 @@ namespace Services
 
         public static bool HabilidadesDoJogador(CriaturaBase jogador, CriaturaBase inimigo, string habilidade)
         {
-            
+
             if (habilidade == "0")
                 return false;
             else
@@ -245,7 +283,7 @@ namespace Services
                 if (jogador.Mochila.Items.Exists(x => x is PocaoMana))
                 {
                     Item pocao = jogador.Mochila.Items.Find(x => x is PocaoMana);
-                    jogador.BeberPocao(pocao);                    
+                    jogador.BeberPocao(pocao);
                     Thread.Sleep(1000);
                     return true;
                 }
@@ -311,7 +349,7 @@ namespace Services
                             if (inimigo.Mochila.Items.Exists(x => x is PocaoMana))
                             {
                                 Item pocao = inimigo.Mochila.Items.Find(x => x.Nome == "Poção de Mana");
-                                inimigo.BeberPocao(pocao);                            
+                                inimigo.BeberPocao(pocao);
                             }
                             else
                                 new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);

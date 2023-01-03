@@ -20,7 +20,7 @@ namespace Services
             foreach (Habilidade hab in jogador.Classe.Habilidades)
                 hab.ResetarUsos();
 
-            Round = 1;
+            Round = 10;
             // loop principal do jogo
             for (; Round <= 10; Round++)
             {
@@ -36,7 +36,7 @@ namespace Services
 
 
                 // gerando um inimigo aleatório, que não é boss
-                Inimigo inimigo = new Inimigo(jogador.Nivel, false, jogador.Andar);
+                Inimigo inimigo = new Inimigo(jogador.Nivel);
 
                 CombateView.ImprimirNumeroDoRound(Round);
                 bool? resultado = Combate.Combater(jogador, inimigo);
@@ -77,7 +77,7 @@ namespace Services
 
                     PausaDoAndar(jogador, Round);
                     CombateView.BossRound(jogador.Andar);
-                    inimigo = new Inimigo(jogador.Nivel, true, jogador.Andar);
+                    inimigo = new Boss(jogador.Nivel,jogador.Andar);
                     resultado = Combate.Combater(jogador, inimigo);
                     if (resultado == false)
                     {

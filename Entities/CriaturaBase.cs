@@ -55,7 +55,7 @@ namespace Entities
         {
             get
             {
-                return (Classe != null) ? IntelectoTotal * Classe.ManaPorNivel : 0;
+                return (Classe != null) ?  Classe.ManaPorNivel  * Classe.IntelectoPorNivel * Nivel: 0;
             }
         }
 

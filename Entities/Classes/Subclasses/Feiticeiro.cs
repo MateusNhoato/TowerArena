@@ -19,7 +19,7 @@ namespace Classes
         {
             string descricao = "Maldição que causa dano ao inimigo." +
                 "\n          Se 'Demonificação' estiver ativa, 'Maldição da Dor' causa mais dano.";
-            Habilidade habilidade = new Habilidade("Maldição da Dor", 8, 10, descricao, EfeitosDeHabilidades.MaldiçãoDaDor);
+            Habilidade habilidade = new Habilidade("Maldição da Dor", 8, 20, descricao, EfeitosDeHabilidades.MaldiçãoDaDor);
             Habilidades.Add(habilidade);
 
 
@@ -44,7 +44,7 @@ namespace Classes
 
         public override void ListarHabilidadesDaClasse()
         {
-            Console.WriteLine("    Regeneração (Passiva): O Feiticeiro recupera seu Intelecto Extra + Forca Extra em Vida no começo de seu turno.");
+            Console.WriteLine("    Regeneração (Passiva): O Feiticeiro recupera 1/4 de sua Força Total em Vida no começo de seu turno.");
             base.ListarHabilidadesDaClasse();
         }
     }
