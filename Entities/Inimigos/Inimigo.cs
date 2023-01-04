@@ -39,7 +39,7 @@ namespace Inimigos
             ManaAtual = ManaTotal;
 
             Mochila = new Mochila(new List<Item>());
-            Mochila.AlterarDinheiro(5 + random.Next(1, 11));
+            Mochila.AlterarDinheiro((5 + random.Next(1, 11)) * 2);
 
             for (int i = 0; i < pocoes; i++)
             {

@@ -34,7 +34,7 @@ namespace Inimigos
                     pocao = new PocaoDefesa();
                 Mochila.Items.Add(pocao);
             }
-            Mochila.AlterarDinheiro(20 + random.Next(1, 20));
+            Mochila.AlterarDinheiro(30 + random.Next(1, 21));
 
             VidaAtual = VidaTotal * 3 / 2;
             ManaAtual = ManaTotal;

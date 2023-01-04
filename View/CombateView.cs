@@ -423,7 +423,58 @@ namespace View
             Console.Write($"{jogador.DefesaExtra}");
 
             Console.ForegroundColor = aux;
+            Console.WriteLine(")]\n");
+
+            Console.Write("     Acerto Base:[");
+
+            int acertoBase;
+            ConsoleColor acertoBaseAux;
+            if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Agilidade)
+            {
+                acertoBaseAux = ConsoleColor.DarkCyan;
+                acertoBase = jogador.AgilidadeTotal + jogador.AcertoExtra;
+            }
+            else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Intelecto)
+            {
+                acertoBaseAux = ConsoleColor.DarkMagenta;
+                acertoBase = jogador.IntelectoTotal + jogador.AcertoExtra;
+            }
+                
+            else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Forca)
+            {
+                acertoBaseAux = ConsoleColor.Red;
+                acertoBase = jogador.ForcaTotal + jogador.AcertoExtra;
+            }
+            else
+            {
+                acertoBaseAux = ConsoleColor.DarkGray;
+                acertoBase = (jogador.ForcaTotal > jogador.AgilidadeTotal) ? jogador.ForcaTotal + jogador.AcertoExtra : jogador.AgilidadeTotal + jogador.AcertoExtra;
+            }
+            Console.ForegroundColor = acertoBaseAux;
+            Console.Write($"{acertoBase}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = acertoBaseAux;
+            Console.Write($"{jogador.AcertoExtra}");
+
+            Console.ForegroundColor = aux;
             Console.WriteLine(")]");
+
+            Console.Write("     Esquiva    :[");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write($"{jogador.Esquiva}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write($"{jogador.EsquivaExtra}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine(")]\n");
+
 
 
             Console.WriteLine("\n     Obs: os números entre parênteses são atributos extras.");

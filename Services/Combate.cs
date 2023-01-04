@@ -23,7 +23,7 @@ namespace Services
 
             int iniciativaJogador = jogador.AgilidadeTotal + iniAdicionalJg + 1;
             int iniciativaInimigo = inimigo.AgilidadeTotal + iniAdicionalIn + 1;
-            
+
             if (iniciativaJogador >= iniciativaInimigo)
             {
                 CheckarBuffsIniciativa(jogador, true);
@@ -111,7 +111,7 @@ namespace Services
                 else if (jogador.Classe is Ladrao)
                 {
                     jogador.AlterarEsquiva(2);
-                    jogador.AlterarAcerto(1);
+                    jogador.AlterarAcerto(2);
                 }
                 else if (jogador.Classe is Arqueiro)
                 {
@@ -125,7 +125,7 @@ namespace Services
                 {
                     jogador.AlterarAcerto(2);
                     jogador.AlterarForca(1);
-                }                   
+                }
                 else if (jogador.Classe is Conjurador)
                 {
                     jogador.AlterarEsquiva(2);
@@ -148,9 +148,9 @@ namespace Services
                 if (jogador.PoderTotal > inimigo.PoderTotal)
                     jogador.AlterarDefesa(5);
 
-            // buff inicial do Cavaleiro
-            else if (jogador.Classe is Cavaleiro)
-                jogador.AlterarDefesa(new Random().Next(1, 7));
+                // buff inicial do Cavaleiro
+                else if (jogador.Classe is Cavaleiro)
+                    jogador.AlterarDefesa(new Random().Next(1, 7));
         }
 
         public static void CheckarBuffsComecoDoTurno(CriaturaBase jogador, CriaturaBase inimigo)
@@ -329,7 +329,12 @@ namespace Services
                 n = random.Next(1, 101);
 
                 if (n > 25)
-                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                    if (inimigo.Nivel > 1)
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                    else
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+
+
 
                 // habilidade
                 else
@@ -350,10 +355,21 @@ namespace Services
                                 inimigo.BeberPocao(pocao);
                             }
                             else
-                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                            {
+                                if (inimigo.Nivel > 1)
+                                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                                else
+                                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+                            }
+                                 
                         }
                     else
-                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                    {
+                        if (inimigo.Nivel > 1)
+                            new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                        else
+                            new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+                    }
 
                 }
             }
@@ -370,11 +386,21 @@ namespace Services
                         inimigo.BeberPocao(pocao);
                     }
                     else
-                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                    {
+                        if (inimigo.Nivel > 1)
+                            new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                        else
+                            new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+                    }
 
                 }
                 else if (n < 51)
-                    new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                {
+                    if (inimigo.Nivel > 1)
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                    else
+                        new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+                }
 
                 // habilidade
                 else
@@ -395,10 +421,20 @@ namespace Services
                                 inimigo.BeberPocao(pocao);
                             }
                             else
-                                new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                            {
+                                if (inimigo.Nivel > 1)
+                                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                                else
+                                    new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+                            }
                         }
                     else
-                        new Habilidade("Ataque", 0, 1, "", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                    {
+                        if (inimigo.Nivel > 1)
+                            new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
+                        else
+                            new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
+                    }
 
                 }
 

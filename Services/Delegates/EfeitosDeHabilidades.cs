@@ -5,6 +5,7 @@ using Items;
 using Menu;
 using Services;
 using View;
+using Classes;
 
 namespace Delegates
 {
@@ -170,9 +171,9 @@ namespace Delegates
 
         }
 
-        public static void Ataque2xComDebuffDefesa2(CriaturaBase conjurador, CriaturaBase receptor)
+        public static void Ataque1EMeioXComDebuffDefesa2(CriaturaBase conjurador, CriaturaBase receptor)
         {           
-            Ataque2x(conjurador, receptor);
+            Ataque1EMeioX(conjurador, receptor);
             DebuffDefesa2(conjurador, receptor);
 
         }
@@ -503,6 +504,18 @@ namespace Delegates
                 else
                     contPocaoMana++;
             }
+            if(conjurador.Classe is Ladrao)
+            {
+                conjurador.AlterarVida((contPocaoVida + contPocaoMana) * 2);
+                conjurador.AlterarMana((contPocaoVida + contPocaoMana) * 2);
+            }
+            else
+            {
+                conjurador.AlterarAcerto((contPocaoVida + contPocaoMana) * 2);
+                conjurador.AlterarForca((contPocaoVida + contPocaoMana));
+            }
+
+
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             Console.WriteLine($"     {conjurador.Nome} roubou:\n     [{contPocaoVida}] Poções de Vida\n     [{contPocaoMana}] Poções de Mana\n     de {receptor.Nome}.");
             Thread.Sleep(1500);

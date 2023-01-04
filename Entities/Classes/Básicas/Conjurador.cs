@@ -34,8 +34,8 @@ namespace Classes
             habilidade = new Habilidade("Poder Ilimitado", 4, 3, descricao, EfeitosDeHabilidades.BuffIntelecto2);
             Habilidades.Add(habilidade);
 
-            descricao = "O conjurador se protege com energia, aumentando sua defesa e ganhando vida extra até o fim do combate.";
-            habilidade = new Habilidade("Barreira de Energia", 7, 2, descricao, EfeitosDeHabilidades.BuffVida15EDefesa2);
+            descricao = "O conjurador se protege com energia ganhando vida extra até o fim do combate.";
+            habilidade = new Habilidade("Barreira de Energia", 6, 2, descricao, EfeitosDeHabilidades.BuffVida15);
             Habilidades.Add(habilidade);
 
             descricao = "O Conjurador concentra uma grande quantidade de energia para realizar esse golpe devastador.";

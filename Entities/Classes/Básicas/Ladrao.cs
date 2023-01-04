@@ -30,14 +30,15 @@ namespace Classes
         {
 
             string descricao = "Apunhalada que acerta o ponto vital do alvo.";
-            Habilidade habilidade = new Habilidade("Golpe Visceral", 3, 5, descricao, EfeitosDeHabilidades.Ataque2x);
+            Habilidade habilidade = new Habilidade("Golpe Visceral", 3, 10, descricao, EfeitosDeHabilidades.Ataque2x);
             Habilidades.Add(habilidade);
 
             descricao = "Uma bomba que debilita o poder e a defesa do oponente.";
             habilidade = new Habilidade("Bomba de Fumaça", 3, 4, descricao, EfeitosDeHabilidades.DebuffDefesa2EDebuffStatusPrincipal2);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ladrão assalta de 2 a 3 poções de seu oponente, se disponíveis.";
+            descricao = "O Ladrão assalta de 2 a 3 poções de seu oponente, se disponíveis.\n" +
+                "          Para cada poção assaltada o Ladrão ganha 2 de vida e 2 de mana.";
             habilidade = new Habilidade("Assalto", 4, 2, descricao, EfeitosDeHabilidades.Assalto);
             Habilidades.Add(habilidade);
 
@@ -49,7 +50,7 @@ namespace Classes
         public override void ListarHabilidadesDaClasse()
         {
             Console.WriteLine("     Elusão (Passiva): Se o Ladrão ganhar a Iniciativa,\n" +
-                "          ele ganha 2 de Esquiva e 1 de acerto pelo resto do Round.");
+                "          ele ganha 2 de Esquiva e 2 de acerto pelo resto do Round.");
             base.ListarHabilidadesDaClasse();
         }
         public override Classe MostrarSubclasses()

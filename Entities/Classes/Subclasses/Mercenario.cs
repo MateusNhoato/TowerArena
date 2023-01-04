@@ -30,6 +30,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "O Mercenário assalta de 2 a 3 poções de seu oponente, se disponíveis." +
+                "\n          Para cada poção assaltada, ele ganha +2 de Acerto e +1 de Força" +
                 "\n          O Mercenário pode vender suas poções na loja, aumentando seu Gold.";
             habilidade = new Habilidade("Assalto Rápido", 0, 2, descricao, EfeitosDeHabilidades.Assalto);
             Habilidades.Add(habilidade);

@@ -20,7 +20,7 @@ namespace Services
             foreach (Habilidade hab in jogador.Classe.Habilidades)
                 hab.ResetarUsos();
 
-            Round = 10;
+            Round = 1;
             // loop principal do jogo
             for (; Round <= 10; Round++)
             {
