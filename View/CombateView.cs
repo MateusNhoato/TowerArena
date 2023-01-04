@@ -342,7 +342,7 @@ namespace View
             Console.Write("/");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"{jogador.VidaTotal}");
+            Console.Write($"{jogador.VidaTotal + 10}");
 
             Console.ForegroundColor = aux;
             Console.Write("(");
@@ -356,7 +356,7 @@ namespace View
 
             Console.Write(" | Mana:[");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write($"{jogador.ManaAtual}");
+            Console.Write($"{jogador.ManaAtual + 10}");
 
             Console.ForegroundColor = aux;
             Console.Write("/");
@@ -439,7 +439,7 @@ namespace View
                 acertoBaseAux = ConsoleColor.DarkMagenta;
                 acertoBase = jogador.IntelectoTotal + jogador.AcertoExtra;
             }
-                
+
             else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Forca)
             {
                 acertoBaseAux = ConsoleColor.Red;
@@ -478,7 +478,7 @@ namespace View
 
 
             Console.WriteLine("\n     Obs: os números entre parênteses são atributos extras.");
-            Console.WriteLine(Texto.linha);        
+            Console.WriteLine(Texto.linha);
         }
 
         public static void BossRound(int andar)
@@ -588,21 +588,39 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine(versus);
 
-
             Console.ForegroundColor = corVidaJogador;
             Console.WriteLine(barraDeVidaJogador);
+
             Console.ForegroundColor = aux;
             Console.WriteLine($"\n     {jogador}");
-            Console.Write($"\n     Vida:");
+            Console.Write($"\n     Vida:[");
             Console.ForegroundColor = corVidaJogador;
-            Console.Write($"[{jogador.VidaAtual} / {jogador.VidaTotal}]");
+
+            Console.Write($"{jogador.VidaAtual}");
+            Console.ForegroundColor = aux;
+            Console.Write("/");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write($"{jogador.VidaTotal}");
 
             Console.ForegroundColor = aux;
-            Console.Write($"   Mana:");
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"[{jogador.ManaAtual} / {jogador.ManaTotal}]");
+            Console.Write("]");
 
             Console.ForegroundColor = aux;
+            Console.Write($"   Mana:[");
+            if (jogador.ManaAtual == jogador.ManaTotal)
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+            else
+                Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{jogador.ManaAtual}");
+
+            Console.ForegroundColor = aux;
+            Console.Write("/");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.Write($"{jogador.ManaTotal}");
+
+            Console.ForegroundColor = aux;
+            Console.WriteLine("]");
+
             Console.WriteLine(Texto.linha);
         }
 
@@ -643,7 +661,7 @@ namespace View
             Console.Clear();
             Console.WriteLine(loot);
             Console.WriteLine($"     Itens de {inimigo.Nome}:");
-            Console.WriteLine($"{inimigo.Mochila}"); 
+            Console.WriteLine($"{inimigo.Mochila}");
 
             Console.WriteLine(Texto.linha);
             MenuPrincipal.AperteEnterParaContinuar();

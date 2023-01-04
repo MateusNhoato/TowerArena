@@ -121,9 +121,9 @@ namespace Menu
                 Console.WriteLine("     0- Voltar");
                 Console.Write("     Digite a opção desejada: ");
                 resposta = Console.ReadLine();
-                if (resposta == "1")               
+                if (resposta == "1")
                     DadosDosJogadores.DeletarPersonagensMortos();
-                
+
 
             } while (resposta != "0");
         }
@@ -131,21 +131,28 @@ namespace Menu
         private static void MenuEscolhaDePersonagem()
         {
             ListarPersonagens();
-            Console.Write("\n    Digite o nome do personagem que gostaria de escolher: ");
-            string nome = Console.ReadLine();
-            if (!string.IsNullOrEmpty(nome))
+            Console.WriteLine("     0- Voltar");
+            Console.Write("\n     Digite a opção desejada: ");
+            int resposta;
+            if (int.TryParse(Console.ReadLine(), out resposta))
             {
-                nome = NomePascalCase(nome);
+                if (resposta == 0)
+                    return;
+                else
+                {
+                    Console.WriteLine(Texto.linha);
+                    Jogador jogador = DadosDosJogadores.AcharJogador(resposta);
+                    if (jogador != null)
+                        MenuDoAndar.MostrarMenuDoAndar(jogador);
+                    else
+                        EntradaInvalida();
+                }
             }
-
-            Console.WriteLine(Texto.linha);
-
-            Jogador jogador = DadosDosJogadores.AcharJogador(nome);
-            if (jogador != null)
-                MenuDoAndar.MostrarMenuDoAndar(jogador);
             else
+            {
+                Console.WriteLine(Texto.linha);
                 EntradaInvalida();
-            AperteEnterParaContinuar();
+            }                                    
         }
 
         private static string NomePascalCase(string nome)

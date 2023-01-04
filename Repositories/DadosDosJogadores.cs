@@ -23,9 +23,6 @@ namespace Repositories
             int pocoesDeFor = jogador.Mochila.Items.Count(x => x is PocaoForca);
             int pocoesDeInt = jogador.Mochila.Items.Count(x => x is PocaoIntelecto);
             int pocoesDeDef = jogador.Mochila.Items.Count(x => x is PocaoDefesa);
-
-
-
             int dinheiro = jogador.Mochila.Dinheiro;
 
 
@@ -75,18 +72,20 @@ namespace Repositories
 
         }
 
-        public static Jogador? AcharJogador(string nome)
+        public static Jogador? AcharJogador(int numero)
         {
             Jogador jogador;
             try
             {
                 string[] personagens = File.ReadAllLines(infoPersonagensPath);
 
+                int cont = 0;
                 foreach (string s in personagens)
                 {
                     string[] personagem = s.Split(';');
-
-                    if (personagem[0] == nome && int.Parse(personagem[4]) > 0 && int.Parse(personagem[2]) < 11)
+                    if(int.Parse(personagem[4]) > 0 && int.Parse(personagem[2]) < 11)
+                        cont++;
+                    if (numero == cont && int.Parse(personagem[4]) > 0 && int.Parse(personagem[2]) < 11)
                     {
                         int nivel = int.Parse(personagem[1]);
                         int andar = int.Parse(personagem[2]);

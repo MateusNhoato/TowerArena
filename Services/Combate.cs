@@ -329,12 +329,10 @@ namespace Services
                 n = random.Next(1, 101);
 
                 if (n > 25)
-                    if (inimigo.Nivel > 1)
+                    if (inimigo.Nivel > 4)
                         new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                     else
                         new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
-
-
 
                 // habilidade
                 else
@@ -356,7 +354,7 @@ namespace Services
                             }
                             else
                             {
-                                if (inimigo.Nivel > 1)
+                                if (inimigo.Nivel > 4)
                                     new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                                 else
                                     new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
@@ -365,7 +363,7 @@ namespace Services
                         }
                     else
                     {
-                        if (inimigo.Nivel > 1)
+                        if (inimigo.Nivel > 4)
                             new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                         else
                             new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
@@ -387,7 +385,7 @@ namespace Services
                     }
                     else
                     {
-                        if (inimigo.Nivel > 1)
+                        if (inimigo.Nivel > 4)
                             new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                         else
                             new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
@@ -396,7 +394,7 @@ namespace Services
                 }
                 else if (n < 51)
                 {
-                    if (inimigo.Nivel > 1)
+                    if (inimigo.Nivel > 4)
                         new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                     else
                         new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
@@ -422,7 +420,7 @@ namespace Services
                             }
                             else
                             {
-                                if (inimigo.Nivel > 1)
+                                if (inimigo.Nivel > 4)
                                     new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                                 else
                                     new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);
@@ -430,7 +428,7 @@ namespace Services
                         }
                     else
                     {
-                        if (inimigo.Nivel > 1)
+                        if (inimigo.Nivel > 4)
                             new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.Ataque1x).Efeito(inimigo, jogador);
                         else
                             new Habilidade("Ataque", 0, 1, $"{jogador.Classe.Nome} ataca o inimigo.", EfeitosDeHabilidades.AtaqueDesarmado).Efeito(inimigo, jogador);

@@ -31,7 +31,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Aumento o poder do Conjurador até o fim do combate.";
-            habilidade = new Habilidade("Poder Ilimitado", 4, 3, descricao, EfeitosDeHabilidades.BuffIntelecto2);
+            habilidade = new Habilidade("Poder Ilimitado", 4, 5, descricao, EfeitosDeHabilidades.BuffIntelecto2);
             Habilidades.Add(habilidade);
 
             descricao = "O conjurador se protege com energia ganhando vida extra até o fim do combate.";

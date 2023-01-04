@@ -34,7 +34,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
             descricao = "Uma bomba que debilita o poder e a defesa do oponente.";
-            habilidade = new Habilidade("Bomba de Fumaça", 3, 4, descricao, EfeitosDeHabilidades.DebuffDefesa2EDebuffStatusPrincipal2);
+            habilidade = new Habilidade("Bomba de Fumaça", 3, 5, descricao, EfeitosDeHabilidades.DebuffDefesa2EDebuffStatusPrincipal2);
             Habilidades.Add(habilidade);
 
             descricao = "O Ladrão assalta de 2 a 3 poções de seu oponente, se disponíveis.\n" +

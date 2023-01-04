@@ -16,7 +16,7 @@ namespace Delegates
         {
             if (receptor.CheckarAcerto(conjurador.Acerto))
             {
-                int dano = receptor.ReceberDano(conjurador.PoderTotal);
+                int dano = receptor.ReceberDano(conjurador.PoderTotal + new Random().Next(0, 3));
                 if (dano < 0)
                     dano = 0;
                 CombateView.ImprimirTelaDeCombate(conjurador, receptor);
@@ -37,7 +37,7 @@ namespace Delegates
         {
             if (receptor.CheckarAcerto(conjurador.Acerto * 2))
             {
-                int dano = receptor.ReceberDano(conjurador.PoderTotal);
+                int dano = receptor.ReceberDano(conjurador.PoderTotal + new Random().Next(0, 3));
                 if (dano < 0)
                     dano = 0;
                 CombateView.ImprimirTelaDeCombate(conjurador, receptor);

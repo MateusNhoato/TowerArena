@@ -45,7 +45,7 @@ namespace Entities
         }
 
 
-        public int VidaTotal
+        public virtual int VidaTotal
         {
             get
             {
@@ -54,7 +54,7 @@ namespace Entities
             }
         }
 
-        public int ManaTotal
+        public virtual int ManaTotal
         {
             get
             {

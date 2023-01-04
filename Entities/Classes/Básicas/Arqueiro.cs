@@ -28,11 +28,11 @@ namespace Classes
         public override void AdicionarHabilidades()
         {
             string descricao = "Uma flecha que acerta o ponto vital do alvo.";
-            Habilidade habilidade = new Habilidade("Tiro Certeiro", 3, 10, descricao, EfeitosDeHabilidades.Ataque2x);
+            Habilidade habilidade = new Habilidade("Tiro Certeiro", 3, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
             descricao = "O Arqueiro se prepara durante uma rodada, aumentando seu poder pelo resto do combate.";
-            habilidade = new Habilidade("Mente Afiada", 3, 4, descricao, EfeitosDeHabilidades.BuffAgilidade2);
+            habilidade = new Habilidade("Mente Afiada", 3, 6, descricao, EfeitosDeHabilidades.BuffAgilidade2);
             Habilidades.Add(habilidade);
 
             descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua iniciativa.";

@@ -2,6 +2,7 @@
 using Enums;
 using Items;
 using Services;
+using System.Text;
 using View;
 
 namespace Classes
@@ -10,7 +11,7 @@ namespace Classes
     {
 
         public string? Nome { get; protected private set; }
-        public string Descricao { get; protected private set; }
+        public string? Descricao { get; protected private set; }
         public Arma? Arma { get; protected private set; }
 
         public AtributoPrincipal AtributoPrincipal;
@@ -105,6 +106,14 @@ namespace Classes
                 PropriedadeEspecial = false;
             else
                 PropriedadeEspecial = true;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is not Classe)
+                return false;
+            var other = obj as Classe;
+            return Nome.Equals(other.Nome);
         }
 
         public override string ToString()

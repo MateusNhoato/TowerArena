@@ -70,6 +70,30 @@ namespace Entities
                 ManaAtual = ManaTotal;
         }
 
+        public override int VidaTotal
+        {
+            get
+            {
+                return (!Classe.Equals(new Guerreiro())) ? Classe.VidaPorNivel * Classe.DefesaPorNivel * Nivel + 10 : Classe.VidaPorNivel * Classe.DefesaPorNivel * Nivel + 5;
+
+            }
+        }
+
+        public override int ManaTotal
+        {
+            get
+            {
+                return (!Classe.Equals(new Guerreiro())) ? Classe.ManaPorNivel * Classe.IntelectoPorNivel * Nivel + 10 : Classe.ManaPorNivel * Classe.IntelectoPorNivel * Nivel + 4;
+            }
+        }
+
+        
+
+
+        public override string ToString()
+        {
+            return $"{Nome} ({Classe.Nome}) | Nv: {Nivel} | {Classe.Arma}";
+        }
 
         public override int GetHashCode()
         {

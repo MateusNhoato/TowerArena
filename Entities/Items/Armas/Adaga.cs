@@ -6,7 +6,7 @@
         public Adaga()
         {
             Nome = "Adaga";
-            Descricao = "| Dano: 1-4";
+            Descricao = "(Dano: 1-4)";
         }
 
 
