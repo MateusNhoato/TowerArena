@@ -39,8 +39,7 @@ namespace Menu
                             }
                         }
                         else
-                            resposta = "0";
-                        DadosDosJogadores.SalvarInfoJogador(jogador);                                    
+                            resposta = "0";                                                         
                         break;
 
                     case "2":
@@ -59,7 +58,7 @@ namespace Menu
                         break;
                 }
             } while (resposta != "0");
-
+            DadosDosJogadores.SalvarInfoJogador(jogador);
         }
 
         public static void MenuConsumiveis(Jogador jogador)

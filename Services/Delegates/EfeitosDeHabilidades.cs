@@ -491,7 +491,7 @@ namespace Delegates
             int n = random.Next(2, 4);
             int contPocaoVida = 0;
             int contPocaoMana = 0;
-            for (int i = 1; i < n; n--)
+            for (int i = 0; i < n; n--)
             {
                 if (i >= receptor.Mochila.Items.Count)
                     break;

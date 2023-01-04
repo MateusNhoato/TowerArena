@@ -49,9 +49,6 @@ namespace Inimigos
                 else
                     Mochila.Items.Add(new PocaoMana());
             }
-            Mochila.Items.Insert(0, Classe.Arma);
-
-
         }
 
         public static string NomeAleatorio(int numero)
