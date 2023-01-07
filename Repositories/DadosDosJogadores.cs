@@ -9,6 +9,18 @@ namespace Repositories
     {
         private static string infoPersonagensPath = @"..\..\..\Repositories\Data\InfoPersonagens.txt";
 
+
+        public static void DecidirPath()
+        {
+            try
+            {
+                ListarPersonagens();
+            }
+                 catch (DirectoryNotFoundException)
+            {
+                infoPersonagensPath = @"Repositories\Data\InfoPersonagens.txt";
+            }
+        }
         public static void SalvarInfoJogador(Jogador jogador)
         {
             string nome = jogador.Nome;
