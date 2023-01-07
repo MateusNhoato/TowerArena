@@ -10,7 +10,11 @@ Este é um jogo que fiz para praticar programação orientada a objetos. É um s
 
 [![Linguagem](https://img.shields.io/badge/linguagem-C%23-brightgreen.svg)](https://docs.microsoft.com/pt-br/dotnet/csharp/)
 
+## Download da última versão:
+[![Download](https://img.shields.io/badge/Download-drive-brightgreen.svg)](https://drive.google.com/file/d/1qmMp5Gq0KjfKH-aP56b0T7cDfdVqUJKZ/view?usp=share_link)
 
+## Demonstração
+![TowerArena1](https://media.giphy.com/media/Ql7b2JUi8Hp9UsM5jH/giphy.gif)
 
 ## Descrição
 O jogo se passa em uma torre de 10 andares. Para passar para o próximo andar basta derrotar o Chefe do Andar 👺
@@ -90,11 +94,4 @@ git commit -am 'Adicionei uma nova feature'
 git push origin my-new-feature
 ```
 5. Crie uma nova solicitação de pull.
-
-## Demonstração
-![TowerArena1](https://media.giphy.com/media/Ql7b2JUi8Hp9UsM5jH/giphy.gif)
-
-## Download da última versão:
-[![Download](https://img.shields.io/badge/Download-drive-brightgreen.svg)](https://drive.google.com/file/d/1qmMp5Gq0KjfKH-aP56b0T7cDfdVqUJKZ/view?usp=share_link)
-
 

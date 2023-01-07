@@ -1,7 +1,7 @@
 ﻿using Menu;
 using Repositories;
 using Services;
-using View;
+using Inimigos;
 
 namespace TowerArena
 {
@@ -13,6 +13,7 @@ namespace TowerArena
             Console.Title = "Tower Arena";
             JogoPrincipal.ListarClasses();
             DadosDosJogadores.DecidirPath();
+            Inimigo.ArrumarPathNomeInimigos();
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
             Console.Clear();

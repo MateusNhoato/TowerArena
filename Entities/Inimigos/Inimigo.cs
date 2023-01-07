@@ -7,6 +7,20 @@ namespace Inimigos
 {
     internal class Inimigo : CriaturaBase
     {
+        private static string pathNomeInimigos = @"..\..\..\Repositories\Data\Nomes.txt";
+
+        public static void ArrumarPathNomeInimigos()
+        {
+            try
+            {
+                string[] nomes = File.ReadAllLines(pathNomeInimigos);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                pathNomeInimigos = @"Repositories\Data\Nomes.txt";
+            }
+        }
+
         public Inimigo(int nivel)
         {
             // pegando os numeros aleatórios
@@ -68,7 +82,7 @@ namespace Inimigos
 
         public static string NomeAleatorio(int numero)
         {
-            string[] nomes = File.ReadAllLines(@"..\..\..\Repositories\Data\Nomes.txt");
+            string[] nomes = File.ReadAllLines(pathNomeInimigos);
 
             return nomes[numero - 1];
         }
