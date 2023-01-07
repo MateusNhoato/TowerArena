@@ -172,7 +172,7 @@ namespace Delegates
         }
 
         public static void Ataque1EMeioXComDebuffDefesa2(CriaturaBase conjurador, CriaturaBase receptor)
-        {           
+        {
             Ataque1EMeioX(conjurador, receptor);
             DebuffDefesa2(conjurador, receptor);
 
@@ -491,6 +491,9 @@ namespace Delegates
             int n = random.Next(2, 4);
             int contPocaoVida = 0;
             int contPocaoMana = 0;
+            int contPocaoStatus = 0;
+            Item? pocaoEspecial = null;
+
             for (int i = 0; i < n; n--)
             {
                 if (i >= receptor.Mochila.Items.Count)
@@ -501,23 +504,37 @@ namespace Delegates
                 receptor.Mochila.RemoverConsumivelDaMochila(item);
                 if (item is PocaoVida)
                     contPocaoVida++;
-                else
+                else if (item is PocaoMana)
                     contPocaoMana++;
+                else
+                {
+                    pocaoEspecial = item;
+                    contPocaoStatus++;
+                }
             }
-            if(conjurador.Classe is Ladrao)
+            if (conjurador.Classe is Ladrao)
             {
-                conjurador.AlterarVida((contPocaoVida + contPocaoMana) * 2);
-                conjurador.AlterarMana((contPocaoVida + contPocaoMana) * 2);
+                conjurador.AlterarVida((contPocaoVida + contPocaoMana + contPocaoStatus) * 2);
+                conjurador.AlterarMana((contPocaoVida + contPocaoMana + contPocaoStatus) * 2);
+
             }
             else
             {
-                conjurador.AlterarAcerto((contPocaoVida + contPocaoMana) * 2);
-                conjurador.AlterarForca((contPocaoVida + contPocaoMana));
+                conjurador.AlterarAcerto((contPocaoVida + contPocaoMana + contPocaoStatus) * 2);
+                conjurador.AlterarForca((contPocaoVida + contPocaoMana + contPocaoStatus));
             }
 
 
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} roubou:\n     [{contPocaoVida}] Poções de Vida\n     [{contPocaoMana}] Poções de Mana\n     de {receptor.Nome}.");
+            Console.WriteLine($"     {conjurador.Nome} roubou:");
+            if (contPocaoVida > 0)
+                Console.WriteLine($"     [{contPocaoVida}] Poção de Vida");
+            if (contPocaoMana > 0)
+                Console.WriteLine($"     [{contPocaoMana}] Poção de Mana");
+            if (contPocaoStatus > 0 && pocaoEspecial != null)
+                Console.WriteLine($"     [1] {pocaoEspecial.Nome}");
+            Console.WriteLine($"     de {receptor.Nome}.");
+
             Thread.Sleep(1500);
         }
         // Cavaleiro
@@ -739,6 +756,9 @@ namespace Delegates
                 return;
 
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
+            Console.WriteLine($"     {conjurador.Nome} usou Surto de Ação, e fará 2 turnos seguidos.");
+            Thread.Sleep(1000);
+            CombateView.ImprimirTelaDeCombate(conjurador, receptor);
             if (conjurador is Jogador)
             {
 
@@ -833,7 +853,7 @@ namespace Delegates
         }
         public static void BarreiraDeSangue(CriaturaBase conjurador, CriaturaBase receptor)
         {
-            if (conjurador.Classe.PropriedadeEspecial == false)            
+            if (conjurador.Classe.PropriedadeEspecial == false)
                 conjurador.ReceberDanoVerdadeiro(conjurador.VidaTotal / 4);
 
             BuffDefesa10Porcento(conjurador, receptor);

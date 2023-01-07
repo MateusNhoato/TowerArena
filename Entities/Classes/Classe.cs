@@ -10,7 +10,7 @@ namespace Classes
     internal abstract class Classe
     {
 
-        public string? Nome { get; protected private set; }
+        public string Nome { get; protected private set; }
         public string? Descricao { get; protected private set; }
         public Arma? Arma { get; protected private set; }
 
@@ -121,5 +121,10 @@ namespace Classes
             return $"{Nome} | Arma: {Arma.Nome} | Atributo Principal: {AtributoPrincipal}|\n        {Descricao}";
         }
 
+        public override int GetHashCode()
+        {
+            
+            return  Nome.GetHashCode();
+        }
     }
 }

@@ -140,9 +140,10 @@ namespace Services
         {
             // buff inicial do Mercenário
             if (jogador.Classe is Mercenario)
+            {
                 jogador.AlterarForca(jogador.Mochila.Dinheiro / 100);
-
-
+                jogador.AlterarAcerto(jogador.Mochila.Dinheiro / 100);
+            }
             // buff inicial de Mago
             else if (jogador.Classe is Mago)
                 if (jogador.PoderTotal > inimigo.PoderTotal)

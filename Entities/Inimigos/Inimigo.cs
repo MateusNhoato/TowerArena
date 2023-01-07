@@ -49,6 +49,21 @@ namespace Inimigos
                 else
                     Mochila.Items.Add(new PocaoMana());
             }
+
+            if (random.Next(1,101) <= 3)
+            {
+                Item pocao;
+                int pocaoEspecial = random.Next(0, 4);
+                if (pocaoEspecial == 0)
+                    pocao = new PocaoAgilidade();
+                else if (pocaoEspecial == 1)
+                    pocao = new PocaoForca();
+                else if (pocaoEspecial == 2)
+                    pocao = new PocaoIntelecto();
+                else
+                    pocao = new PocaoDefesa();
+                Mochila.Items.Add(pocao);
+            }
         }
 
         public static string NomeAleatorio(int numero)
