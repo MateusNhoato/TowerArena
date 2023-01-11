@@ -76,15 +76,11 @@ namespace Entities
             Console.WriteLine("     0- Voltar");
         }
 
-        public void RemoverConsumivelDaMochila(Item pocao)
-        {
-            Items.Remove(pocao);
-        }
+        public void RemoverConsumivelDaMochila(Item pocao) => Items.Remove(pocao);
+       
 
-        public void AlterarDinheiro(int quantia)
-        {
-            Dinheiro += quantia;
-        }
+        public void AlterarDinheiro(int quantia) => Dinheiro += quantia;
+        
 
         public bool ChecarDinheiro(int quantia)
         {
@@ -103,13 +99,13 @@ namespace Entities
             if (Items.Count(x => x is PocaoMana) > 0)
                 sb.AppendLine($"     [{Items.Count(x => x is PocaoMana)}] Poções de Mana");
             if (Items.Count(x => x is PocaoAgilidade) > 0)
-                sb.AppendLine($"     [{Items.Count(x => x is PocaoAgilidade)}] Poções de Agilidade");
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoAgilidade)}] Poções de AGILIDADE");
             if (Items.Count(x => x is PocaoForca) > 0)
-                sb.AppendLine($"     [{Items.Count(x => x is PocaoForca)}] Poções de Forca");
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoForca)}] Poções de FORCA");
             if (Items.Count(x => x is PocaoIntelecto) > 0)
-                sb.AppendLine($"     [{Items.Count(x => x is PocaoIntelecto)}] Poções de Intelecto");
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoIntelecto)}] Poções de INTELECTO");
             if (Items.Count(x => x is PocaoDefesa) > 0)
-                sb.AppendLine($"     [{Items.Count(x => x is PocaoDefesa)}] Poções de Defesa");
+                sb.AppendLine($"     [{Items.Count(x => x is PocaoDefesa)}] Poções de DEFESA");
             return sb.ToString();
         }
     }

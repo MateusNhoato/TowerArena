@@ -29,7 +29,7 @@ namespace Classes
             Habilidades.Add(habilidade);
 
 
-            descricao = "O Feiticeiro usa seu próprio sangue para fazer uma barreira poderosa (aumenta Defesa e Vida Temporária)." +
+            descricao = "O Feiticeiro usa seu próprio sangue para fazer uma barreira poderosa (aumenta DEFESA e Vida Temporária)." +
                 "\n          O Feiticeiro gasta 1/4 de sua Vida Máxima para utilizar esta habilidade." +
                 "\n          Se 'Demonificação' estiver ativa, esta habilidade não gasta Vida..";
             habilidade = new Habilidade("Barreira de Sangue", 10, 3, descricao, EfeitosDeHabilidades.BarreiraDeSangue);

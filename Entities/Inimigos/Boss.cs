@@ -20,22 +20,29 @@ namespace Inimigos
             Mochila.Items.Add(new PocaoMana());
             Mochila.Items.Add(new PocaoMana());
 
-            if (random.Next(11) <= 8)
+            // settando drops especiais
+            for(int i=0; i<2; i++)
             {
-                Item pocao;
-                int pocaoEspecial = random.Next(0, 4);
-                if (pocaoEspecial == 0)
-                    pocao = new PocaoAgilidade();
-                else if (pocaoEspecial == 1)
-                    pocao = new PocaoForca();
-                else if (pocaoEspecial == 2)
-                    pocao = new PocaoIntelecto();
-                else
-                    pocao = new PocaoDefesa();
-                Mochila.Items.Add(pocao);
+                if(random.Next(11) <= 5)
+                {
+                    if (random.Next(11) <= 8)
+                    {
+                        Item pocao;
+                        int pocaoEspecial = random.Next(0, 4);
+                        if (pocaoEspecial == 0)
+                            pocao = new PocaoAgilidade();
+                        else if (pocaoEspecial == 1)
+                            pocao = new PocaoForca();
+                        else if (pocaoEspecial == 2)
+                            pocao = new PocaoIntelecto();
+                        else
+                            pocao = new PocaoDefesa();
+                        Mochila.Items.Add(pocao);
+                    }
+                    Mochila.AlterarDinheiro(30 + random.Next(1, 21));
+                }
             }
-            Mochila.AlterarDinheiro(30 + random.Next(1, 21));
-
+            
             VidaAtual = VidaTotal * 3 / 2;
             ManaAtual = ManaTotal;
 

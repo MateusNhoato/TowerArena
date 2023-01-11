@@ -19,7 +19,7 @@ namespace Classes
             AgilidadePorNivel = 4;
             ForcaPorNivel = 5;
             IntelectoPorNivel = 3;
-            AtributoPrincipal = AtributoPrincipal.Forca;
+            AtributoPrincipal = AtributoPrincipal.FORCA;
 
         }
 
@@ -37,7 +37,7 @@ namespace Classes
 
 
             descricao = "O Mercenário taca uma bomba de fumaça e ataca o inimigo durante a confusão." +
-                "\n          Esta habilidade diminui a Defesa e o Atributo Principal do alvo.";
+                "\n          Esta habilidade diminui a DEFESA e o Atributo Principal do alvo.";
             habilidade = new Habilidade("Golpe Desleal", 15, 3, descricao, EfeitosDeHabilidades.GolpeDesleal);
             Habilidades.Add(habilidade);
 

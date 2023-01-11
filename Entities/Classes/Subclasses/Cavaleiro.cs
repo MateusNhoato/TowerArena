@@ -21,18 +21,18 @@ namespace Classes
             AgilidadePorNivel = 3;
             ForcaPorNivel = 3;
             IntelectoPorNivel = 2;
-            AtributoPrincipal = AtributoPrincipal.Forca;
+            AtributoPrincipal = AtributoPrincipal.FORCA;
 
         }
 
         public override void AdicionarHabilidades()
         {
-            string descricao = "Causa dano ao oponente baseado na Defesa do Cavaleiro.";
+            string descricao = "Causa dano ao oponente baseado na DEFESA do Cavaleiro.";
             Habilidade habilidade = new Habilidade("Golpe De Escudo", 8, 10, descricao, EfeitosDeHabilidades.GolpeDeEscudo);
             Habilidades.Add(habilidade);
 
-            descricao = "Concentrando-se no combate defensivo, o Cavaleiro aumenta sua Defesa.";
-            habilidade = new Habilidade("Instância De Defesa", 10, 3, descricao, EfeitosDeHabilidades.InstanciaDeDefesa);
+            descricao = "Concentrando-se no combate defensivo, o Cavaleiro aumenta sua DEFESA.";
+            habilidade = new Habilidade("Instância De DEFESA", 10, 3, descricao, EfeitosDeHabilidades.InstanciaDeDefesa);
             Habilidades.Add(habilidade);
 
             descricao = "O Cavaleiro investe impiedosamente contra seu oponente, causando dano devastador.";
@@ -45,8 +45,8 @@ namespace Classes
         }
         public override void ListarHabilidadesDaClasse()
         {
-            Console.WriteLine("     Defesa É O Melhor Ataque(Passiva): Toda vez que o cavaleiro usa uma habilidade ele ganha 2 de defesa." +
-                "\n          No começo de todo combate, o Caveleiro ganha de 1 a 6 de Defesa, garantidos pelo seu escudo.");
+            Console.WriteLine("     DEFESA É O Melhor Ataque(Passiva): Toda vez que o cavaleiro usa uma habilidade ele ganha 2 de defesa." +
+                "\n          No começo de todo combate, o Caveleiro ganha de 1 a 6 de DEFESA, garantidos pelo seu escudo.");
             base.ListarHabilidadesDaClasse();
         }
     }

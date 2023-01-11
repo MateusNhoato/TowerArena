@@ -4,8 +4,8 @@
     {
         public PocaoDefesa()
         {
-            Nome = "Poção de Defesa";
-            Descricao = "      (Aumenta a Defesa em 20)";
+            Nome = "Poção de DEFESA";
+            Descricao = "      (Aumenta a DEFESA em 20)";
         }
     }
 }

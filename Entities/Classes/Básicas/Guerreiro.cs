@@ -21,7 +21,7 @@ namespace Classes
             ForcaPorNivel = 5;
             DefesaPorNivel = 4;
             AgilidadePorNivel = 3;
-            AtributoPrincipal = AtributoPrincipal.Forca;
+            AtributoPrincipal = AtributoPrincipal.FORCA;
 
             AdicionarHabilidades();
 
@@ -34,11 +34,11 @@ namespace Classes
             Habilidade habilidade = new Habilidade("Golpe Duplo", 2, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
-            descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua Defesa.";
-            habilidade = new Habilidade("Instância De Defesa", 2, 4, descricao, EfeitosDeHabilidades.BuffDefesa2);
+            descricao = "Concentrando-se no combate defensivo, o Guerreiro aumenta sua DEFESA.";
+            habilidade = new Habilidade("Instância De DEFESA", 2, 4, descricao, EfeitosDeHabilidades.BuffDefesa2);
             Habilidades.Add(habilidade);
 
-            descricao = "Golpe que causa dano e atordoa o alvo, diminuindo sua Defesa.";
+            descricao = "Golpe que causa dano e atordoa o alvo, diminuindo sua DEFESA.";
             habilidade = new Habilidade("Golpe Debilitante", 4, 3, descricao, EfeitosDeHabilidades.Ataque1EMeioXComDebuffDefesa2);
             Habilidades.Add(habilidade);
 

@@ -19,7 +19,7 @@ namespace Classes
             DefesaPorNivel = 3;
             AgilidadePorNivel = 5;
             IntelectoPorNivel = 4;
-            AtributoPrincipal = AtributoPrincipal.Agilidade;
+            AtributoPrincipal = AtributoPrincipal.AGILIDADE;
         }
 
         public override void AdicionarHabilidades()
@@ -28,11 +28,11 @@ namespace Classes
             Habilidade habilidade = new Habilidade("Saraivada de Flechas", 8, 10, descricao, EfeitosDeHabilidades.Ataque1EMeioX);
             Habilidades.Add(habilidade);
 
-            descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. A Agilidade do Atirador aumenta.";
+            descricao = "Pelo resto do combate o Atirador terá o oponente perfeitamente mirado. A AGILIDADE do Atirador aumenta.";
             habilidade = new Habilidade("Na Mira", 12, 3, descricao, EfeitosDeHabilidades.BuffAgilidade10Porcento);
             Habilidades.Add(habilidade);
 
-            descricao = "Uma flechada tão rápida que o oponente só consegue se defender com sua Agilidade.";
+            descricao = "Uma flechada tão rápida que o oponente só consegue se defender com sua AGILIDADE.";
             habilidade = new Habilidade("Tiro Preciso", 10, 4, descricao, EfeitosDeHabilidades.TiroPreciso);
             Habilidades.Add(habilidade);
 

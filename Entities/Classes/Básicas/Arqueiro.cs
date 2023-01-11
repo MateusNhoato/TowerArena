@@ -21,7 +21,7 @@ namespace Classes
             DefesaPorNivel = 3;
             AgilidadePorNivel = 5;
             IntelectoPorNivel = 3;
-            AtributoPrincipal = AtributoPrincipal.Hibrido;
+            AtributoPrincipal = AtributoPrincipal.HIBRIDO;
             AdicionarHabilidades();
         }
 

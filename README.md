@@ -10,7 +10,7 @@ Este é um jogo que fiz para praticar programação orientada a objetos. É um s
 
 [![Linguagem](https://img.shields.io/badge/linguagem-C%23-brightgreen.svg)](https://docs.microsoft.com/pt-br/dotnet/csharp/)
 
-## Download da última versão:
+## Download da última versão
 [![Download](https://img.shields.io/badge/Download-drive-brightgreen.svg)](https://drive.google.com/file/d/1qmMp5Gq0KjfKH-aP56b0T7cDfdVqUJKZ/view?usp=share_link)
 
 ## Demonstração

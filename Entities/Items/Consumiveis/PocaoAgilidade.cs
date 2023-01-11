@@ -4,8 +4,8 @@
     {
         public PocaoAgilidade()
         {
-            Nome = "Poção de Agilidade";
-            Descricao = "(Aumenta a Agilidade em 20)";
+            Nome = "Poção de AGILIDADE";
+            Descricao = "(Aumenta a AGILIDADE em 20)";
         }
     }
 }

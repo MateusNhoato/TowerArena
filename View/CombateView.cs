@@ -342,7 +342,7 @@ namespace View
             Console.Write("/");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"{jogador.VidaTotal + 10}");
+            Console.Write($"{jogador.VidaTotal}");
 
             Console.ForegroundColor = aux;
             Console.Write("(");
@@ -356,7 +356,7 @@ namespace View
 
             Console.Write(" | Mana:[");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write($"{jogador.ManaAtual + 10}");
+            Console.Write($"{jogador.ManaAtual}");
 
             Console.ForegroundColor = aux;
             Console.Write("/");
@@ -368,7 +368,7 @@ namespace View
             Console.WriteLine("]\n");
 
             Console.ForegroundColor = aux;
-            Console.Write("     Agilidade :[");
+            Console.Write("     AGILIDADE :[");
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write($"{jogador.AgilidadeTotal}");
@@ -398,7 +398,7 @@ namespace View
             Console.WriteLine(")]");
 
             Console.ForegroundColor = aux;
-            Console.Write("     Intelecto :[");
+            Console.Write("     INTELECTO :[");
 
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write($"{jogador.IntelectoTotal}");
@@ -412,7 +412,7 @@ namespace View
             Console.ForegroundColor = aux;
             Console.WriteLine(")]");
 
-            Console.Write("     Defesa    :[");
+            Console.Write("     DEFESA    :[");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write($"{jogador.DefesaTotal}");
 
@@ -429,18 +429,18 @@ namespace View
 
             int acertoBase;
             ConsoleColor acertoBaseAux;
-            if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Agilidade)
+            if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.AGILIDADE)
             {
                 acertoBaseAux = ConsoleColor.DarkCyan;
                 acertoBase = jogador.AgilidadeTotal + jogador.AcertoExtra;
             }
-            else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Intelecto)
+            else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.INTELECTO)
             {
                 acertoBaseAux = ConsoleColor.DarkMagenta;
                 acertoBase = jogador.IntelectoTotal + jogador.AcertoExtra;
             }
 
-            else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.Forca)
+            else if (jogador.Classe.AtributoPrincipal == Enums.AtributoPrincipal.FORCA)
             {
                 acertoBaseAux = ConsoleColor.Red;
                 acertoBase = jogador.ForcaTotal + jogador.AcertoExtra;

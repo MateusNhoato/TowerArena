@@ -68,13 +68,13 @@ namespace Entities
             {
                 if (Classe != null)
                 {
-                    if (Classe.AtributoPrincipal == AtributoPrincipal.Agilidade)
+                    if (Classe.AtributoPrincipal == AtributoPrincipal.AGILIDADE)
                         return AgilidadeTotal;
-                    else if (Classe.AtributoPrincipal == AtributoPrincipal.Forca)
+                    else if (Classe.AtributoPrincipal == AtributoPrincipal.FORCA)
                         return ForcaTotal;
-                    else if (Classe.AtributoPrincipal == AtributoPrincipal.Defesa)
+                    else if (Classe.AtributoPrincipal == AtributoPrincipal.DEFESA)
                         return DefesaTotal;
-                    else if (Classe.AtributoPrincipal == AtributoPrincipal.Intelecto)
+                    else if (Classe.AtributoPrincipal == AtributoPrincipal.INTELECTO)
                         return IntelectoTotal;
                     else
                         return (AgilidadeTotal >= ForcaTotal) ? AgilidadeTotal : ForcaTotal;
@@ -205,10 +205,7 @@ namespace Entities
             }
             return danoTotal;
         }
-        public void SetarVidaPara1()
-        {
-            VidaAtual = 1;
-        }
+        public void SetarVidaPara1() => VidaAtual = 1;        
 
         public bool CheckarMana(int custoDeMana)
         {
@@ -220,25 +217,13 @@ namespace Entities
             return false;
         }
 
-        public void AlterarDefesa(int quantia)
-        {
-            DefesaExtra += quantia;
-        }
+        public void AlterarDefesa(int quantia) => DefesaExtra += quantia;
 
-        public void AlterarForca(int quantia)
-        {
-            ForcaExtra += quantia;
-        }
+        public void AlterarForca(int quantia) => ForcaExtra += quantia;
 
-        public void AlterarAgilidade(int quantia)
-        {
-            AgilidadeExtra += quantia;
-        }
+        public void AlterarAgilidade(int quantia) => AgilidadeExtra += quantia;
 
-        public void AlterarIntelecto(int quantia)
-        {
-            IntelectoExtra += quantia;
-        }
+        public void AlterarIntelecto(int quantia) => IntelectoExtra += quantia;
 
         public void AlterarVida(int quantia)
         {
@@ -252,14 +237,8 @@ namespace Entities
                 ManaAtual = ManaTotal;
         }
 
-        public void AlterarAcerto(int quantia)
-        {
-            AcertoExtra += quantia;
-        }
-        public void AlterarEsquiva(int quantia)
-        {
-            EsquivaExtra += quantia;
-        }
+        public void AlterarAcerto(int quantia) => AcertoExtra += quantia;
+        public void AlterarEsquiva(int quantia) => EsquivaExtra += quantia;
 
         public void ZerarAtributosExtras()
         {
@@ -290,19 +269,15 @@ namespace Entities
                 if (ManaAtual > ManaTotal)
                     ManaAtual = ManaTotal;
             }
+            else if (pocao is PocaoAgilidade)
+                AgilidadeExtra += 20;
+            else if (pocao is PocaoForca)
+                ForcaExtra += 20;
+            else if (pocao is PocaoIntelecto)
+                IntelectoExtra += 20;
             else
-            {
-                if (pocao is PocaoAgilidade)
-                    AgilidadeExtra += 20;
-
-                else if (pocao is PocaoForca)
-                    ForcaExtra += 20;
-
-                else if (pocao is PocaoIntelecto)
-                    IntelectoExtra += 20;
-                else
-                    DefesaExtra += 20;
-            }
+                DefesaExtra += 20;
+            
 
             Mochila.Items.Remove(pocao);
             Console.WriteLine($"     {Nome} bebeu uma {pocao.Nome}.");

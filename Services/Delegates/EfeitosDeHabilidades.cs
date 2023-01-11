@@ -235,28 +235,28 @@ namespace Delegates
         {
             conjurador.AlterarAgilidade(2);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Agilidade.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua AGILIDADE.");
             Thread.Sleep(500);
         }
         public static void BuffAgilidade5(CriaturaBase conjurador, CriaturaBase receptor)
         {
             conjurador.AlterarAgilidade(5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Agilidade.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua AGILIDADE.");
             Thread.Sleep(500);
         }
         public static void BuffDefesa2(CriaturaBase conjurador, CriaturaBase receptor)
         {
             conjurador.AlterarDefesa(2);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Defesa.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua DEFESA.");
             Thread.Sleep(500);
         }
         public static void BuffDefesa5(CriaturaBase conjurador, CriaturaBase receptor)
         {
             conjurador.AlterarDefesa(5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Defesa.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua DEFESA.");
             Thread.Sleep(500);
         }
         public static void BuffForca5(CriaturaBase conjurador, CriaturaBase receptor)
@@ -279,14 +279,14 @@ namespace Delegates
 
             conjurador.AlterarIntelecto(2);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta seu Intelecto.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta seu INTELECTO.");
             Thread.Sleep(500);
         }
         public static void BuffIntelecto5(CriaturaBase conjurador, CriaturaBase receptor)
         {
             conjurador.AlterarIntelecto(5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta seu Intelecto.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta seu INTELECTO.");
             Thread.Sleep(500);
         }
         public static void BuffForca10Porcento(CriaturaBase conjurador, CriaturaBase receptor)
@@ -302,7 +302,7 @@ namespace Delegates
             int buff = conjurador.AgilidadeTotal / 10;
             conjurador.AlterarAgilidade(buff);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Agilidade.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua AGILIDADE.");
             Thread.Sleep(500);
         }
         public static void BuffIntelecto10Porcento(CriaturaBase conjurador, CriaturaBase receptor)
@@ -310,7 +310,7 @@ namespace Delegates
             int buff = conjurador.IntelectoTotal / 10;
             conjurador.AlterarIntelecto(buff);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta seu Intelecto.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta seu INTELECTO.");
             Thread.Sleep(500);
         }
 
@@ -319,7 +319,7 @@ namespace Delegates
             int buff = conjurador.DefesaTotal / 5;
             conjurador.AlterarDefesa(buff);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Defesa.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua DEFESA.");
             Thread.Sleep(500);
         }
 
@@ -329,7 +329,7 @@ namespace Delegates
 
             conjurador.AlterarAgilidade(buff);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {conjurador.Nome} aumenta sua Agilidade.");
+            Console.WriteLine($"     {conjurador.Nome} aumenta sua AGILIDADE.");
             Thread.Sleep(500);
         }
 
@@ -347,7 +347,7 @@ namespace Delegates
         {
             receptor.AlterarDefesa(-2);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve sua Defesa reduzida.");
+            Console.WriteLine($"     {receptor.Nome} teve sua DEFESA reduzida.");
             Thread.Sleep(500);
         }
         public static void DebuffForca2(CriaturaBase conjurador, CriaturaBase receptor)
@@ -361,7 +361,7 @@ namespace Delegates
         {
             receptor.AlterarAgilidade(-2);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve sua Agilidade reduzida.");
+            Console.WriteLine($"     {receptor.Nome} teve sua AGILIDADE reduzida.");
             Thread.Sleep(500);
         }
 
@@ -369,7 +369,7 @@ namespace Delegates
         {
             receptor.AlterarIntelecto(-2);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve seu Intelecto reduzido.");
+            Console.WriteLine($"     {receptor.Nome} teve seu INTELECTO reduzido.");
             Thread.Sleep(500);
         }
 
@@ -377,14 +377,14 @@ namespace Delegates
         {
             receptor.AlterarIntelecto(-5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve seu Intelecto reduzido.");
+            Console.WriteLine($"     {receptor.Nome} teve seu INTELECTO reduzido.");
             Thread.Sleep(500);
         }
         public static void DebuffDefesa5(CriaturaBase conjurador, CriaturaBase receptor)
         {
             receptor.AlterarDefesa(-5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve sua Defesa reduzida.");
+            Console.WriteLine($"     {receptor.Nome} teve sua DEFESA reduzida.");
             Thread.Sleep(500);
         }
 
@@ -393,7 +393,7 @@ namespace Delegates
         {
             receptor.AlterarAgilidade(-5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve sua Agilidade reduzida.");
+            Console.WriteLine($"     {receptor.Nome} teve sua AGILIDADE reduzida.");
             Thread.Sleep(500);
         }
 
@@ -401,7 +401,7 @@ namespace Delegates
         {
             receptor.AlterarForca(-5);
             CombateView.ImprimirTelaDeCombate(conjurador, receptor);
-            Console.WriteLine($"     {receptor.Nome} teve seu Intelecto reduzido.");
+            Console.WriteLine($"     {receptor.Nome} teve seu INTELECTO reduzido.");
             Thread.Sleep(500);
         }
 
@@ -409,13 +409,13 @@ namespace Delegates
         {
             DebuffDefesa2(conjurador, receptor);
 
-            if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Agilidade)
+            if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.AGILIDADE)
                 DebuffAgilidade2(conjurador, receptor);
-            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Forca)
+            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.FORCA)
                 DebuffForca2(conjurador, receptor);
-            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Intelecto)
+            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.INTELECTO)
                 DebuffIntelecto2(conjurador, receptor);
-            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Defesa)
+            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.DEFESA)
                 DebuffDefesa2(conjurador, receptor);
             else
                 DebuffAgilidade2(conjurador, receptor);
@@ -425,13 +425,13 @@ namespace Delegates
         {
             DebuffDefesa5(conjurador, receptor);
 
-            if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Agilidade)
+            if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.AGILIDADE)
                 DebuffAgilidade5(conjurador, receptor);
-            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Forca)
+            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.FORCA)
                 DebuffForca5(conjurador, receptor);
-            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Intelecto)
+            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.INTELECTO)
                 DebuffIntelecto5(conjurador, receptor);
-            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.Defesa)
+            else if (receptor.Classe.AtributoPrincipal == AtributoPrincipal.DEFESA)
                 DebuffDefesa5(conjurador, receptor);
             else
                 DebuffAgilidade5(conjurador, receptor);
@@ -860,9 +860,6 @@ namespace Delegates
             conjurador.AlterarVida(conjurador.VidaTotal / 2);
         }
         #endregion
-
-
-
     }
 }
 

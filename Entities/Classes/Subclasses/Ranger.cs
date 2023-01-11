@@ -19,7 +19,7 @@ namespace Classes
             Habilidade habilidade = new Habilidade("Tiro Certeiro", 6, 10, descricao, EfeitosDeHabilidades.Ataque1xComLobo);
             Habilidades.Add(habilidade);
 
-            descricao = "O Ranger recebe a benção de seu companheiro animal, aumentado a Agilidade de ambos até o fim do combate.";
+            descricao = "O Ranger recebe a benção de seu companheiro animal, aumentado a AGILIDADE de ambos até o fim do combate.";
             habilidade = new Habilidade("Aspecto Lupino", 9, 2, descricao, EfeitosDeHabilidades.BuffAgilidade10Porcento);
             Habilidades.Add(habilidade);
 

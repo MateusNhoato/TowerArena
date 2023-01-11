@@ -20,7 +20,7 @@ namespace Classes
             DefesaPorNivel = 100;
             AgilidadePorNivel = 100;
 
-            AtributoPrincipal = AtributoPrincipal.Intelecto;
+            AtributoPrincipal = AtributoPrincipal.INTELECTO;
             AdicionarHabilidades();
         }
 

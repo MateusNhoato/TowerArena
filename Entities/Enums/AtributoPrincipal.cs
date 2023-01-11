@@ -2,10 +2,10 @@
 {
     enum AtributoPrincipal
     {
-        Agilidade,
-        Defesa,
-        Intelecto,
-        Forca,
-        Hibrido
+        AGILIDADE,
+        DEFESA,
+        INTELECTO,
+        FORCA,
+        HIBRIDO
     }
 }

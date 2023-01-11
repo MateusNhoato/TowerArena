@@ -21,7 +21,7 @@ namespace Classes
             AgilidadePorNivel = 4;
             ForcaPorNivel = 5;
             IntelectoPorNivel = 3;
-            AtributoPrincipal = AtributoPrincipal.Hibrido;
+            AtributoPrincipal = AtributoPrincipal.HIBRIDO;
 
         }
 
