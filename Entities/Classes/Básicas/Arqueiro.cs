@@ -35,7 +35,7 @@ namespace Classes
             habilidade = new Habilidade("Mente Afiada", 3, 6, descricao, EfeitosDeHabilidades.BuffAgilidade2);
             Habilidades.Add(habilidade);
 
-            descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua iniciativa.";
+            descricao = "Uma flechada tão rápida que o oponente só  consegue desviar com sua Agilidade.";
             habilidade = new Habilidade("Tiro Preciso", 5, 3, descricao, EfeitosDeHabilidades.TiroPreciso);
             Habilidades.Add(habilidade);
 

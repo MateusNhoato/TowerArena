@@ -5,7 +5,7 @@ namespace Items
 {
     abstract class Item
     {
-        public string Nome { get; protected private set; }
+        public string Nome { get; protected private set; } 
 
         public string? Descricao { get; protected private set; }
 

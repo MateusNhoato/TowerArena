@@ -8,12 +8,7 @@ namespace Menu
 
             string[] opcoes = { "1", "2", "3", "4" };
             string resposta = "";
-
-            Console.WriteLine("");
-            Console.WriteLine("     1- Atacar");
-            Console.WriteLine("     2- Habilidade Especial");
-            Console.WriteLine("     3- Itens Consumíveis");
-            Console.WriteLine("     4- Janela de Status");
+            View.CombateView.ImprimirOpcoesMenuDeCombate();          
 
             do
             {
@@ -21,7 +16,6 @@ namespace Menu
                 resposta = Console.ReadLine();
             } while (!opcoes.Contains(resposta));
             return resposta;
-
         }
 
         public static string MenuDeHabilidades(CriaturaBase jogador)

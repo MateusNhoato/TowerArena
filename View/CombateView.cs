@@ -624,6 +624,14 @@ namespace View
             Console.WriteLine(Texto.linha);
         }
 
+        public static void ImprimirOpcoesMenuDeCombate()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("     1- Atacar");
+            Console.WriteLine("     2- Habilidade Especial");
+            Console.WriteLine("     3- Itens Consumíveis");
+            Console.WriteLine("     4- Janela de Status");
+        }
         public static void VitoriaDoJogador()
         {
             ConsoleColor aux = Console.ForegroundColor;
